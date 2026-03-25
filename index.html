@@ -14,7 +14,7 @@
         .glass-card:hover { border-color: #3b82f6; transform: translateY(-5px); box-shadow: 0 20px 40px -20px rgba(59, 130, 246, 0.3); }
         .hero-mesh { background-image: radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.3) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(30, 58, 138, 0.1) 0, transparent 50%); }
         .lang-flag { cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; padding: 2px; width: 32px; height: 20px; object-fit: cover; border-radius: 4px; opacity: 0.5; }
-        .lang-active { border-color: #3b82f6; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)); scale: 1.1; opacity: 1; }
+        .lang-active { border-color: #3b82f6 !important; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)); scale: 1.1; opacity: 1; }
     </style>
 </head>
 <body class="hero-mesh min-h-screen">
@@ -87,9 +87,7 @@
                 comB: "İcmaya Qoşul",
                 resT: "BİLİK <br>BAZASI",
                 resD: "Özünü inkişaf etdir. Seçilmiş onlayn kurslar və faydalı resurslar.",
-                li1: "Kurslar & Təlimlər",
-                li2: "E-Kitabxana",
-                li3: "Faydalı Linklər"
+                li1: "Kurslar & Təlimlər", li2: "E-Kitabxana", li3: "Faydalı Linklər"
             },
             de: {
                 title: "OrikLab | OrikOS Ökosystem",
@@ -102,22 +100,24 @@
                 comB: "Forum Beitreten",
                 resT: "WISSENS <br>DATENBANK",
                 resD: "Entwickeln Sie sich weiter. Kuratierte Online-Kurse und nützliche Ressourcen.",
-                li1: "Schulungen",
-                li2: "E-Bibliothek",
-                li3: "Wichtige Links"
+                li1: "Schulungen", li2: "E-Bibliothek", li3: "Wichtige Links"
             }
         };
 
         function switchLang(lang) {
-            localStorage.setItem('selectedLang', lang);
-            const t = translations[lang];
+            console.log("Dəyişdirilir: " + lang);
+            try {
+                localStorage.setItem('selectedLang', lang);
+            } catch (e) {
+                console.error("LocalStorage xətası: ", e);
+            }
 
-            // Başlıq və Hero
+            const t = translations[lang];
+            
+            // Text updates
             document.title = t.title;
             document.getElementById('txt-hero-title').innerHTML = t.heroT;
             document.getElementById('txt-hero-desc').innerText = t.heroD;
-
-            // Kart Başlıqları və Təsvirləri
             document.getElementById('txt-tool-title').innerHTML = t.toolT;
             document.getElementById('txt-tool-desc').innerText = t.toolD;
             document.getElementById('txt-com-title').innerHTML = t.comT;
@@ -125,21 +125,21 @@
             document.getElementById('txt-com-btn').innerText = t.comB;
             document.getElementById('txt-res-title').innerHTML = t.resT;
             document.getElementById('txt-res-desc').innerText = t.resD;
-
-            // Siyahılar
             document.getElementById('li-1').innerText = t.li1;
             document.getElementById('li-2').innerText = t.li2;
             document.getElementById('li-3').innerText = t.li3;
 
-            // Bayraq vizualları
-            document.querySelectorAll('.lang-flag').forEach(img => img.classList.remove('lang-active'));
+            // Flag UI
+            document.getElementById('flag-az').classList.remove('lang-active');
+            document.getElementById('flag-de').classList.remove('lang-active');
             document.getElementById('flag-' + lang).classList.add('lang-active');
         }
 
-        window.onload = () => {
+        // On Load
+        window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('selectedLang') || 'az';
             switchLang(savedLang);
-        };
+        });
     </script>
 </body>
 </html>
