@@ -1,722 +1,174 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OrikLab — Alətlər, Bilik və İcma</title>
-  <meta
-    name="description"
-    content="OrikLab faydalı alətləri, seçilmiş resursları və icma əsaslı bilikləri bir araya gətirən müasir platformadır."
-  />
-  <style>
-    :root {
-      --bg: #0b1020;
-      --bg-soft: #121933;
-      --card: rgba(255, 255, 255, 0.06);
-      --card-strong: rgba(255, 255, 255, 0.1);
-      --text: #f5f7ff;
-      --muted: #b8c0df;
-      --line: rgba(255, 255, 255, 0.12);
-      --accent: #7c9cff;
-      --accent-2: #4de2c5;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-      --radius: 22px;
-      --max: 1180px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(124, 156, 255, 0.22), transparent 28%),
-        radial-gradient(circle at top right, rgba(77, 226, 197, 0.12), transparent 22%),
-        linear-gradient(180deg, #0a0f1e 0%, #0b1020 100%);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: rgba(10, 15, 30, 0.7);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 0;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: 0.2px;
-      font-size: 1.15rem;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      display: grid;
-      place-items: center;
-      color: #08101f;
-      font-weight: 900;
-      box-shadow: var(--shadow);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 22px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.96rem;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .lang-switch {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .lang-switch a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 40px;
-      height: 40px;
-      padding: 0 10px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.05);
-      font-size: 0.95rem;
-    }
-
-    .lang-switch a.active {
-      background: linear-gradient(135deg, var(--accent), #93a8ff);
-      color: #0a0f1e;
-      font-weight: 800;
-      border-color: transparent;
-    }
-
-    .nav-cta {
-      padding: 12px 18px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), #93a8ff);
-      color: #0a0f1e;
-      font-weight: 700;
-      box-shadow: var(--shadow);
-    }
-
-    .hero {
-      padding: 78px 0 40px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 36px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.04);
-      font-size: 0.9rem;
-      margin-bottom: 18px;
-    }
-
-    .eyebrow-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent-2);
-      box-shadow: 0 0 16px var(--accent-2);
-    }
-
-    h1 {
-      margin: 0 0 18px;
-      font-size: clamp(2.5rem, 6vw, 4.8rem);
-      line-height: 0.98;
-      letter-spacing: -0.04em;
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 650px;
-      color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.7;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 52px;
-      padding: 0 20px;
-      border-radius: 16px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      transition: 0.25s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #9db0ff);
-      color: #0b1020;
-      box-shadow: var(--shadow);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: var(--line);
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .hero-card {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      border-radius: 28px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: -30% auto auto -10%;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: rgba(124, 156, 255, 0.18);
-      filter: blur(30px);
-    }
-
-    .preview-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 18px;
-    }
-
-    .pill {
-      padding: 8px 12px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-    }
-
-    .mock-grid {
-      display: grid;
-      gap: 14px;
-    }
-
-    .mock-box {
-      border-radius: 20px;
-      padding: 18px;
-      background: rgba(7, 12, 25, 0.52);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .mock-title {
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .mock-sub {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    .stat {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--line);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.25rem;
-      margin-bottom: 6px;
-    }
-
-    section {
-      padding: 38px 0;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 24px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(1.7rem, 4vw, 2.5rem);
-      letter-spacing: -0.03em;
-    }
-
-    .section-head p {
-      margin: 0;
-      max-width: 620px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      padding: 24px;
-      border-radius: var(--radius);
-      background: var(--card);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      transition: 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      background: var(--card-strong);
-    }
-
-    .icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(124,156,255,0.18), rgba(77,226,197,0.15));
-      border: 1px solid rgba(255,255,255,0.1);
-      font-size: 1.3rem;
-      margin-bottom: 18px;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 0.98rem;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .list {
-      display: grid;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .list-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .list-item strong {
-      color: var(--text);
-    }
-
-    .list-bullet {
-      flex: 0 0 10px;
-      width: 10px;
-      height: 10px;
-      margin-top: 9px;
-      border-radius: 50%;
-      background: var(--accent-2);
-      box-shadow: 0 0 12px rgba(77, 226, 197, 0.7);
-    }
-
-    .cta {
-      margin: 26px 0 20px;
-      padding: 30px;
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      background:
-        linear-gradient(135deg, rgba(124,156,255,0.14), rgba(77,226,197,0.08)),
-        rgba(255,255,255,0.04);
-      box-shadow: var(--shadow);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .cta h3 {
-      margin: 0 0 8px;
-      font-size: 1.5rem;
-    }
-
-    .cta p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 700px;
-    }
-
-    footer {
-      margin-top: 18px;
-      padding: 28px 0 42px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      color: var(--muted);
-    }
-
-    .footer-grid {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a:hover {
-      color: var(--text);
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .cards,
-      .split {
-        grid-template-columns: 1fr;
-      }
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .section-head,
-      .cta,
-      .nav {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding-top: 46px;
-      }
-
-      .container {
-        width: min(var(--max), calc(100% - 20px));
-      }
-
-      .card,
-      .hero-card,
-      .cta {
-        padding: 20px;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrikLab | Powered by OrikOS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #3b82f6; }
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; scroll-behavior: smooth; }
+        .font-os { font-family: 'Orbitron', sans-serif; }
+        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .hero-glow { background: radial-gradient(circle at 50% -20%, #1e40af 0%, transparent 70%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3); }
+    </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="container nav">
-      <a class="brand" href="/">
-        <span class="brand-mark">O</span>
-        <span>OrikLab</span>
-      </a>
 
-      <div class="nav-links">
-        <a href="#platform">Platforma</a>
-        <a href="#features">Xüsusiyyətlər</a>
-        <a href="#vision">Vizyon</a>
-        <a href="/privacy.html">Məxfilik</a>
-        <a href="/impressum.html">Impressum</a>
-      </div>
-
-      <div class="lang-switch">
-        <a class="active" href="/">AZ</a>
-        <a href="/en.html">EN</a>
-        <a href="/de.html">DE</a>
-      </div>
-    </div>
-  </div>
-
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Daha ağıllı rəqəmsal platforma qurulur
-          </div>
-
-          <h1>Alətlər, bilik və icma bir platformada.</h1>
-
-          <p>
-            OrikLab, OrikOS layihəsinin rəqəmsal laboratoriyasıdır — faydalı alətləri,
-            seçilmiş resursları və icma əsaslı bilikləri bir araya gətirmək üçün qurulan
-            müasir və inkişaf edə bilən platformadır.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#features">Konsepti araşdır</a>
-            <a class="btn btn-secondary" href="/privacy.html">Hüquqi səhifələr</a>
-          </div>
+    <nav class="fixed w-full z-50 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold font-os text-white">O</div>
+                <span class="text-xl font-os font-bold tracking-tighter">ORIK<span class="text-blue-500">LAB</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-400">
+                <a href="#tools" class="hover:text-blue-400 transition">Alətlər</a>
+                <a href="#community" class="hover:text-blue-400 transition">İcma</a>
+                <a href="#resources" class="hover:text-blue-400 transition">Resurslar</a>
+            </div>
+            <div class="text-[10px] px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full font-os">OrikOS v1.2</div>
         </div>
+    </nav>
 
-        <div class="hero-card">
-          <div class="preview-top">
-            <span>OrikLab Preview</span>
-            <span class="pill">Canlı təməl</span>
-          </div>
-
-          <div class="mock-grid">
-            <div class="mock-box">
-              <div class="mock-title">Alətlər</div>
-              <div class="mock-sub">IT-dən məhsuldarlığa, gündəlik həyatdan maliyyəyə qədər kateqoriyalara ayrılmış praktik vasitələr.</div>
-            </div>
-            <div class="mock-box">
-              <div class="mock-title">Resurslar</div>
-              <div class="mock-sub">Seçilmiş saytlar, bələdçilər, izahlar və faydalı mənbələr bir yerdə.</div>
-            </div>
-            <div class="mock-box">
-              <div class="mock-title">İcma</div>
-              <div class="mock-sub">Gələcəkdə insanların sual verə, cavab ala və təcrübə paylaşa biləcəyi müzakirə sahəsi.</div>
-            </div>
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <strong>3 əsas hissə</strong>
-              <span>Alətlər, resurslar, forum</span>
-            </div>
-            <div class="stat">
-              <strong>Qlobal yönüm</strong>
-              <span>Beynəlxalq böyümə üçün hazırlanıb</span>
-            </div>
-            <div class="stat">
-              <strong>Məxfilik ön planda</strong>
-              <span>Hüquqi və təhlükəsizlik əsaslı başlanğıc</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="platform">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Sadə sayt yox, real platforma.</h2>
-          </div>
-          <p>
-            Məqsəd təkcə statik bir səhifə yaratmaq deyil. OrikLab kiçik bir başlanğıcdan
-            tam funksional, genişlənə bilən və uzunömürlü məhsula çevrilmək üçün qurulur.
-          </p>
-        </div>
-
-        <div class="cards">
-          <article class="card">
-            <div class="icon">🧰</div>
-            <h3>Alətlər qatı</h3>
-            <p>
-              İnsanların hər gün istifadə edə biləcəyi sürətli və faydalı alətlər.
-              Aydın kateqoriyalar, sadə giriş və böyüməyə uyğun struktur.
+    <header class="relative pt-32 pb-20 hero-glow overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-7xl font-os font-bold mb-6 tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500">
+                GƏLƏCƏYİN <span class="text-blue-500">EKOSİSTEMİ</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+                OrikLab — mühəndislik, IT və tibbin kəsişməsində yaradılan çoxfunksiyalı platformadır. OrikOS arxitekturası ilə hər şey bir yerdə.
             </p>
-          </article>
-
-          <article class="card">
-            <div class="icon">📚</div>
-            <h3>Resurslar qatı</h3>
-            <p>
-              Seçilmiş saytlar, bələdçilər, izahlar və kolleksiyalar sayəsində platforma
-              axtarıla bilən bilik bazasına çevrilir.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="icon">💬</div>
-            <h3>İcma qatı</h3>
-            <p>
-              Gələcəkdə istifadəçilərin sual verə, cavab ala, təcrübə paylaşa və etibar
-              yarada biləcəyi müzakirə sistemi.
-            </p>
-          </article>
+            <div class="flex justify-center gap-4">
+                <a href="#tools" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-xl font-bold transition shadow-lg shadow-blue-500/20">Sistemə Başla</a>
+                <a href="#community" class="glass px-8 py-3 rounded-xl font-bold hover:bg-white/5 transition">İcmaya Qoşul</a>
+            </div>
         </div>
-      </div>
-    </section>
+    </header>
 
-    <section id="features">
-      <div class="container split">
-        <div class="card">
-          <h2 style="margin-top:0;">Onu fərqli edən nədir?</h2>
-          <div class="list">
-            <div class="list-item">
-              <span class="list-bullet"></span>
-              <div><strong>Brend əsaslı struktur:</strong> OrikLab, daha böyük OrikOS vizyonu altında ayrıca məhsul kimi işləyir.</div>
+    <main class="max-w-7xl mx-auto px-6 py-20 space-y-32">
+
+        <section id="tools">
+            <div class="mb-12">
+                <h2 class="text-3xl font-os font-bold text-white mb-2 italic">// MÖVCUD ALƏTLƏR</h2>
+                <div class="h-1 w-20 bg-blue-600"></div>
             </div>
-            <div class="list-item">
-              <span class="list-bullet"></span>
-              <div><strong>Modul inkişaf:</strong> kiçik başla, ağıllı böyü və memarlıq üzərində tam nəzarəti saxla.</div>
+            
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="glass p-8 rounded-3xl card-hover">
+                    <div class="w-16 h-16 bg-blue-500/20 text-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">IT & Şəbəkə</h3>
+                    <p class="text-gray-400 text-sm mb-6">Subnet hesablayıcıları, IP analizatorlar və şəbəkə mühəndisliyi alətləri.</p>
+                    <button class="text-blue-500 text-xs font-bold uppercase tracking-widest underline underline-offset-8">Modulu Aç</button>
+                </div>
+                <div class="glass p-8 rounded-3xl card-hover">
+                    <div class="w-16 h-16 bg-red-500/20 text-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Tibb & Bio</h3>
+                    <p class="text-gray-400 text-sm mb-6">Tibb işçiləri üçün dozaj hesablayıcılar və diaqnostik köməkçi modullar.</p>
+                    <button class="text-red-500 text-xs font-bold uppercase tracking-widest underline underline-offset-8">Modulu Aç</button>
+                </div>
+                <div class="glass p-8 rounded-3xl card-hover">
+                    <div class="w-16 h-16 bg-yellow-500/20 text-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Elektrik</h3>
+                    <p class="text-gray-400 text-sm mb-6">Dövrə hesablamaları, Om qanunu və mühəndislik kalkulyatorları.</p>
+                    <button class="text-yellow-500 text-xs font-bold uppercase tracking-widest underline underline-offset-8">Modulu Aç</button>
+                </div>
             </div>
-            <div class="list-item">
-              <span class="list-bullet"></span>
-              <div><strong>Məxfilik yönümlü təməl:</strong> hüquqi səhifələr və texniki baza artıq qurulub.</div>
+        </section>
+
+        <section id="community" class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h2 class="text-4xl font-os font-bold">İCMA VƏ <br><span class="text-blue-500">İDEYALAR BANKI</span></h2>
+                <p class="text-gray-400 leading-relaxed">OrikLab sadəcə alət deyil, həm də beyin mərkəzidir. Forumlarda müzakirə edin, yeni layihə ideyalarınızı bizimlə paylaşın və mütəxəssislərlə əməkdaşlıq qurun.</p>
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5">
+                        <i class="fas fa-comments text-blue-500 text-xl"></i>
+                        <div><h4 class="font-bold">Texniki Forum</h4><p class="text-xs text-gray-500">Mövzular üzrə dərin müzakirələr</p></div>
+                    </div>
+                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5">
+                        <i class="fas fa-lightbulb text-yellow-500 text-xl"></i>
+                        <div><h4 class="font-bold">İdeya Bankı</h4><p class="text-xs text-gray-500">Yeni layihə təklifləri və səsvermə</p></div>
+                    </div>
+                </div>
             </div>
-            <div class="list-item">
-              <span class="list-bullet"></span>
-              <div><strong>Beynəlxalq istiqamət:</strong> çoxdilli və qlobal auditoriya üçün genişlənməyə hazırdır.</div>
+            <div class="glass p-1 rounded-3xl bg-gradient-to-br from-blue-500/20 to-transparent">
+                <div class="bg-slate-900 rounded-[calc(1.5rem-1px)] p-10 h-full flex flex-col justify-center text-center">
+                    <h3 class="text-2xl font-bold mb-4 italic font-os">BİRLİKDƏ YARADAQ</h3>
+                    <p class="text-gray-400 mb-8">Sizin təcrübəniz OrikOS-un gələcəyini formalaşdırır.</p>
+                    <a href="#" class="bg-white text-black px-6 py-3 rounded-xl font-bold hover:bg-gray-200 transition">Foruma Daxil Ol</a>
+                </div>
             </div>
-          </div>
+        </section>
+
+        <section id="resources" class="glass rounded-[3rem] p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 blur-[100px]"></div>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-os font-bold mb-4 italic">// BİLİK BAZASI (RESOURCES)</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs">Texniki Sənədlər • Təlim Kursları • Xarici Resurslar</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold border-b border-white/10 pb-2">Kurslar</h4>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="hover:text-blue-400 cursor-pointer">IT Fundamentals</li>
+                        <li class="hover:text-blue-400 cursor-pointer">Advanced Network</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold border-b border-white/10 pb-2">Sənədlər</h4>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="hover:text-blue-400 cursor-pointer">Mühəndislik Standartları</li>
+                        <li class="hover:text-blue-400 cursor-pointer">Təhlükəsizlik Manualı</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold border-b border-white/10 pb-2">Xarici Linklər</h4>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="hover:text-blue-400 cursor-pointer">IEEE Database</li>
+                        <li class="hover:text-blue-400 cursor-pointer">Cisco Learning</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold border-b border-white/10 pb-2">Yükləmələr</h4>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li class="hover:text-blue-400 cursor-pointer">OrikOS Toolset (Beta)</li>
+                        <li class="hover:text-blue-400 cursor-pointer">Sistem Scriptləri</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="glass py-20 mt-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h3 class="text-2xl font-os font-bold mb-4 uppercase">ORIK<span class="text-blue-500 text-lg">OS</span></h3>
+                <p class="text-gray-500 text-sm max-w-sm leading-relaxed">
+                    Bonn, Almaniya mərkəzli rəqəmsal laboratoriya. 
+                    Mühəndislik və innovasiya üçün vahid mərkəz.
+                </p>
+            </div>
+            <div class="flex flex-col md:items-end space-y-4">
+                <div class="flex gap-6 text-sm font-bold uppercase tracking-widest">
+                    <a href="impressum.html" class="text-gray-400 hover:text-blue-500 transition">Legal / Impressum</a>
+                    <a href="datenschutz.html" class="text-gray-400 hover:text-blue-500 transition">Privacy / Datenschutz</a>
+                </div>
+                <p class="text-[10px] text-gray-600 font-mono tracking-widest uppercase italic">
+                    Developed by Orkhan Hajiyev | Römerstraße 307, Bonn
+                </p>
+            </div>
         </div>
+    </footer>
 
-        <div class="card">
-          <h2 style="margin-top:0;">Hazırkı mərhələ</h2>
-          <p>
-            Bu versiya peşəkar başlanğıcdır: xüsusi domain, canlı deploy sistemi,
-            hüquqi səhifələr və ilk brend interfeysi artıq hazırdır.
-          </p>
-
-          <div class="list">
-            <div class="list-item">
-              <span class="list-bullet"></span>
-              <div><strong>Domain qoşulub:</strong> oriklab.com artıq Vercel üzərində aktivdir.</div>
-            </div>
-            <div class="list-item">
-              <span class="list-bullet"></span>
-              <div><strong>GitHub workflow:</strong> yeniləmələr versiya nəzarəti ilə peşəkar şəkildə idarə olunur.</div>
-            </div>
-            <div class="list-item">
-              <span class="list-bullet"></span>
-              <div><strong>Hüquqi baza:</strong> Məxfilik və Impressum səhifələri artıq mövcuddur.</div>
-            </div>
-            <div class="list-item">
-              <span class="list-bullet"></span>
-              <div><strong>Növbəti addım:</strong> bunu interaktiv və daha güclü platformaya çevirməkdir.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="vision">
-      <div class="container">
-        <div class="cta">
-          <div>
-            <h3>Bu, OrikLab-ın yalnız başlanğıcıdır.</h3>
-            <p>
-              Hazırkı səhifə peşəkar təməldir. Növbəti mərhələdə layihə xüsusi dizayn,
-              kateqoriya səhifələri, real alətlər və genişlənə bilən icma sistemi ilə
-              tam məhsula çevrilə bilər.
-            </p>
-          </div>
-
-          <a class="btn btn-primary" href="/impressum.html">Hüquqi məlumat</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer style="margin-top: 50px; padding: 20px; border-top: 1px solid #1e293b; text-align: center;">
-    <div class="container">
-      <div style="margin-bottom: 10px; opacity: 0.7;">© 2026 OrikLab — OrikOS layihəsinin bir hissəsi.</div>
-      <div class="footer-links" style="display: flex; justify-content: center; gap: 20px;">
-        <a href="impressum.html" style="color: #3b82f6; text-decoration: none; font-weight: bold;">Legal / Impressum</a>
-        <a href="datenschutz.html" style="color: #3b82f6; text-decoration: none; font-weight: bold;">Privacy / Datenschutz</a>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>
