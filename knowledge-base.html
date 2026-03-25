@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilik Bazası | OrikLab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f1f5f9; }
+        .font-os { font-family: 'Orbitron', sans-serif; }
+        .kb-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .kb-card:hover {
+            border-color: #3b82f6;
+            transform: scale(1.02);
+            background: rgba(30, 41, 59, 0.6);
+            box-shadow: 0 20px 40px -20px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <nav class="border-b border-white/5 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="index.html" class="text-blue-500 font-os font-bold flex items-center gap-2">
+                <i class="fa-solid fa-house"></i> <span>ORIKLAB</span>
+            </a>
+            <span class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.3em]">Bilik Bazası / Knowledge Base</span>
+        </div>
+    </nav>
+
+    <header class="py-16 px-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-os font-bold mb-4 uppercase tracking-tighter italic">
+            Məlumat <span class="text-blue-500">Mərkəzi</span>
+        </h1>
+        <p class="text-gray-400 max-w-2xl mx-auto italic">OrikLab mühəndisləri və tələbələri üçün hazırlanmış vahid resurs bazası.</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <a href="courses.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 class="font-os text-sm font-bold mb-2">KURSLAR</h3>
+                <p class="text-xs text-gray-500 italic">Video dərslər və praktiki təlimlər</p>
+            </a>
+
+            <a href="library.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-purple-500/10 text-purple-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <h3 class="font-os text-sm font-bold mb-2">E-KİTABXANA</h3>
+                <p class="text-xs text-gray-500 italic">PDF-lər və elmi vəsaitlər</p>
+            </a>
+
+            <a href="links.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-emerald-500/10 text-emerald-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-link"></i>
+                </div>
+                <h3 class="font-os text-sm font-bold mb-2">FAYDALI LİNKLƏR</h3>
+                <p class="text-xs text-gray-500 italic">Xarici alətlər və saytlar</p>
+            </a>
+
+            <a href="wiki.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-amber-500/10 text-amber-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-file-code"></i>
+                </div>
+                <h3 class="font-os text-sm font-bold mb-2">SƏNƏDLƏR</h3>
+                <p class="text-xs text-gray-500 italic">Texniki bələdçilər (Wiki)</p>
+            </a>
+
+        </div>
+    </main>
+
+</body>
+</html>
