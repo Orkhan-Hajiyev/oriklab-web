@@ -18,6 +18,8 @@
             cursor: pointer;
         }
         .topic-card:hover { border-color: #3b82f6; transform: translateY(-5px); background: rgba(30, 41, 59, 0.5); }
+        .admin-btn { transition: all 0.3s ease; opacity: 0.2; }
+        .topic-card:hover .admin-btn { opacity: 1; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -49,8 +51,7 @@
         <div class="flex items-center justify-between mb-10 border-b border-white/5 pb-4">
             <h2 class="text-xl font-os font-bold tracking-widest"><i class="fa-solid fa-layer-group text-blue-500 mr-2"></i> <span id="active-title">AKTİV MÖVZULAR</span></h2>
         </div>
-        <div id="topics-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            </div>
+        <div id="topics-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </main>
 
     <div id="ask-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-black/90 backdrop-blur-md">
@@ -79,12 +80,12 @@
             az: {
                 back: "FORUM", h1: "BİR", h2: "SUALIN", h3: "VAR?", hDesc: "İcmamızın mühəndisləri sənə kömək etməyə hazırdır.",
                 btnAsk: "Yeni Mövzu Aç", active: "AKTİV MÖVZULAR", modalT: "YENİ PAYLAŞIM", btnSub: "PAYLAŞ",
-                catGen: "Ümumi", catTech: "Texniki", enter: "Daxil Ol", anon: "Anonim"
+                catGen: "Ümumi", catTech: "Texniki", enter: "Daxil Ol", anon: "Anonim", delConfirm: "Admin şifrəsini daxil edin:"
             },
             de: {
                 back: "FORUM", h1: "HAST DU", h2: "EINE", h3: "FRAGE?", hDesc: "Unsere Ingenieure sind bereit, dir zu helfen.",
                 btnAsk: "Neues Thema", active: "AKTIVE THEMEN", modalT: "NEUER BEITRAG", btnSub: "POSTEN",
-                catGen: "Allgemein", catTech: "Technik", enter: "Eintreten", anon: "Anonym"
+                catGen: "Allgemein", catTech: "Technik", enter: "Eintreten", anon: "Anonym", delConfirm: "Admin-Passwort eingeben:"
             }
         };
 
@@ -111,6 +112,26 @@
             m.classList.toggle('flex');
         }
 
+        // SİLMƏ FUNKSİYASI (Admin üçün)
+        function deleteTopic(id, event) {
+            event.stopPropagation(); // Kartın daxilinə keçid etməməsi üçün
+            const pass = prompt(translations[currentLang].delConfirm);
+            if (pass === "orikadmin2026") {
+                let topics = JSON.parse(localStorage.getItem('oriklab_topics')) || [];
+                topics = topics.filter(t => t.id !== id);
+                localStorage.setItem('oriklab_topics', JSON.stringify(topics));
+                
+                // Cavabları da təmizləyək
+                let replies = JSON.parse(localStorage.getItem('oriklab_replies')) || [];
+                replies = replies.filter(r => r.topicId != id);
+                localStorage.setItem('oriklab_replies', JSON.stringify(replies));
+                
+                renderTopics();
+            } else if (pass !== null) {
+                alert("Wrong Password!");
+            }
+        }
+
         function renderTopics() {
             const grid = document.getElementById('topics-grid');
             const topics = JSON.parse(localStorage.getItem('oriklab_topics')) || [];
@@ -121,12 +142,17 @@
                 let displayCat = topic.category === "Tech" ? t.catTech : t.catGen;
                 
                 grid.innerHTML += `
-                <div onclick="window.location.href='topic-details.html?id=${topic.id}'" class="topic-card p-8 rounded-[2.5rem] group">
+                <div onclick="window.location.href='topic-details.html?id=${topic.id}'" class="topic-card p-8 rounded-[2.5rem] group relative">
                     <div class="flex justify-between items-start mb-6">
                         <div class="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-xl flex items-center justify-center text-xl transition-colors group-hover:bg-blue-500 group-hover:text-white">
                             <i class="fa-solid fa-comments"></i>
                         </div>
-                        <span class="text-[8px] font-bold border border-white/10 px-2 py-1 rounded uppercase text-gray-500 tracking-widest">${displayCat}</span>
+                        <div class="flex items-center gap-2">
+                             <span class="text-[8px] font-bold border border-white/10 px-2 py-1 rounded uppercase text-gray-500 tracking-widest">${displayCat}</span>
+                             <button onclick="deleteTopic(${topic.id}, event)" class="admin-btn text-red-500/50 hover:text-red-500 text-xs p-1">
+                                <i class="fa-solid fa-trash-can"></i>
+                             </button>
+                        </div>
                     </div>
                     <h3 class="text-xl font-bold mb-3 group-hover:text-blue-400 transition">${topic.title}</h3>
                     <p class="text-gray-500 text-sm mb-6 line-clamp-2">${topic.body}</p>
@@ -143,7 +169,7 @@
             const topics = JSON.parse(localStorage.getItem('oriklab_topics')) || [];
             
             const newTopic = {
-                id: Date.now(), // Hər mövzuya unikal ID veririk
+                id: Date.now(),
                 author: document.getElementById('q-author').value || translations[currentLang].anon,
                 category: document.getElementById('q-category').value,
                 title: document.getElementById('q-title').value,
