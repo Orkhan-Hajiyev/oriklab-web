@@ -1,1 +1,154 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrikLab Community | Forum</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f1f5f9; }
+        .font-os { font-family: 'Orbitron', sans-serif; }
+        .forum-card { 
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            transition: all 0.3s ease; 
+        }
+        .forum-card:hover { 
+            border-color: #3b82f6; 
+            transform: translateY(-2px);
+            background: rgba(30, 41, 59, 0.5);
+        }
+        .hero-mesh { 
+            background-image: radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.2) 0, transparent 50%); 
+        }
+    </style>
+</head>
+<body class="hero-mesh min-h-screen">
 
+    <nav class="border-b border-white/5 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="index.html" class="text-blue-500 font-os font-bold flex items-center gap-2 hover:text-blue-400 transition">
+                <i class="fa-solid fa-arrow-left text-sm"></i> ANA SƏHİFƏ
+            </a>
+            <div class="font-os text-lg font-bold tracking-tighter text-white">
+                ORIK<span class="text-blue-600">LAB</span> <span class="text-gray-500 text-xs italic ml-2">COMMUNITY</span>
+            </div>
+            <button class="bg-blue-600 hover:bg-blue-500 text-[10px] font-bold px-4 py-2 rounded-lg uppercase tracking-widest transition shadow-lg shadow-blue-600/20">
+                Giriş Et
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 py-12">
+        
+        <header class="mb-12">
+            <h1 class="text-4xl font-os font-bold mb-3 italic">İCMA <span class="text-blue-600">PANELİ</span></h1>
+            <p class="text-gray-500 text-sm uppercase tracking-widest font-semibold">Müzakirələr, Layihələr və İdeyalar</p>
+        </div>
+
+        <div class="grid gap-6">
+            
+            <div class="forum-card p-6 rounded-3xl flex items-center justify-between group">
+                <div class="flex items-center gap-6">
+                    <div class="w-14 h-14 bg-amber-500/10 text-amber-500 rounded-2xl flex items-center justify-center text-2xl border border-amber-500/20 shadow-inner">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-os font-bold text-xl group-hover:text-blue-400 transition">İdeya Bankı</h3>
+                        <p class="text-gray-400 text-sm mt-1">Yeni startap və texnoloji ideyaların müzakirəsi.</p>
+                    </div>
+                </div>
+                <div class="flex gap-8 text-center pr-4">
+                    <div class="hidden md:block">
+                        <span class="block text-xl font-bold text-white font-os">12</span>
+                        <span class="text-[9px] text-gray-500 uppercase font-bold tracking-tighter">Mövzu</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-700 group-hover:text-blue-500 transition self-center"></i>
+                </div>
+            </div>
+
+            <div class="forum-card p-6 rounded-3xl flex items-center justify-between group">
+                <div class="flex items-center gap-6">
+                    <div class="w-14 h-14 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center text-2xl border border-blue-500/20 shadow-inner">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-os font-bold text-xl group-hover:text-blue-400 transition">Aktiv Layihələr</h3>
+                        <p class="text-gray-400 text-sm mt-1">OrikOS üzərində qurulan yeni tətbiqlər və proqramlar.</p>
+                    </div>
+                </div>
+                <div class="flex gap-8 text-center pr-4">
+                    <div class="hidden md:block">
+                        <span class="block text-xl font-bold text-white font-os">08</span>
+                        <span class="text-[9px] text-gray-500 uppercase font-bold tracking-tighter">Layihə</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-700 group-hover:text-blue-500 transition self-center"></i>
+                </div>
+            </div>
+
+            <div class="forum-card p-6 rounded-3xl flex items-center justify-between group">
+                <div class="flex items-center gap-6">
+                    <div class="w-14 h-14 bg-emerald-500/10 text-emerald-500 rounded-2xl flex items-center justify-center text-2xl border border-emerald-500/20 shadow-inner">
+                        <i class="fa-solid fa-circle-question"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-os font-bold text-xl group-hover:text-blue-400 transition">Sual-Cavab</h3>
+                        <p class="text-gray-400 text-sm mt-1">Texniki çətinliklər və mühəndislik sualları üçün bölmə.</p>
+                    </div>
+                </div>
+                <div class="flex gap-8 text-center pr-4">
+                    <div class="hidden md:block">
+                        <span class="block text-xl font-bold text-white font-os">45</span>
+                        <span class="text-[9px] text-gray-500 uppercase font-bold tracking-tighter">Sual</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-700 group-hover:text-blue-500 transition self-center"></i>
+                </div>
+            </div>
+
+            <div class="forum-card p-6 rounded-3xl flex items-center justify-between group">
+                <div class="flex items-center gap-6">
+                    <div class="w-14 h-14 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center text-2xl border border-red-500/20 shadow-inner">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-os font-bold text-xl group-hover:text-blue-400 transition">Elanlar</h3>
+                        <p class="text-gray-400 text-sm mt-1">Sistem yenilənmələri və rəsmi xəbərlər.</p>
+                    </div>
+                </div>
+                <div class="flex gap-8 text-center pr-4">
+                    <div class="hidden md:block">
+                        <span class="block text-xl font-bold text-white font-os">03</span>
+                        <span class="text-[9px] text-gray-500 uppercase font-bold tracking-tighter">Mesaj</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-700 group-hover:text-blue-500 transition self-center"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-16 grid md:grid-cols-3 gap-6 border-t border-white/5 pt-10">
+            <div class="text-center">
+                <div class="text-2xl font-os font-bold text-blue-500">1.2K+</div>
+                <div class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mt-1">Ümumi Üzv</div>
+            </div>
+            <div class="text-center">
+                <div class="text-2xl font-os font-bold text-blue-500">24</div>
+                <div class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mt-1">Onlayn</div>
+            </div>
+            <div class="text-center">
+                <div class="text-2xl font-os font-bold text-blue-500">650</div>
+                <div class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mt-1">Paylaşım</div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="py-12 text-center text-gray-700 text-[10px] font-bold uppercase tracking-widest">
+        OrikOS Global Forum Architecture &copy; 2026
+    </footer>
+
+</body>
+</html>
