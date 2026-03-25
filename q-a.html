@@ -112,16 +112,14 @@
             m.classList.toggle('flex');
         }
 
-        // SİLMƏ FUNKSİYASI (Admin üçün)
         function deleteTopic(id, event) {
-            event.stopPropagation(); // Kartın daxilinə keçid etməməsi üçün
+            event.stopPropagation();
             const pass = prompt(translations[currentLang].delConfirm);
             if (pass === "orikadmin2026") {
                 let topics = JSON.parse(localStorage.getItem('oriklab_topics')) || [];
                 topics = topics.filter(t => t.id !== id);
                 localStorage.setItem('oriklab_topics', JSON.stringify(topics));
                 
-                // Cavabları da təmizləyək
                 let replies = JSON.parse(localStorage.getItem('oriklab_replies')) || [];
                 replies = replies.filter(r => r.topicId != id);
                 localStorage.setItem('oriklab_replies', JSON.stringify(replies));
@@ -137,8 +135,11 @@
             const topics = JSON.parse(localStorage.getItem('oriklab_topics')) || [];
             const t = translations[currentLang];
             
+            // Yalnız seçilmiş dilə uyğun olanları filtrləyirik
+            const filteredTopics = topics.filter(topic => topic.lang === currentLang);
+            
             grid.innerHTML = '';
-            topics.reverse().forEach(topic => {
+            filteredTopics.reverse().forEach(topic => {
                 let displayCat = topic.category === "Tech" ? t.catTech : t.catGen;
                 
                 grid.innerHTML += `
@@ -175,6 +176,7 @@
                 title: document.getElementById('q-title').value,
                 body: document.getElementById('q-body').value,
                 date: new Date().toLocaleDateString(),
+                lang: currentLang // Mövzunun hansı dildə açıldığını burada saxlayırıq
             };
 
             topics.push(newTopic);
