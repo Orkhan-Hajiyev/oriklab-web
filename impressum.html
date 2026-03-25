@@ -3,54 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impressum | OrikLab by OrikOS</title>
+    <title>Legal Notice | OrikLab</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top right, #1e293b, #0f172a, #020617); color: #e2e8f0; }
+        body { font-family: 'Inter', sans-serif; background: #020617; color: #e2e8f0; }
         .font-os { font-family: 'Orbitron', sans-serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glass-panel { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
 </head>
-<body class="min-h-screen py-20 px-6">
-    <div class="max-w-3xl mx-auto">
-        <a href="index.html" class="text-blue-500 hover:text-blue-400 mb-8 inline-block transition">← Back to Terminal</a>
-        
-        <div class="glass-card p-10 rounded-[2rem] shadow-2xl">
-            <h1 class="text-4xl font-os font-bold mb-8 text-white tracking-tighter italic border-b border-white/10 pb-4">
-                IMPRESSUM <span class="text-blue-500 text-sm block mt-2 font-normal">Legal Notice according to § 5 DDG</span>
-            </h1>
+<body class="min-h-screen flex items-center justify-center p-6">
+    <div class="max-w-2xl w-full glass-panel p-10 rounded-[2.5rem] shadow-2xl">
+        <h1 class="text-3xl font-os font-bold mb-8 text-white tracking-widest italic border-b border-blue-500/30 pb-4 uppercase">
+            Legal Notice
+        </h1>
 
-            <div class="grid gap-8">
-                <section>
-                    <h2 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-3">Operator Information</h2>
-                    <p class="text-xl text-white font-semibold">Orkhan Hajiyev</p>
-                    <p class="text-gray-400 italic text-sm">Individual Developer & OrikOS Architect</p>
-                </section>
+        <div class="space-y-8">
+            <section>
+                <h2 class="text-blue-500 font-bold uppercase text-[10px] tracking-[0.3em] mb-3">Operator & Project Lead</h2>
+                <p class="text-2xl text-white font-semibold tracking-tight">Orkhan Hajiyev</p>
+                <p class="text-gray-400 mt-1 italic">Founder of the OrikOS Project</p>
+            </section>
 
-                <section>
-                    <h2 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-3">Address</h2>
-                    <p class="text-gray-300 leading-relaxed text-lg">
-                        [Street Name & House Number]<br>
-                        53111 Bonn<br>
-                        Germany
-                    </p>
-                </section>
+            <section>
+                <h2 class="text-blue-500 font-bold uppercase text-[10px] tracking-[0.3em] mb-3">Service Address</h2>
+                <p class="text-gray-300 leading-relaxed font-medium">
+                    Römerstraße 307<br>
+                    53117 Bonn<br>
+                    Germany
+                </p>
+                <p class="text-[10px] text-gray-600 mt-2 uppercase tracking-tighter">* Required legal information according to § 5 DDG</p>
+            </section>
 
-                <section>
-                    <h2 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-3">Contact</h2>
-                    <p class="text-gray-300">Email: <a href="mailto:orkhan.hajiyev@web.de" class="text-white hover:underline">orkhan.hajiyev@web.de</a></p>
-                    <p class="text-gray-300">Web: <a href="https://www.oriklab.com" class="text-white hover:underline">www.oriklab.com</a></p>
-                </section>
+            <section>
+                <h2 class="text-blue-500 font-bold uppercase text-[10px] tracking-[0.3em] mb-3">Contact</h2>
+                <div class="space-y-1">
+                    <p class="text-gray-300">Email: <span class="text-white">orkhan.hajiyev@web.de</span></p>
+                    <p class="text-gray-300">Official Site: <span class="text-white">www.oriklab.com</span></p>
+                </div>
+            </section>
 
-                <section class="pt-6 border-t border-white/5">
-                    <h2 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-3">Editorial Responsibility</h2>
-                    <p class="text-gray-300 leading-relaxed">
-                        Orkhan Hajiyev (Bonn, Germany) is responsible for the content of this private project. 
-                        OrikLab is a non-commercial extension of the OrikOS ecosystem.
-                    </p>
-                </section>
-            </div>
+            <section class="pt-6 border-t border-white/5">
+                <p class="text-[11px] text-gray-500 leading-relaxed font-light">
+                    OrikLab is a private, educational initiative. It is a sub-project of the <strong>OrikOS Ecosystem</strong>. 
+                    No commercial services are offered on this platform.
+                </p>
+            </section>
+        </div>
+
+        <div class="mt-10">
+            <a href="index.html" class="text-xs text-blue-400 hover:text-blue-300 transition uppercase tracking-widest font-bold border-b border-blue-400/20 pb-1">← Return to System Dashboard</a>
         </div>
     </div>
 </body>
