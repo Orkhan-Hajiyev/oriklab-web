@@ -3,122 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q&A Hub | OrikLab</title>
+    <title>Q&A Hub | OrikLab Professional</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f1f5f9; }
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f1f5f9; overflow-x: hidden; }
         .font-os { font-family: 'Orbitron', sans-serif; }
-        .qa-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.3s; }
-        .glass-modal { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .hero-gradient { background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%); }
+        .topic-card { 
+            background: rgba(15, 23, 42, 0.5); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .topic-card:hover { border-color: #3b82f6; transform: scale(1.02); background: rgba(30, 41, 59, 0.5); }
+        .admin-badge { background: linear-gradient(90deg, #ef4444, #b91c1c); }
     </style>
 </head>
-<body class="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black">
+<body class="min-h-screen">
 
     <nav class="border-b border-white/5 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
             <a href="forum.html" class="text-blue-500 font-os font-bold flex items-center gap-2">
-                <i class="fa-solid fa-chevron-left text-sm"></i> <span id="nav-back">FORUM</span>
+                <i class="fa-solid fa-arrow-left"></i> <span id="nav-back">FORUM</span>
             </a>
-            <button onclick="toggleModal()" class="bg-blue-600 hover:bg-blue-500 text-[10px] font-bold px-5 py-2 rounded-full uppercase tracking-tighter transition">
-                <i class="fa-solid fa-plus mr-1"></i> <span id="btn-ask">Sual Ver</span>
-            </button>
+            <div class="flex items-center gap-4">
+                <span class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.3em]">OrikLab Q&A</span>
+                <button onclick="showAdminPanel()" class="text-gray-600 hover:text-red-500 transition"><i class="fa-solid fa-screwdriver-wrench"></i></button>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-6 py-12">
-        <header class="mb-12">
-            <h1 class="text-4xl font-os font-bold italic mb-4 text-white"><span id="txt-title">SUAL</span> & <span class="text-blue-600">CAVAB</span></h1>
-            <p id="txt-subtitle" class="text-gray-500 text-xs uppercase tracking-[0.2em] font-bold">Müzakirə Paneli</p>
-        </header>
+    <section class="hero-gradient py-20 px-6 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-5xl font-os font-bold mb-6 italic tracking-tighter">
+                BİR <span class="text-blue-500">SUALIN</span> VAR?
+            </h1>
+            <p class="text-gray-400 mb-10 text-lg">İcmamızın mühəndisləri və ekspertləri sənə kömək etməyə hazırdır.</p>
+            
+            <button onclick="toggleModal('ask-modal')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 py-5 rounded-2xl uppercase text-xs tracking-[0.2em] shadow-2xl shadow-blue-600/30 transition-all hover:-translate-y-1">
+                Yeni Mövzu Aç / Sual Ver
+            </button>
+        </div>
+    </section>
 
-        <div id="questions-container" class="space-y-6">
+    <main class="max-w-6xl mx-auto px-6 pb-24">
+        <div class="flex items-center justify-between mb-10 border-b border-white/5 pb-4">
+            <h2 class="text-xl font-os font-bold tracking-widest"><i class="fa-solid fa-layer-group text-blue-500 mr-2"></i> AKTİV <span class="text-blue-500">MÖVZULAR</span></h2>
+            <div class="text-[10px] font-bold text-gray-500 uppercase italic">Son yenilənmə: 2026</div>
+        </div>
+
+        <div id="topics-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="topic-card p-8 rounded-[2.5rem] relative overflow-hidden group">
+                <div class="admin-badge absolute top-4 right-4 text-[8px] font-bold px-2 py-1 rounded shadow-lg uppercase tracking-widest">OFFICIAL</div>
+                <div class="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-xl flex items-center justify-center mb-6 text-xl">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 group-hover:text-blue-400 transition">OrikOS V2 Planları</h3>
+                <p class="text-gray-500 text-sm mb-6 leading-relaxed">Yeni kernel arxitekturası haqqında rəsmi məlumatlar və müzakirələr.</p>
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-[10px] font-bold text-gray-600 uppercase">14 Sual</span>
+                    <button class="text-blue-500 text-[10px] font-bold uppercase tracking-widest hover:underline">Daxil Ol</button>
+                </div>
             </div>
+        </div>
     </main>
 
-    <div id="ask-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-black/80">
-        <div class="glass-modal w-full max-w-lg rounded-[2.5rem] p-8 shadow-2xl">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-os font-bold text-white uppercase">Yeni Sual</h2>
-                <button onclick="toggleModal()" class="text-gray-500 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+    <div id="ask-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-black/90 backdrop-blur-md">
+        <div class="bg-slate-900 border border-white/10 w-full max-w-xl rounded-[3rem] p-10 shadow-2xl">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-os font-bold italic">YENİ <span class="text-blue-500">PAYLAŞIM</span></h2>
+                <button onclick="toggleModal('ask-modal')" class="text-gray-500 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-            <form id="qa-form" class="space-y-4">
-                <input type="text" id="q-author" placeholder="Adınız və ya Anonim" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm outline-none focus:border-blue-500">
-                <input type="text" id="q-title-input" placeholder="Sualın başlığı" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm outline-none focus:border-blue-500" required>
-                <textarea id="q-body-input" rows="4" placeholder="Sualınızı ətraflı yazın..." class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm outline-none focus:border-blue-500" required></textarea>
-                <button type="submit" class="w-full bg-blue-600 py-4 rounded-2xl font-bold uppercase text-[11px] tracking-widest hover:bg-blue-500 transition">Paylaş</button>
+            <form id="qa-form" class="space-y-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" id="q-author" placeholder="Adınız (və ya Anonim)" class="bg-white/5 border border-white/10 rounded-2xl p-4 text-sm outline-none focus:border-blue-500">
+                    <select id="q-category" class="bg-white/5 border border-white/10 rounded-2xl p-4 text-sm outline-none focus:border-blue-500 text-gray-400">
+                        <option value="General">Ümumi Sual</option>
+                        <option value="Advice">Məsləhət</option>
+                        <option value="Tech">Texniki Problem</option>
+                    </select>
+                </div>
+                <input type="text" id="q-title" placeholder="Mövzu başlığı" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm outline-none focus:border-blue-500" required>
+                <textarea id="q-body" rows="4" placeholder="Ətraflı izah..." class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm outline-none focus:border-blue-500" required></textarea>
+                <button type="submit" class="w-full bg-blue-600 py-5 rounded-2xl font-bold uppercase text-[11px] tracking-[0.3em] hover:bg-blue-500 transition shadow-xl shadow-blue-600/20">Paylaşımı Göndər</button>
             </form>
         </div>
     </div>
 
     <script>
+        // Dil və Digər Ayarlar
         const lang = localStorage.getItem('selectedLang') || 'az';
-        const ui = {
-            az: { back: "FORUM", ask: "Sual Ver", title: "SUAL", sub: "Müzakirə Paneli" },
-            de: { back: "FORUM", ask: "Frage Stellen", title: "FRAGEN", sub: "Diskussionspanel" }
-        };
-
-        function toggleModal() {
-            const m = document.getElementById('ask-modal');
+        
+        function toggleModal(id) {
+            const m = document.getElementById(id);
             m.classList.toggle('hidden');
             m.classList.toggle('flex');
         }
 
-        // Sualları ekrana çıxaran funksiya
-        function renderQuestions() {
-            const container = document.getElementById('questions-container');
-            const questions = JSON.parse(localStorage.getItem('oriklab_questions')) || [];
+        // Sualları/Mövzuları Yüklə
+        function renderTopics() {
+            const grid = document.getElementById('topics-grid');
+            const topics = JSON.parse(localStorage.getItem('oriklab_topics')) || [];
             
-            container.innerHTML = ''; // Əvvəlcə təmizləyirik
-
-            questions.reverse().forEach(q => { // Son yazılan ən üstə
-                container.innerHTML += `
-                    <div class="qa-card p-6 rounded-[2rem]">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-[9px] bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20 font-bold uppercase tracking-widest">Mövzu</span>
-                            <span class="text-[10px] text-gray-600 font-bold uppercase">${q.date}</span>
+            // Mövcud gridi təmizləmə (yalnız dinamikləri əlavə etmək üçün)
+            // Real sistemdə hamısı dinamik gəlir
+            topics.reverse().forEach(t => {
+                const card = `
+                <div class="topic-card p-8 rounded-[2.5rem] group cursor-pointer">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-500 rounded-xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-comments"></i>
                         </div>
-                        <h2 class="text-xl font-bold mb-2 text-white">${q.title}</h2>
-                        <p class="text-gray-400 text-sm mb-6">${q.body}</p>
-                        <div class="flex items-center justify-between border-t border-white/5 pt-4">
-                            <div class="flex items-center gap-2 text-xs text-gray-300 italic">
-                                <i class="fa-solid fa-user-ninja text-blue-500"></i> ${q.author}
-                            </div>
-                            <button class="text-[10px] font-bold text-blue-500 uppercase tracking-widest hover:underline">Cavab Ver</button>
-                        </div>
+                        <span class="text-[8px] font-bold border border-white/10 px-2 py-1 rounded uppercase text-gray-500">${t.category}</span>
                     </div>
-                `;
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-blue-400 transition">${t.title}</h3>
+                    <p class="text-gray-500 text-sm mb-6 line-clamp-2">${t.body}</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                        <div class="flex items-center gap-2">
+                            <div class="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[8px] font-bold">${t.author[0]}</div>
+                            <span class="text-[10px] text-gray-400 font-semibold">${t.author}</span>
+                        </div>
+                        <span class="text-[9px] text-gray-600 font-bold uppercase">${t.date}</span>
+                    </div>
+                </div>`;
+                grid.innerHTML += card;
             });
         }
 
-        // Formu idarə etmək
+        // Yeni Mövzu Əlavə Et
         document.getElementById('qa-form').onsubmit = function(e) {
             e.preventDefault();
-            
-            const newQuestion = {
+            const newTopic = {
                 author: document.getElementById('q-author').value || "Anonim",
-                title: document.getElementById('q-title-input').value,
-                body: document.getElementById('q-body-input').value,
+                category: document.getElementById('q-category').value,
+                title: document.getElementById('q-title').value,
+                body: document.getElementById('q-body').value,
                 date: new Date().toLocaleDateString(),
+                id: Date.now()
             };
 
-            const questions = JSON.parse(localStorage.getItem('oriklab_questions')) || [];
-            questions.push(newQuestion);
-            localStorage.setItem('oriklab_questions', JSON.stringify(questions));
+            const topics = JSON.parse(localStorage.getItem('oriklab_topics')) || [];
+            topics.push(newTopic);
+            localStorage.setItem('oriklab_topics', JSON.stringify(topics));
 
-            toggleModal();
-            this.reset();
-            renderQuestions(); // Dərhal yenilə
+            location.reload(); // Yenilə ki mövzu görünsün
         };
 
-        window.onload = () => {
-            document.getElementById('nav-back').innerText = ui[lang].back;
-            document.getElementById('btn-ask').innerText = ui[lang].ask;
-            document.getElementById('txt-title').innerText = ui[lang].title;
-            document.getElementById('txt-subtitle').innerText = ui[lang].sub;
-            renderQuestions();
-        };
+        // Admin Panel (Sən yeni mövzular əlavə etmək üçün)
+        function showAdminPanel() {
+            const pass = prompt("Admin Girişi:");
+            if(pass === "oriklab2026") {
+                alert("Admin Rejimi Aktivdir. Sən rəsmi mövzular (Official) yarada bilərsən.");
+                // İrəlidə bura xüsusi idarəetmə düymələri əlavə edə bilərik
+            }
+        }
+
+        window.onload = renderTopics;
     </script>
 </body>
 </html>
