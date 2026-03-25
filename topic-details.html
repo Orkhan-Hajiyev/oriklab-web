@@ -11,7 +11,9 @@
         body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f1f5f9; }
         .font-os { font-family: 'Orbitron', sans-serif; }
         .glass-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .reply-card { background: rgba(30, 41, 59, 0.4); border-left: 4px solid #3b82f6; }
+        .reply-card { background: rgba(30, 41, 59, 0.3); border-left: 3px solid #3b82f6; }
+        .admin-del { opacity: 0; transition: 0.3s; }
+        .reply-card:hover .admin-del { opacity: 1; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -25,11 +27,11 @@
     </nav>
 
     <main class="max-w-3xl mx-auto px-6 py-12">
-        <div id="topic-header" class="mb-12">
+        <div id="topic-content" class="mb-12">
             </div>
 
-        <div class="space-y-6">
-            <h3 class="font-os text-sm font-bold tracking-[0.2em] text-gray-500 uppercase italic">
+        <div class="space-y-8">
+            <h3 class="font-os text-xs font-bold tracking-[0.3em] text-gray-500 uppercase italic">
                 <span id="txt-replies">Cavablar</span>
             </h3>
             
@@ -39,11 +41,11 @@
             <hr class="border-white/5 my-10">
 
             <div class="glass-card p-8 rounded-[2.5rem]">
-                <h4 id="txt-your-reply" class="text-blue-500 font-os text-xs font-bold mb-6 uppercase tracking-widest">Cavabınız</h4>
+                <h4 id="txt-your-reply" class="text-blue-500 font-os text-[10px] font-bold mb-6 uppercase tracking-widest text-center">Fikrinizi Paylaşın</h4>
                 <form id="reply-form" class="space-y-4">
-                    <input type="text" id="r-author" placeholder="Adınız / Name (və ya Anonim)" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm outline-none focus:border-blue-500">
-                    <textarea id="r-body" rows="4" placeholder="Fikrinizi bura yazın..." class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm outline-none focus:border-blue-500" required></textarea>
-                    <button type="submit" id="btn-send" class="w-full bg-blue-600 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-[0.3em] hover:bg-blue-500 transition shadow-lg shadow-blue-600/20">Göndər</button>
+                    <input type="text" id="r-author" placeholder="Adınız / Name (və ya Anonim)" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm outline-none focus:border-blue-500 text-white">
+                    <textarea id="r-body" rows="4" placeholder="Cavabınızı bura yazın..." class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm outline-none focus:border-blue-500 text-white" required></textarea>
+                    <button type="submit" id="btn-send" class="w-full bg-blue-600 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-[0.3em] hover:bg-blue-500 transition shadow-lg shadow-blue-600/20">GÖNDƏR</button>
                 </form>
             </div>
         </div>
@@ -55,11 +57,11 @@
         const lang = localStorage.getItem('selectedLang') || 'az';
 
         const ui = {
-            az: { back: "GERİ", replies: "Cavablar", your: "Cavabınız", send: "GÖNDƏR", anon: "Anonim", placeholder: "Fikrinizi bura yazın..." },
-            de: { back: "ZURÜCK", replies: "Antworten", your: "Ihre Antwort", send: "SENDEN", anon: "Anonym", placeholder: "Schreiben Sie Ihre Meinung hier..." }
+            az: { back: "GERİ", replies: "Cavablar", your: "Fikrinizi Paylaşın", send: "GÖNDƏR", anon: "Anonim", ph: "Cavabınızı bura yazın...", del: "Silmək üçün admin şifrəsi:" },
+            de: { back: "ZURÜCK", replies: "Antworten", your: "Teilen Sie Ihre Meinung", send: "SENDEN", anon: "Anonym", ph: "Schreiben Sie hier...", del: "Admin-Passwort zum Löschen:" }
         };
 
-        function loadContent() {
+        function loadTopic() {
             const topics = JSON.parse(localStorage.getItem('oriklab_topics')) || [];
             const topic = topics.find(t => t.id == topicId);
 
@@ -68,45 +70,46 @@
                 return;
             }
 
-            // Mövzunu göstər
-            document.getElementById('topic-header').innerHTML = `
-                <div class="flex items-center gap-2 mb-4 text-[10px] font-bold text-blue-500 uppercase tracking-widest">
-                    <i class="fa-solid fa-hashtag"></i> ${topic.category}
+            // Sualın özünü göstərək
+            document.getElementById('topic-content').innerHTML = `
+                <div class="text-[10px] font-bold text-blue-500 uppercase tracking-widest mb-4 italic">
+                    # ${topic.category}
                 </div>
-                <h1 class="text-3xl font-os font-bold text-white mb-6">${topic.title}</h1>
-                <p class="text-gray-400 leading-relaxed text-lg mb-8">${topic.body}</p>
-                <div class="flex items-center gap-2 text-xs text-gray-600 font-bold italic">
+                <h1 class="text-4xl font-os font-bold text-white mb-6 leading-tight">${topic.title}</h1>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">${topic.body}</p>
+                <div class="flex items-center gap-2 text-[10px] text-gray-600 font-bold uppercase italic">
                     <i class="fa-solid fa-user-ninja"></i> @${topic.author} — ${topic.date}
                 </div>
             `;
 
-            // Tərcümələri tətbiq et
+            // Tərcümələr
             document.getElementById('btn-back').innerText = ui[lang].back;
             document.getElementById('txt-replies').innerText = ui[lang].replies;
             document.getElementById('txt-your-reply').innerText = ui[lang].your;
             document.getElementById('btn-send').innerText = ui[lang].send;
-            document.getElementById('r-body').placeholder = ui[lang].placeholder;
+            document.getElementById('r-body').placeholder = ui[lang].ph;
 
             renderReplies();
         }
 
         function renderReplies() {
             const allReplies = JSON.parse(localStorage.getItem('oriklab_replies')) || [];
-            const topicReplies = allReplies.filter(r => r.topicId == topicId);
+            const filtered = allReplies.filter(r => r.topicId == topicId);
             const list = document.getElementById('replies-list');
             
-            list.innerHTML = '';
-            
-            if (topicReplies.length === 0) {
-                list.innerHTML = `<p class="text-gray-600 text-sm italic">Hələ cavab yazılmayıb...</p>`;
-            }
+            list.innerHTML = filtered.length ? '' : `<p class="text-gray-600 text-sm italic">Hələ cavab yazılmayıb...</p>`;
 
-            topicReplies.forEach(r => {
+            filtered.forEach((r, index) => {
                 list.innerHTML += `
-                    <div class="reply-card p-6 rounded-[1.5rem] transition-all hover:bg-slate-800/40">
+                    <div class="reply-card p-6 rounded-[1.5rem] relative group">
                         <div class="flex justify-between items-center mb-3">
                             <span class="text-blue-400 font-bold text-[11px] uppercase tracking-tighter">@${r.author}</span>
-                            <span class="text-[9px] text-gray-600 font-bold">${r.date}</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-[9px] text-gray-600 font-bold">${r.date}</span>
+                                <button onclick="deleteReply(${r.id})" class="admin-del text-red-500/50 hover:text-red-500 text-[10px]">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
                         </div>
                         <p class="text-gray-300 text-sm leading-relaxed">${r.body}</p>
                     </div>
@@ -114,11 +117,25 @@
             });
         }
 
+        // CAVAB SİLMƏ (Admin üçün)
+        function deleteReply(replyId) {
+            const pass = prompt(ui[lang].del);
+            if (pass === "orikadmin2026") {
+                let allReplies = JSON.parse(localStorage.getItem('oriklab_replies')) || [];
+                allReplies = allReplies.filter(r => r.id !== replyId);
+                localStorage.setItem('oriklab_replies', JSON.stringify(allReplies));
+                renderReplies();
+            } else if (pass !== null) {
+                alert("Wrong Password!");
+            }
+        }
+
         document.getElementById('reply-form').onsubmit = function(e) {
             e.preventDefault();
             const replies = JSON.parse(localStorage.getItem('oriklab_replies')) || [];
             
             const newReply = {
+                id: Date.now(),
                 topicId: topicId,
                 author: document.getElementById('r-author').value || ui[lang].anon,
                 body: document.getElementById('r-body').value,
@@ -132,7 +149,7 @@
             renderReplies();
         };
 
-        window.onload = loadContent;
+        window.onload = loadTopic;
     </script>
 </body>
 </html>
