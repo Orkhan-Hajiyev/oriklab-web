@@ -26,7 +26,7 @@
                 <span class="text-2xl font-os font-bold tracking-tighter text-white uppercase">ORIK<span class="text-blue-500 italic text-lg ml-1">LAB</span></span>
             </div>
             <div class="flex items-center gap-4 bg-white/5 px-4 py-2 rounded-2xl border border-white/10">
-                <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="lang-flag lang-active" alt="AZ">
+                <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="lang-flag" alt="AZ">
                 <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="lang-flag" alt="DE">
             </div>
         </div>
@@ -120,26 +120,33 @@
         };
 
         function switchLang(lang) {
+            // Seçimi yadda saxla
             localStorage.setItem('selectedLang', lang);
+            
+            // Mətnləri yenilə
+            const data = langData[lang];
+            document.getElementById('txt-hero-title').innerHTML = data.heroT;
+            document.getElementById('txt-hero-desc').innerText = data.heroD;
+            document.getElementById('txt-tool-title').innerHTML = data.toolT;
+            document.getElementById('txt-tool-desc').innerText = data.toolD;
+            document.getElementById('txt-com-title').innerHTML = data.comT;
+            document.getElementById('txt-com-desc').innerText = data.comD;
+            document.getElementById('txt-com-btn').innerText = data.comB;
+            document.getElementById('txt-res-title').innerHTML = data.resT;
+            document.getElementById('txt-res-desc').innerText = data.resD;
+            document.getElementById('li-1').innerText = data.li1;
+            document.getElementById('li-2').innerText = data.li2;
+            document.getElementById('li-3').innerText = data.li3;
 
-            document.getElementById('txt-hero-title').innerHTML = langData[lang].heroT;
-            document.getElementById('txt-hero-desc').innerText = langData[lang].heroD;
-            document.getElementById('txt-tool-title').innerHTML = langData[lang].toolT;
-            document.getElementById('txt-tool-desc').innerText = langData[lang].toolD;
-            document.getElementById('txt-com-title').innerHTML = langData[lang].comT;
-            document.getElementById('txt-com-desc').innerText = langData[lang].comD;
-            document.getElementById('txt-com-btn').innerText = langData[lang].comB;
-            document.getElementById('txt-res-title').innerHTML = langData[lang].resT;
-            document.getElementById('txt-res-desc').innerText = langData[lang].resD;
-            document.getElementById('li-1').innerText = langData[lang].li1;
-            document.getElementById('li-2').innerText = langData[lang].li2;
-            document.getElementById('li-3').innerText = langData[lang].li3;
-
-            document.getElementById('flag-az').classList.toggle('lang-active', lang === 'az');
-            document.getElementById('flag-de').classList.toggle('lang-active', lang === 'de');
-            document.title = langData[lang].title;
+            // Bayraqları vizual olaraq dəyiş
+            document.getElementById('flag-az').classList.remove('lang-active');
+            document.getElementById('flag-de').classList.remove('lang-active');
+            document.getElementById('flag-' + lang).classList.add('lang-active');
+            
+            document.title = data.title;
         }
 
+        // Səhifə açılan kimi dili yoxla
         window.onload = () => {
             const savedLang = localStorage.getItem('selectedLang') || 'az';
             switchLang(savedLang);
