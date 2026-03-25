@@ -15,6 +15,7 @@
             background: rgba(15, 23, 42, 0.5); 
             border: 1px solid rgba(255, 255, 255, 0.05); 
             transition: all 0.4s ease;
+            cursor: pointer;
         }
         .topic-card:hover { border-color: #3b82f6; transform: translateY(-5px); background: rgba(30, 41, 59, 0.5); }
     </style>
@@ -37,8 +38,8 @@
             <h1 class="text-5xl font-os font-bold mb-6 italic tracking-tighter">
                 <span id="hero-t1">BİR</span> <span class="text-blue-500" id="hero-t2">SUALIN</span> <span id="hero-t3">VAR?</span>
             </h1>
-            <p id="hero-desc" class="text-gray-400 mb-10 text-lg">İcmamızın mühəndisləri sənə kömək etməyə hazırdır.</p>
-            <button onclick="toggleModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 py-5 rounded-2xl uppercase text-xs tracking-[0.2em] transition-all">
+            <p id="hero-desc" class="text-gray-400 mb-10 text-lg italic">İcmamızın mühəndisləri sənə kömək etməyə hazırdır.</p>
+            <button onclick="toggleModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 py-5 rounded-2xl uppercase text-xs tracking-[0.2em] transition-all shadow-xl shadow-blue-600/20">
                 <span id="btn-ask-text">Yeni Mövzu Aç</span>
             </button>
         </div>
@@ -48,13 +49,14 @@
         <div class="flex items-center justify-between mb-10 border-b border-white/5 pb-4">
             <h2 class="text-xl font-os font-bold tracking-widest"><i class="fa-solid fa-layer-group text-blue-500 mr-2"></i> <span id="active-title">AKTİV MÖVZULAR</span></h2>
         </div>
-        <div id="topics-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div id="topics-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
     </main>
 
     <div id="ask-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-black/90 backdrop-blur-md">
-        <div class="bg-slate-900 border border-white/10 w-full max-w-xl rounded-[3rem] p-10 shadow-2xl">
+        <div class="bg-[#0f172a] border border-white/10 w-full max-w-xl rounded-[3rem] p-10 shadow-2xl">
             <div class="flex justify-between items-center mb-8">
-                <h2 id="modal-title" class="text-2xl font-os font-bold italic text-white">YENİ PAYLAŞIM</h2>
+                <h2 id="modal-title" class="text-2xl font-os font-bold italic text-white uppercase">Yeni Paylaşım</h2>
                 <button onclick="toggleModal()" class="text-gray-500 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             <form id="qa-form" class="space-y-6">
@@ -77,12 +79,12 @@
             az: {
                 back: "FORUM", h1: "BİR", h2: "SUALIN", h3: "VAR?", hDesc: "İcmamızın mühəndisləri sənə kömək etməyə hazırdır.",
                 btnAsk: "Yeni Mövzu Aç", active: "AKTİV MÖVZULAR", modalT: "YENİ PAYLAŞIM", btnSub: "PAYLAŞ",
-                catGen: "Ümumi", catTech: "Texniki", enter: "Daxil Ol"
+                catGen: "Ümumi", catTech: "Texniki", enter: "Daxil Ol", anon: "Anonim"
             },
             de: {
                 back: "FORUM", h1: "HAST DU", h2: "EINE", h3: "FRAGE?", hDesc: "Unsere Ingenieure sind bereit, dir zu helfen.",
-                btnAsk: "Neues Thema", active: "AKTIVE THEMEN", modalT: "NEUER BEITRAG", btnSub: "VERÖFFENTLICHEN",
-                catGen: "Allgemein", catTech: "Technik", enter: "Eintreten"
+                btnAsk: "Neues Thema", active: "AKTIVE THEMEN", modalT: "NEUER BEITRAG", btnSub: "POSTEN",
+                catGen: "Allgemein", catTech: "Technik", enter: "Eintreten", anon: "Anonym"
             }
         };
 
@@ -116,19 +118,20 @@
             
             grid.innerHTML = '';
             topics.reverse().forEach(topic => {
-                // Kateqoriyanı dilə uyğun tərcümə etmək
                 let displayCat = topic.category === "Tech" ? t.catTech : t.catGen;
                 
                 grid.innerHTML += `
-                <div class="topic-card p-8 rounded-[2.5rem] group">
+                <div onclick="window.location.href='topic-details.html?id=${topic.id}'" class="topic-card p-8 rounded-[2.5rem] group">
                     <div class="flex justify-between items-start mb-6">
-                        <div class="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-xl flex items-center justify-center text-xl"><i class="fa-solid fa-comments"></i></div>
-                        <span class="text-[8px] font-bold border border-white/10 px-2 py-1 rounded uppercase text-gray-500">${displayCat}</span>
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-xl flex items-center justify-center text-xl transition-colors group-hover:bg-blue-500 group-hover:text-white">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <span class="text-[8px] font-bold border border-white/10 px-2 py-1 rounded uppercase text-gray-500 tracking-widest">${displayCat}</span>
                     </div>
                     <h3 class="text-xl font-bold mb-3 group-hover:text-blue-400 transition">${topic.title}</h3>
                     <p class="text-gray-500 text-sm mb-6 line-clamp-2">${topic.body}</p>
                     <div class="flex items-center justify-between pt-4 border-t border-white/5">
-                        <span class="text-[10px] text-gray-400 font-semibold italic">${topic.author}</span>
+                        <span class="text-[10px] text-gray-400 font-semibold italic">@${topic.author}</span>
                         <button class="text-blue-500 text-[10px] font-bold uppercase tracking-widest hover:underline">${t.enter}</button>
                     </div>
                 </div>`;
@@ -137,17 +140,23 @@
 
         document.getElementById('qa-form').onsubmit = function(e) {
             e.preventDefault();
+            const topics = JSON.parse(localStorage.getItem('oriklab_topics')) || [];
+            
             const newTopic = {
-                author: document.getElementById('q-author').value || "Anonim",
+                id: Date.now(), // Hər mövzuya unikal ID veririk
+                author: document.getElementById('q-author').value || translations[currentLang].anon,
                 category: document.getElementById('q-category').value,
                 title: document.getElementById('q-title').value,
                 body: document.getElementById('q-body').value,
                 date: new Date().toLocaleDateString(),
             };
-            const topics = JSON.parse(localStorage.getItem('oriklab_topics')) || [];
+
             topics.push(newTopic);
             localStorage.setItem('oriklab_topics', JSON.stringify(topics));
-            location.reload();
+            
+            toggleModal();
+            this.reset();
+            renderTopics();
         };
 
         window.onload = () => {
