@@ -13,8 +13,8 @@
         .glass-card { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
         .glass-card:hover { border-color: #3b82f6; transform: translateY(-5px); box-shadow: 0 20px 40px -20px rgba(59, 130, 246, 0.3); }
         .hero-mesh { background-image: radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.3) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(30, 58, 138, 0.1) 0, transparent 50%); }
-        .lang-flag { cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; padding: 2px; width: 32px; height: 20px; object-fit: cover; border-radius: 4px; }
-        .lang-active { border-color: #3b82f6; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)); scale: 1.1; }
+        .lang-flag { cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; padding: 2px; width: 32px; height: 20px; object-fit: cover; border-radius: 4px; opacity: 0.5; }
+        .lang-active { border-color: #3b82f6; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)); scale: 1.1; opacity: 1; }
     </style>
 </head>
 <body class="hero-mesh min-h-screen">
@@ -35,7 +35,7 @@
     <header class="pt-48 pb-20 px-6 text-center">
         <div class="max-w-4xl mx-auto">
             <h1 id="txt-hero-title" class="text-6xl md:text-8xl font-os font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 tracking-tighter italic leading-none">
-                LİMİTSİZ <br><span class="text-blue-600 uppercase">POTENSİAL</span>
+                LİMİTSİZ <br><span class="text-blue-600 uppercase tracking-tighter">POTENSİAL</span>
             </h1>
             <p id="txt-hero-desc" class="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
                 OrikOS arxitekturasına əsaslanan universal platforma. Peşəkarlar üçün alətlər, öyrənmək istəyənlər üçün resurslar.
@@ -46,7 +46,7 @@
     <main class="max-w-7xl mx-auto px-6 py-10 grid lg:grid-cols-3 gap-8 mb-20">
         <div class="glass-card p-10 rounded-[2.5rem] flex flex-col">
             <div class="mb-10 text-blue-500 text-4xl"><i class="fa-solid fa-microchip"></i></div>
-            <h2 id="txt-tool-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white">ALƏTLƏR <br>MƏRKƏZİ</h2>
+            <h2 id="txt-tool-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white uppercase">ALƏTLƏR <br>MƏRKƏZİ</h2>
             <p id="txt-tool-desc" class="text-gray-400 text-sm mb-8 leading-relaxed">Mühəndislik və İT sahələri üçün xüsusi interaktiv modullar.</p>
             <div class="space-y-3 mt-auto">
                 <div class="bg-white/5 p-3 rounded-xl flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest"><i class="fa-solid fa-code text-blue-500 w-4"></i> IT Engineering</div>
@@ -57,14 +57,14 @@
 
         <div class="glass-card p-10 rounded-[2.5rem] flex flex-col border-blue-600/20 bg-blue-600/5 shadow-2xl shadow-blue-900/10">
             <div class="mb-10 text-blue-400 text-4xl"><i class="fa-solid fa-users-rays"></i></div>
-            <h2 id="txt-com-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white">GENİŞ <br>İCMA</h2>
+            <h2 id="txt-com-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white uppercase">GENİŞ <br>İCMA</h2>
             <p id="txt-com-desc" class="text-gray-300 text-sm mb-8 leading-relaxed">Təcrübə mübadiləsi, layihə ortaqları və ideya bankı bir mərkəzdə.</p>
             <a href="forum.html" id="txt-com-btn" class="mt-auto bg-blue-600 hover:bg-blue-500 text-white text-center font-bold py-4 rounded-2xl transition uppercase text-xs tracking-widest shadow-lg shadow-blue-600/20">İcmaya Qoşul</a>
         </div>
 
         <div onclick="window.location.href='knowledge-base.html'" class="glass-card p-10 rounded-[2.5rem] flex flex-col cursor-pointer">
             <div class="mb-10 text-emerald-500 text-4xl"><i class="fa-solid fa-book-bookmark"></i></div>
-            <h2 id="txt-res-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white">BİLİK <br>BAZASI</h2>
+            <h2 id="txt-res-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white uppercase">BİLİK <br>BAZASI</h2>
             <p id="txt-res-desc" class="text-gray-400 text-sm mb-8 leading-relaxed">Özünü inkişaf etdir. Seçilmiş onlayn kurslar və faydalı resurslar.</p>
             <ul class="mt-auto space-y-4 text-xs font-bold uppercase tracking-widest text-gray-500 border-t border-white/5 pt-6">
                 <li class="flex justify-between items-center hover:text-white cursor-pointer"><span id="li-1">Kurslar & Təlimlər</span> <i class="fa-solid fa-link text-[10px]"></i></li>
@@ -74,26 +74,11 @@
         </div>
     </main>
 
-    <footer class="py-20 border-t border-white/5 bg-slate-950/50 mt-auto">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
-            <div class="text-center md:text-left">
-                <div class="text-2xl font-os font-bold text-white mb-2 tracking-tighter">ORIKLAB</div>
-                <p class="text-gray-600 text-[11px] uppercase tracking-widest leading-relaxed">
-                    Orkhan Hajiyev — Römerstraße 307, 53117 Bonn, Germany
-                </p>
-            </div>
-            <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-500">
-                <a href="impressum.html" class="hover:text-blue-500 transition">Impressum</a>
-                <a href="datenschutz.html" class="hover:text-blue-500 transition">Datenschutz</a>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        const langData = {
+        const translations = {
             az: {
                 title: "OrikLab | OrikOS Ekosistemi",
-                heroT: "LİMİTSİZ <br><span class='text-blue-600 uppercase'>POTENSİAL</span>",
+                heroT: "LİMİTSİZ <br><span class='text-blue-600 uppercase tracking-tighter'>POTENSİAL</span>",
                 heroD: "OrikOS arxitekturasına əsaslanan universal platforma. Peşəkarlar üçün alətlər, öyrənmək istəyənlər üçün resurslar.",
                 toolT: "ALƏTLƏR <br>MƏRKƏZİ",
                 toolD: "Mühəndislik və İT sahələri üçün xüsusi interaktiv modullar.",
@@ -102,11 +87,13 @@
                 comB: "İcmaya Qoşul",
                 resT: "BİLİK <br>BAZASI",
                 resD: "Özünü inkişaf etdir. Seçilmiş onlayn kurslar və faydalı resurslar.",
-                li1: "Kurslar & Təlimlər", li2: "E-Kitabxana", li3: "Faydalı Linklər"
+                li1: "Kurslar & Təlimlər",
+                li2: "E-Kitabxana",
+                li3: "Faydalı Linklər"
             },
             de: {
                 title: "OrikLab | OrikOS Ökosystem",
-                heroT: "GRENZENLOSES <br><span class='text-blue-600 uppercase'>POTENZIAL</span>",
+                heroT: "GRENZENLOSES <br><span class='text-blue-600 uppercase tracking-tighter'>POTENZIAL</span>",
                 heroD: "Eine universelle Plattform basierend auf der OrikOS-Architektur. Werkzeuge für Profis, Ressourcen für Lernende.",
                 toolT: "TOOLS <br>CENTER",
                 toolD: "Spezialisierte interaktive Module für Ingenieurwesen und IT-Bereiche.",
@@ -115,38 +102,40 @@
                 comB: "Forum Beitreten",
                 resT: "WISSENS <br>DATENBANK",
                 resD: "Entwickeln Sie sich weiter. Kuratierte Online-Kurse und nützliche Ressourcen.",
-                li1: "Schulungen", li2: "E-Bibliothek", li3: "Wichtige Links"
+                li1: "Schulungen",
+                li2: "E-Bibliothek",
+                li3: "Wichtige Links"
             }
         };
 
         function switchLang(lang) {
-            // Seçimi yadda saxla
             localStorage.setItem('selectedLang', lang);
-            
-            // Mətnləri yenilə
-            const data = langData[lang];
-            document.getElementById('txt-hero-title').innerHTML = data.heroT;
-            document.getElementById('txt-hero-desc').innerText = data.heroD;
-            document.getElementById('txt-tool-title').innerHTML = data.toolT;
-            document.getElementById('txt-tool-desc').innerText = data.toolD;
-            document.getElementById('txt-com-title').innerHTML = data.comT;
-            document.getElementById('txt-com-desc').innerText = data.comD;
-            document.getElementById('txt-com-btn').innerText = data.comB;
-            document.getElementById('txt-res-title').innerHTML = data.resT;
-            document.getElementById('txt-res-desc').innerText = data.resD;
-            document.getElementById('li-1').innerText = data.li1;
-            document.getElementById('li-2').innerText = data.li2;
-            document.getElementById('li-3').innerText = data.li3;
+            const t = translations[lang];
 
-            // Bayraqları vizual olaraq dəyiş
-            document.getElementById('flag-az').classList.remove('lang-active');
-            document.getElementById('flag-de').classList.remove('lang-active');
+            // Başlıq və Hero
+            document.title = t.title;
+            document.getElementById('txt-hero-title').innerHTML = t.heroT;
+            document.getElementById('txt-hero-desc').innerText = t.heroD;
+
+            // Kart Başlıqları və Təsvirləri
+            document.getElementById('txt-tool-title').innerHTML = t.toolT;
+            document.getElementById('txt-tool-desc').innerText = t.toolD;
+            document.getElementById('txt-com-title').innerHTML = t.comT;
+            document.getElementById('txt-com-desc').innerText = t.comD;
+            document.getElementById('txt-com-btn').innerText = t.comB;
+            document.getElementById('txt-res-title').innerHTML = t.resT;
+            document.getElementById('txt-res-desc').innerText = t.resD;
+
+            // Siyahılar
+            document.getElementById('li-1').innerText = t.li1;
+            document.getElementById('li-2').innerText = t.li2;
+            document.getElementById('li-3').innerText = t.li3;
+
+            // Bayraq vizualları
+            document.querySelectorAll('.lang-flag').forEach(img => img.classList.remove('lang-active'));
             document.getElementById('flag-' + lang).classList.add('lang-active');
-            
-            document.title = data.title;
         }
 
-        // Səhifə açılan kimi dili yoxla
         window.onload = () => {
             const savedLang = localStorage.getItem('selectedLang') || 'az';
             switchLang(savedLang);
