@@ -1,26 +1,57 @@
-<div class="max-w-4xl mx-auto p-10 text-gray-800 bg-white">
-    <h1 class="text-3xl font-bold mb-6">Legal Notice (Impressum)</h1>
-    
-    <section class="mb-8">
-        <h2 class="text-xl font-semibold mb-2">Information according to § 5 DDG:</h2>
-        <p class="mb-1"><strong>[Sənin Adın və Soyadın]</strong></p>
-        <p class="mb-1">[Küçə adı və nömrə]</p>
-        <p class="mb-4">[Poçt kodu] [Şəhər], Germany</p>
-    </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum | OrikLab by OrikOS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top right, #1e293b, #0f172a, #020617); color: #e2e8f0; }
+        .font-os { font-family: 'Orbitron', sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body class="min-h-screen py-20 px-6">
+    <div class="max-w-3xl mx-auto">
+        <a href="index.html" class="text-blue-500 hover:text-blue-400 mb-8 inline-block transition">← Back to Terminal</a>
+        
+        <div class="glass-card p-10 rounded-[2rem] shadow-2xl">
+            <h1 class="text-4xl font-os font-bold mb-8 text-white tracking-tighter italic border-b border-white/10 pb-4">
+                IMPRESSUM <span class="text-blue-500 text-sm block mt-2 font-normal">Legal Notice according to § 5 DDG</span>
+            </h1>
 
-    <section class="mb-8">
-        <h2 class="text-xl font-semibold mb-2">Contact Information:</h2>
-        <p class="mb-1">Phone: [Telefon nömrən]</p>
-        <p class="mb-1">Email: info@oriklab.com</p>
-        <p>Website: www.oriklab.com</p>
-    </section>
+            <div class="grid gap-8">
+                <section>
+                    <h2 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-3">Operator Information</h2>
+                    <p class="text-xl text-white font-semibold">Orkhan Hajiyev</p>
+                    <p class="text-gray-400 italic text-sm">Individual Developer & OrikOS Architect</p>
+                </section>
 
-    <section class="mb-8">
-        <h2 class="text-xl font-semibold mb-2">Editorially Responsible:</h2>
-        <p>[Sənin Adın və Soyadın]<br>[Ünvanın]</p>
-    </section>
+                <section>
+                    <h2 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-3">Address</h2>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        [Street Name & House Number]<br>
+                        53111 Bonn<br>
+                        Germany
+                    </p>
+                </section>
 
-    <section class="text-sm text-gray-600 italic">
-        <p><strong>Disclaimer:</strong> Despite careful content control, we assume no liability for the content of external links. The operators of the linked pages are solely responsible for their content.</p>
-    </section>
-</div>
+                <section>
+                    <h2 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-3">Contact</h2>
+                    <p class="text-gray-300">Email: <a href="mailto:orkhan.hajiyev@web.de" class="text-white hover:underline">orkhan.hajiyev@web.de</a></p>
+                    <p class="text-gray-300">Web: <a href="https://www.oriklab.com" class="text-white hover:underline">www.oriklab.com</a></p>
+                </section>
+
+                <section class="pt-6 border-t border-white/5">
+                    <h2 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-3">Editorial Responsibility</h2>
+                    <p class="text-gray-300 leading-relaxed">
+                        Orkhan Hajiyev (Bonn, Germany) is responsible for the content of this private project. 
+                        OrikLab is a non-commercial extension of the OrikOS ecosystem.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
