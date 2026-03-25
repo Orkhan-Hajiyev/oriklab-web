@@ -62,7 +62,7 @@
             <a href="forum.html" id="txt-com-btn" class="mt-auto bg-blue-600 hover:bg-blue-500 text-white text-center font-bold py-4 rounded-2xl transition uppercase text-xs tracking-widest shadow-lg shadow-blue-600/20">İcmaya Qoşul</a>
         </div>
 
-        <div class="glass-card p-10 rounded-[2.5rem] flex flex-col">
+        <div onclick="window.location.href='knowledge-base.html'" class="glass-card p-10 rounded-[2.5rem] flex flex-col cursor-pointer">
             <div class="mb-10 text-emerald-500 text-4xl"><i class="fa-solid fa-book-bookmark"></i></div>
             <h2 id="txt-res-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white">BİLİK <br>BAZASI</h2>
             <p id="txt-res-desc" class="text-gray-400 text-sm mb-8 leading-relaxed">Özünü inkişaf etdir. Seçilmiş onlayn kurslar və faydalı resurslar.</p>
@@ -113,14 +113,13 @@
                 comT: "GLOBALE <br>COMMUNITY",
                 comD: "Erfahrungsaustausch, Projektpartner und Ideenbank an einem Ort.",
                 comB: "Forum Beitreten",
-                resT: "RESSOURCEN <br>HUB",
+                resT: "WISSENS <br>DATENBANK",
                 resD: "Entwickeln Sie sich weiter. Kuratierte Online-Kurse und nützliche Ressourcen.",
                 li1: "Schulungen", li2: "E-Bibliothek", li3: "Wichtige Links"
             }
         };
 
         function switchLang(lang) {
-            // Dili yaddaşa yazırıq ki, forum.html bunu oxuya bilsin
             localStorage.setItem('selectedLang', lang);
 
             document.getElementById('txt-hero-title').innerHTML = langData[lang].heroT;
@@ -141,7 +140,6 @@
             document.title = langData[lang].title;
         }
 
-        // Səhifə yüklənəndə yaddaşda dil varsa onu tətbiq et, yoxdursa AZ ilə başla
         window.onload = () => {
             const savedLang = localStorage.getItem('selectedLang') || 'az';
             switchLang(savedLang);
