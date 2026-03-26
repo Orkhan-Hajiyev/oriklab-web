@@ -12,7 +12,6 @@
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: #f1f5f9; overflow-x: hidden; }
         .font-os { font-family: 'Orbitron', sans-serif; }
         
-        /* Arxa fon - Bir az daha açıq və dərinlikli */
         .hero-mesh { 
             background: 
                 radial-gradient(circle at 50% -10%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
@@ -20,11 +19,9 @@
                 var(--bg-main);
         }
 
-        /* Yazı effektləri */
         .text-glow { text-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
         .slogan-box { background: rgba(255, 255, 255, 0.03); border-left: 3px solid var(--neon-blue); }
 
-        /* Kartlar - Glassmorphism təkmilləşdirildi */
         .glass-card { 
             background: var(--card-bg); 
             backdrop-filter: blur(16px); 
@@ -37,7 +34,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.1);
         }
 
-        /* Animasiyalı Düymə */
         .btn-animate { position: relative; overflow: hidden; transition: 0.3s; }
         .btn-animate:after {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
@@ -60,9 +56,12 @@
 
     <nav class="fixed w-full z-50 border-b border-white/5 bg-slate-950/60 backdrop-blur-lg">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="location.reload()">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-bold font-os text-white text-xl">O</div>
-                <span class="text-2xl font-os font-bold tracking-tighter text-white uppercase italic">ORIK<span class="text-blue-500 not-italic ml-1">LAB</span></span>
+            <div class="flex items-center space-x-3 cursor-pointer group" onclick="location.reload()">
+                <div class="w-11 h-11 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center font-bold font-os text-white text-2xl shadow-lg group-hover:rotate-6 transition">O</div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-os font-bold tracking-[0.2em] text-white leading-none">ORIK<span class="text-blue-500">LAB</span></span>
+                    <span class="text-[8px] text-gray-400 tracking-[0.4em] uppercase">Tech Solutions</span>
+                </div>
             </div>
             <div class="flex items-center gap-3 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
                 <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="w-7 opacity-40 cursor-pointer hover:opacity-100 transition" alt="AZ">
@@ -78,7 +77,7 @@
             </h1>
             <div class="slogan-box py-3 px-6 inline-block mb-10">
                 <p id="txt-hero-desc" class="text-gray-300 text-lg md:text-xl font-light tracking-wide italic">
-                    İdeyadan tətbiqə: Mühəndislik və İT portalı.
+                    Texnologiya və innovasiya: Hər sahədə rəqəmsal gələcək.
                 </p>
             </div>
         </div>
@@ -88,34 +87,44 @@
         
         <div class="glass-card rounded-[2rem] overflow-hidden flex flex-col group border-white/5">
             <div class="h-48 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] to-transparent"></div>
             </div>
             <div class="p-8 flex flex-col flex-grow">
-                <h2 id="txt-news-title" class="text-xl font-os font-bold mb-4 text-white">XƏBƏR LENTİ</h2>
-                <p id="txt-news-desc" class="text-gray-400 text-sm mb-6 leading-relaxed">Dünyada nələr baş verir? Ən yeni texnologiyalar və qlobal mühəndislik trendləri.</p>
+                <h2 id="txt-news-title" class="text-xl font-os font-bold mb-4 text-white uppercase">XƏBƏR LENTİ</h2>
+                <p id="txt-news-desc" class="text-gray-400 text-sm mb-6 leading-relaxed">Ən son texnoloji yeniliklər və rəqəmsal dünyanın trendləri.</p>
                 <a href="news.html" class="mt-auto flex items-center gap-2 text-blue-400 font-bold text-[10px] uppercase tracking-[0.2em] hover:text-white transition group">
                     <span id="btn-news-text">Daha Çox</span> <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition"></i>
                 </a>
             </div>
         </div>
 
-        <div class="glass-card p-10 rounded-[2rem] flex flex-col border-blue-500/20 shadow-xl relative overflow-hidden">
-            <div class="mb-8 text-blue-500 text-4xl opacity-80"><i class="fa-solid fa-comments"></i></div>
-            <h2 id="txt-com-title" class="text-xl font-os font-bold mb-4 text-white">MÜZAKİRƏ FORUMU</h2>
-            <p id="txt-com-desc" class="text-gray-400 text-sm mb-8 leading-relaxed">Sualın var? Və ya təcrübəni bölüşmək istəyirsən? İcmamıza qoşul və birlikdə öyrənək.</p>
-            <a href="forum.html" id="txt-com-btn" class="btn-animate mt-auto bg-blue-600 hover:bg-blue-500 text-white text-center font-bold py-4 rounded-xl transition uppercase text-[10px] tracking-widest">Foruma Daxil Ol</a>
+        <div class="glass-card rounded-[2rem] overflow-hidden flex flex-col border-blue-500/20 shadow-xl relative">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover opacity-60">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] via-[#0a0f1a]/40 to-transparent"></div>
+                <div class="absolute bottom-4 left-8 text-blue-500 text-3xl"><i class="fa-solid fa-users"></i></div>
+            </div>
+            <div class="p-8 pt-4 flex flex-col flex-grow">
+                <h2 id="txt-com-title" class="text-xl font-os font-bold mb-4 text-white uppercase">İCMA PORTALI</h2>
+                <p id="txt-com-desc" class="text-gray-400 text-sm mb-8 leading-relaxed">Fərqli sahələrin peşəkarları ilə təcrübə mübadiləsi və geniş müzakirə mərkəzi.</p>
+                <a href="forum.html" id="txt-com-btn" class="btn-animate mt-auto bg-blue-600 hover:bg-blue-500 text-white text-center font-bold py-4 rounded-xl transition uppercase text-[10px] tracking-widest">Müzakirələrə Qoşul</a>
+            </div>
         </div>
 
-        <div onclick="window.location.href='knowledge-base.html'" class="glass-card p-10 rounded-[2rem] flex flex-col cursor-pointer hover:border-emerald-500/30 group">
-            <div class="mb-8 text-emerald-500 text-4xl opacity-80"><i class="fa-solid fa-terminal"></i></div>
-            <h2 id="txt-res-title" class="text-xl font-os font-bold mb-4 text-white">BİLİK ARXİVİ</h2>
-            <p id="txt-res-desc" class="text-gray-400 text-sm mb-8 leading-relaxed font-medium italic">
-                Sənədlər, gizli alətlər və mühəndislik sirləri burada gizlənib. Kəşf etməyə hazırsan?
-            </p>
-            <div class="mt-auto flex flex-wrap gap-2 opacity-60 group-hover:opacity-100 transition">
-                <span class="bg-emerald-500/10 text-emerald-500 px-3 py-1 rounded text-[9px] font-bold border border-emerald-500/20">RESOURCES</span>
-                <span class="bg-blue-500/10 text-blue-500 px-3 py-1 rounded text-[9px] font-bold border border-blue-500/20">TOOLS</span>
+        <div onclick="window.location.href='knowledge-base.html'" class="glass-card rounded-[2rem] overflow-hidden flex flex-col cursor-pointer hover:border-emerald-500/30 group">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover opacity-50">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] to-transparent"></div>
+                <div class="absolute bottom-4 left-8 text-emerald-500 text-3xl"><i class="fa-solid fa-book-open"></i></div>
+            </div>
+            <div class="p-8 pt-4 flex flex-col flex-grow">
+                <h2 id="txt-res-title" class="text-xl font-os font-bold mb-4 text-white uppercase">BİLİK ARXİVİ</h2>
+                <p id="txt-res-desc" class="text-gray-400 text-sm mb-8 leading-relaxed">Müxtəlif peşə sahələri üçün faydalı alətlər, kitablar, dərsliklər və önəmli resurslar.</p>
+                <div class="mt-auto flex flex-wrap gap-2 opacity-60 group-hover:opacity-100 transition">
+                    <span class="bg-emerald-500/10 text-emerald-500 px-3 py-1 rounded text-[9px] font-bold border border-emerald-500/20 uppercase tracking-widest">Library</span>
+                    <span class="bg-blue-500/10 text-blue-500 px-3 py-1 rounded text-[9px] font-bold border border-blue-500/20 uppercase tracking-widest">Tools</span>
+                </div>
             </div>
         </div>
     </main>
@@ -124,22 +133,21 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-10">
                 <div class="text-center md:text-left">
-                    <div class="text-xl font-os font-bold text-white mb-2 tracking-widest italic">ORIKLAB</div>
+                    <div class="text-xl font-os font-bold text-white mb-2 tracking-widest italic leading-none">ORIKLAB</div>
                     <p class="text-blue-500/60 text-[10px] uppercase font-bold tracking-[0.3em] mb-4">Powered by OrikOS Ecosystem</p>
-                    <p class="text-gray-600 text-[10px] uppercase tracking-wider">
+                    <p class="text-gray-600 text-[10px] uppercase tracking-wider font-medium">
                         Orkhan Hajiyev — Römerstraße 307, 53117 Bonn, Germany
                     </p>
                 </div>
                 <div class="flex gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                    <a href="impressum.html" class="hover:text-blue-500 transition">Impressum</a>
-                    <a href="datenschutz.html" class="hover:text-blue-500 transition">Datenschutz</a>
+                    <a href="impressum.html" id="link-impressum" class="hover:text-blue-500 transition">Impressum</a>
+                    <a href="datenschutz.html" id="link-datenschutz" class="hover:text-blue-500 transition">Məxfilik Siyasəti</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mouse Glow Effect
         const glow = document.getElementById('cursor-glow');
         document.addEventListener('mousemove', (e) => {
             glow.style.left = e.clientX + 'px';
@@ -148,26 +156,30 @@
 
         const translations = {
             az: {
-                heroD: "İdeyadan tətbiqə: Mühəndislik və İT portalı.",
+                heroD: "Texnologiya və innovasiya: Hər sahədə rəqəmsal gələcək.",
                 newsT: "XƏBƏR LENTİ",
-                newsD: "Dünyada nələr baş verir? Ən yeni texnologiyalar və qlobal mühəndislik trendləri.",
+                newsD: "Ən son texnoloji yeniliklər və rəqəmsal dünyanın trendləri.",
                 newsB: "Daha Çox",
-                comT: "MÜZAKİRƏ FORUMU",
-                comD: "Sualın var? Və ya təcrübəni bölüşmək istəyirsən? İcmamıza qoşul və birlikdə öyrənək.",
-                comB: "Foruma Daxil Ol",
+                comT: "İCMA PORTALI",
+                comD: "Fərqli sahələrin peşəkarları ilə təcrübə mübadiləsi və geniş müzakirə mərkəzi.",
+                comB: "Müzakirələrə Qoşul",
                 resT: "BİLİK ARXİVİ",
-                resD: "Sənədlər, gizli alətlər və mühəndislik sirləri burada gizlənib. Kəşf etməyə hazırsan?"
+                resD: "Müxtəlif peşə sahələri üçün faydalı alətlər, kitablar, dərsliklər və önəmli resurslar.",
+                imp: "Impressum",
+                priv: "Məxfilik Siyasəti"
             },
             de: {
-                heroD: "Von der Idee zur Umsetzung: Das Portal für Engineering & IT.",
+                heroD: "Technologie und Innovation: Die digitale Zukunft in jedem Bereich.",
                 newsT: "NEWS-FEED",
-                newsD: "Was passiert in der Welt? Neueste Technologien und globale Engineering-Trends.",
+                newsD: "Die neuesten technologischen Innovationen und Trends der digitalen Welt.",
                 newsB: "Mehr Sehen",
-                comT: "DISKUSSIONSFORUM",
-                comD: "Haben Sie Fragen? Oder möchten Sie Erfahrungen teilen? Werden Sie Teil unserer Community.",
-                comB: "Zum Forum",
+                comT: "COMMUNITY-PORTAL",
+                comD: "Erfahrungsaustausch und Diskussionszentrum mit Fachleuten aus verschiedenen Bereichen.",
+                comB: "Zur Diskussion",
                 resT: "WISSENSARCHIV",
-                resD: "Dokumente, geheime Tools und Engineering-Geheimnisse sind hier versteckt. Bereit?"
+                resD: "Nützliche Tools, Bücher, Tutorials und wichtige Ressourcen für verschiedene Berufsfelder.",
+                imp: "Impressum",
+                priv: "Datenschutz"
             }
         };
 
@@ -183,6 +195,10 @@
             document.getElementById('txt-com-btn').innerText = t.comB;
             document.getElementById('txt-res-title').innerText = t.resT;
             document.getElementById('txt-res-desc').innerText = t.resD;
+            
+            // Footer linklerini deyisdir
+            document.getElementById('link-impressum').innerText = t.imp;
+            document.getElementById('link-datenschutz').innerText = t.priv;
 
             document.querySelectorAll('img[id^="flag-"]').forEach(img => img.classList.remove('lang-active'));
             document.getElementById('flag-' + lang).classList.add('lang-active');
