@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilik Bazası | OrikLab</title>
+    <title>İcma Paneli | OrikLab</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -17,67 +17,109 @@
         }
         .kb-card:hover {
             border-color: #3b82f6;
-            transform: scale(1.02);
+            transform: translateY(-10px);
             background: rgba(30, 41, 59, 0.6);
-            box-shadow: 0 20px 40px -20px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px -20px rgba(59, 130, 246, 0.4);
         }
+        .lang-flag { cursor: pointer; transition: 0.3s; width: 28px; opacity: 0.5; }
+        .lang-active { opacity: 1; filter: drop-shadow(0 0 5px #3b82f6); transform: scale(1.1); }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen bg-[radial-gradient(circle_at_top_right,rgba(29,78,216,0.15),transparent)]">
 
     <nav class="border-b border-white/5 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
             <a href="index.html" class="text-blue-500 font-os font-bold flex items-center gap-2">
-                <i class="fa-solid fa-house"></i> <span>ORIKLAB</span>
+                <i class="fa-solid fa-users-viewfinder"></i> <span class="tracking-widest">ORIKLAB</span>
             </a>
-            <span class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.3em]">Bilik Bazası / Knowledge Base</span>
+            <div class="flex items-center gap-4">
+                <div class="flex gap-2 bg-white/5 p-1.5 rounded-lg border border-white/10">
+                    <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="lang-flag">
+                    <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="lang-flag">
+                </div>
+            </div>
         </div>
     </nav>
 
-    <header class="py-16 px-6 text-center">
-        <h1 class="text-4xl md:text-5xl font-os font-bold mb-4 uppercase tracking-tighter italic">
-            Məlumat <span class="text-blue-500">Mərkəzi</span>
+    <header class="py-20 px-6 text-center">
+        <h1 id="txt-header" class="text-4xl md:text-6xl font-os font-bold mb-6 uppercase tracking-tighter italic">
+            İCMA <span class="text-blue-500 text-glow">PANELİ</span>
         </h1>
-        <p class="text-gray-400 max-w-2xl mx-auto italic">OrikLab mühəndisləri və tələbələri üçün hazırlanmış vahid resurs bazası.</p>
+        <p id="txt-subheader" class="text-gray-400 max-w-2xl mx-auto text-lg italic">OrikOS ekosisteminin qəlbi — burada öyrənirik, paylaşırıq və böyüyürük.</p>
     </header>
 
     <main class="max-w-6xl mx-auto px-6 pb-24">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <a href="courses.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                    <i class="fa-solid fa-graduation-cap"></i>
+            <a href="forum.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center border-blue-500/20">
+                <div class="w-20 h-20 bg-blue-500/10 text-blue-500 rounded-3xl flex items-center justify-center text-4xl mb-6 shadow-inner">
+                    <i class="fa-solid fa-comments"></i>
                 </div>
-                <h3 class="font-os text-sm font-bold mb-2">KURSLAR</h3>
-                <p class="text-xs text-gray-500 italic">Video dərslər və praktiki təlimlər</p>
+                <h3 class="font-os text-xl font-bold mb-3 tracking-wider">FORUM</h3>
+                <p id="desc-forum" class="text-sm text-gray-500 leading-relaxed italic text-center">Müzakirələr, sual-cavablar və təcrübə mübadiləsi mərkəzi.</p>
             </a>
 
-            <a href="library.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-purple-500/10 text-purple-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                    <i class="fa-solid fa-book-open"></i>
+            <a href="events.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center">
+                <div class="w-20 h-20 bg-emerald-500/10 text-emerald-500 rounded-3xl flex items-center justify-center text-4xl mb-6">
+                    <i class="fa-solid fa-calendar-check"></i>
                 </div>
-                <h3 class="font-os text-sm font-bold mb-2">E-KİTABXANA</h3>
-                <p class="text-xs text-gray-500 italic">PDF-lər və elmi vəsaitlər</p>
+                <h3 id="txt-events" class="font-os text-xl font-bold mb-3 tracking-wider uppercase">TƏDBİRLƏR</h3>
+                <p id="desc-events" class="text-sm text-gray-500 leading-relaxed italic">Canlı vebinarlar, mühəndislik görüşləri və hackathonlar.</p>
             </a>
 
-            <a href="links.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-emerald-500/10 text-emerald-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                    <i class="fa-solid fa-link"></i>
+            <a href="leaderboard.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center">
+                <div class="w-20 h-20 bg-amber-500/10 text-amber-500 rounded-3xl flex items-center justify-center text-4xl mb-6">
+                    <i class="fa-solid fa-trophy"></i>
                 </div>
-                <h3 class="font-os text-sm font-bold mb-2">FAYDALI LİNKLƏR</h3>
-                <p class="text-xs text-gray-500 italic">Xarici alətlər və saytlar</p>
-            </a>
-
-            <a href="wiki.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-amber-500/10 text-amber-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                    <i class="fa-solid fa-file-code"></i>
-                </div>
-                <h3 class="font-os text-sm font-bold mb-2">SƏNƏDLƏR</h3>
-                <p class="text-xs text-gray-500 italic">Texniki bələdçilər (Wiki)</p>
+                <h3 id="txt-rank" class="font-os text-xl font-bold mb-3 tracking-wider uppercase">REYTİNQ</h3>
+                <p id="desc-rank" class="text-sm text-gray-500 leading-relaxed italic text-center">İcmanın ən aktiv üzvləri və töhfə verənlər.</p>
             </a>
 
         </div>
     </main>
 
+    <script>
+        const translations = {
+            az: {
+                header: 'İCMA <span class="text-blue-500">PANELİ</span>',
+                subheader: 'OrikOS ekosisteminin qəlbi — burada öyrənirik, paylaşırıq və böyüyürük.',
+                forumDesc: 'Müzakirələr, sual-cavablar və təcrübə mübadiləsi mərkəzi.',
+                eventsTitle: 'TƏDBİRLƏR',
+                eventsDesc: 'Canlı vebinarlar, mühəndislik görüşləri və hackathonlar.',
+                rankTitle: 'REYTİNQ',
+                rankDesc: 'İcmanın ən aktiv üzvləri və töhfə verənlər.'
+            },
+            de: {
+                header: 'COMMUNITY <span class="text-blue-500">PANEL</span>',
+                subheader: 'Das Herz des OrikOS-Ökosystems – wo wir lernen, teilen und wachsen.',
+                forumDesc: 'Zentrum für Diskussionen, Fragen und Antworten und Erfahrungsaustausch.',
+                eventsTitle: 'EVENTS',
+                eventsDesc: 'Live-Webinare, Engineering-Meetings und Hackathons.',
+                rankTitle: 'RANKING',
+                rankDesc: 'Die aktivsten Mitglieder und Mitwirkenden der Community.'
+            }
+        };
+
+        function switchLang(lang) {
+            localStorage.setItem('selectedLang', lang);
+            const t = translations[lang];
+            
+            document.getElementById('txt-header').innerHTML = t.header;
+            document.getElementById('txt-subheader').innerText = t.subheader;
+            document.getElementById('desc-forum').innerText = t.forumDesc;
+            document.getElementById('txt-events').innerText = t.eventsTitle;
+            document.getElementById('desc-events').innerText = t.eventsDesc;
+            document.getElementById('txt-rank').innerText = t.rankTitle;
+            document.getElementById('desc-rank').innerText = t.rankDesc;
+
+            document.querySelectorAll('.lang-flag').forEach(img => img.classList.remove('lang-active'));
+            document.getElementById('flag-' + lang).classList.add('lang-active');
+        }
+
+        window.onload = () => {
+            const saved = localStorage.getItem('selectedLang') || 'az';
+            switchLang(saved);
+        };
+    </script>
 </body>
 </html>
