@@ -61,9 +61,9 @@
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center space-x-3 cursor-pointer group" onclick="location.reload()">
                 <div class="w-11 h-11 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center font-bold font-os text-white text-2xl shadow-lg group-hover:rotate-6 transition">O</div>
-                <div class="flex flex-col">
-                    <span class="text-xl font-os font-bold tracking-[0.2em] text-white leading-none">ORIK<span class="text-blue-500">LAB</span></span>
-                    <span class="text-[8px] text-gray-400 tracking-[0.4em] uppercase">Tech Solutions</span>
+                <div class="flex flex-col text-left">
+                    <span id="nav-title" class="text-xl font-os font-bold tracking-[0.2em] text-white leading-none">ORIKLAB</span>
+                    <span id="nav-sub" class="text-[8px] text-gray-400 tracking-[0.2em] uppercase mt-1">An OrikOS Project</span>
                 </div>
             </div>
             <div class="flex items-center gap-3 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
@@ -75,8 +75,8 @@
 
     <header class="pt-52 pb-24 px-6 text-center relative z-10">
         <div class="max-w-4xl mx-auto">
-            <h1 id="txt-hero-title" class="text-6xl md:text-8xl font-os font-bold mb-6 text-white tracking-tighter italic text-glow">
-                ORIK<span class="text-blue-600 uppercase">LAB</span>
+            <h1 class="text-6xl md:text-8xl font-os font-bold mb-6 text-white tracking-tighter italic text-glow uppercase">
+                ORIK<span class="text-blue-600">LAB</span>
             </h1>
             <div class="slogan-box py-3 px-6 inline-block mb-10">
                 <p id="txt-hero-desc" class="text-gray-300 text-lg md:text-xl font-light tracking-wide italic">
@@ -136,16 +136,16 @@
             <div class="flex flex-col md:flex-row justify-between items-center gap-10">
                 
                 <div class="flex flex-col">
-                    <p id="footer-sub-text" class="text-[10px] text-blue-400 font-bold uppercase tracking-[0.3em] mb-4">ORIKLAB OrikOS un bir layihesidir</p>
+                    <p id="footer-sub-text" class="text-[10px] text-blue-400 font-bold uppercase tracking-[0.3em] mb-6">ORIKLAB OrikOS un bir layihesidir</p>
                     
                     <div class="flex items-center gap-6">
                         <img src="https://i.postimg.cc/8zXzM9m9/robot-head.png" class="w-16 h-16 object-contain filter drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]" alt="OrikOS Brain Logo">
                         
-                        <div class="flex items-center gap-4 border-l border-white/10 pl-6">
-                            <div class="text-3xl font-os font-bold text-white tracking-[0.1em] leading-none uppercase">
+                        <div class="flex flex-col border-l border-white/10 pl-6">
+                            <div class="text-3xl font-os font-bold text-white tracking-[0.1em] leading-none">
                                 Orik<span class="text-blue-500">OS</span>
                             </div>
-                            <p class="text-gray-400 text-[11px] italic font-light tracking-widest opacity-80">"set your mind . code your future ."</p>
+                            <p class="text-gray-400 text-[11px] italic font-light tracking-widest mt-2 opacity-80">"set your mind . code your future ."</p>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
 
         const favicon = document.getElementById('favicon');
         const originalIcon = "https://i.postimg.cc/8zXzM9m9/robot-head.png";
-        const blinkIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH6AMKDA8XJiZfQAAAAnpJREFUaN7tmT1oFEEUx39v7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7v8ALmAnZt7j71kAAAAASUVORK5CYII=";
+        const blinkIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH6AMKDA8XJiZfQAAAAnpJREFUaN7tmT1oFEEUx39v7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7v8ALmAnZt7j71kAAAAASUVORK5CYII=";
 
         function blink() {
             favicon.href = blinkIcon;
@@ -186,6 +186,7 @@
         const translations = {
             az: {
                 heroD: "Texnologiya mərkəzi: İnnovativ həllər və rəqəmsal ekosistem.",
+                navSub: "An OrikOS Project",
                 newsT: "XƏBƏR LENTİ", newsD: "Ən son texnoloji yeniliklər və rəqəmsal dünyanın trendləri.", newsB: "Daha Çox",
                 comT: "İCMA PORTALI", comD: "Fərqli sahələrin peşəkarları ilə təcrübə mübadiləsi və geniş müzakirə mərkəzi.", comB: "Müzakirələrə Qoşul",
                 resT: "BİLİK ARXİVİ", resD: "Müxtəlif peşə sahələri üçün faydalı alətlər, kitablar, dərsliklər və önəmli resurslar.",
@@ -194,6 +195,7 @@
             },
             de: {
                 heroD: "Technologiezentrum: Innovative Lösungen und digitales Ökosystem.",
+                navSub: "Ein OrikOS Projekt",
                 newsT: "NEWS-FEED", newsD: "Die neuesten technologischen Innovationen und Trends der digitalen Welt.", newsB: "Mehr Sehen",
                 comT: "COMMUNITY-PORTAL", comD: "Erfahrungsaustausch und Diskussionszentrum mit Fachleuten aus verschiedenen Bereichen.", comB: "Zur Diskussion",
                 resT: "WISSENSARCHIV", resD: "Nützliche Tools, Bücher, Tutorials und wichtige Ressourcen für verschiedene Berufsfelder.",
@@ -207,6 +209,7 @@
             const t = translations[lang];
             if(!t) return;
             document.getElementById('txt-hero-desc').innerText = t.heroD;
+            document.getElementById('nav-sub').innerText = t.navSub;
             document.getElementById('txt-news-title').innerText = t.newsT;
             document.getElementById('txt-news-desc').innerText = t.newsD;
             document.getElementById('btn-news-text').innerText = t.newsB;
