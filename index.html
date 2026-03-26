@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OrikLab | Powered by OrikOS</title>
     
-    <link id="favicon" rel="icon" href="https://img.icons8.com/fluency/48/robot-3.png" type="image/png">
+    <link id="favicon" rel="icon" href="https://i.postimg.cc/8zXzM9m9/robot-head.png" type="image/png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -87,7 +87,6 @@
     </header>
 
     <main class="max-w-7xl mx-auto px-6 py-4 grid lg:grid-cols-3 gap-8 mb-24 relative z-10">
-        
         <div class="glass-card rounded-[2rem] overflow-hidden flex flex-col group border-white/5">
             <div class="h-48 overflow-hidden relative">
                 <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
@@ -157,44 +156,37 @@
             glow.style.top = e.clientY + 'px';
         });
 
-        // IKON HEREKETI (ANIMASIYA)
+        // FAVICON ANIMASIYASI (GÖZ QIRPMA EFFEKTİ)
         const favicon = document.getElementById('favicon');
-        const robotFrames = [
-            "https://img.icons8.com/fluency/48/robot-3.png",
-            "https://img.icons8.com/fluency/48/android-head.png"
-        ];
-        let frameIndex = 0;
+        const originalIcon = "https://i.postimg.cc/8zXzM9m9/robot-head.png";
+        const blinkIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH6AMKDA8XJiZfQAAAAnpJREFUaN7tmT1oFEEUx39v7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7v8ALmAnZt7j71kAAAAASUVORK5CYII=";
+
+        function blink() {
+            favicon.href = blinkIcon; // Gözləri "yumur"
+            setTimeout(() => {
+                favicon.href = originalIcon; // Gözləri geri açır
+            }, 200);
+        }
+
         setInterval(() => {
-            frameIndex = (frameIndex + 1) % robotFrames.length;
-            favicon.href = robotFrames[frameIndex];
-        }, 3000); // Hər 3 saniyədən bir ikon dəyişir (göz qırpma effekti)
+            const randomTime = Math.random() * 4000 + 2000; // 2-6 saniyə arası təsadüfi göz qırpma
+            setTimeout(blink, randomTime);
+        }, 5000);
 
         const translations = {
             az: {
                 heroD: "Texnologiya və innovasiya: Hər sahədə rəqəmsal gələcək.",
-                newsT: "XƏBƏR LENTİ",
-                newsD: "Ən son texnoloji yeniliklər və rəqəmsal dünyanın trendləri.",
-                newsB: "Daha Çox",
-                comT: "İCMA PORTALI",
-                comD: "Fərqli sahələrin peşəkarları ilə təcrübə mübadiləsi və geniş müzakirə mərkəzi.",
-                comB: "Müzakirələrə Qoşul",
-                resT: "BİLİK ARXİVİ",
-                resD: "Müxtəlif peşə sahələri üçün faydalı alətlər, kitablar, dərsliklər və önəmli resurslar.",
-                imp: "Impressum",
-                priv: "Məxfilik Siyasəti"
+                newsT: "XƏBƏR LENTİ", newsD: "Ən son texnoloji yeniliklər və rəqəmsal dünyanın trendləri.", newsB: "Daha Çox",
+                comT: "İCMA PORTALI", comD: "Fərqli sahələrin peşəkarları ilə təcrübə mübadiləsi və geniş müzakirə mərkəzi.", comB: "Müzakirələrə Qoşul",
+                resT: "BİLİK ARXİVİ", resD: "Müxtəlif peşə sahələri üçün faydalı alətlər, kitablar, dərsliklər və önəmli resurslar.",
+                imp: "Impressum", priv: "Məxfilik Siyasəti"
             },
             de: {
                 heroD: "Technologie und Innovation: Die digitale Zukunft in jedem Bereich.",
-                newsT: "NEWS-FEED",
-                newsD: "Die neuesten technologischen Innovationen und Trends der digitalen Welt.",
-                newsB: "Mehr Sehen",
-                comT: "COMMUNITY-PORTAL",
-                comD: "Erfahrungsaustausch und Diskussionszentrum mit Fachleuten aus verschiedenen Bereichen.",
-                comB: "Zur Diskussion",
-                resT: "WISSENSARCHIV",
-                resD: "Nützliche Tools, Bücher, Tutorials und wichtige Ressourcen für verschiedene Berufsfelder.",
-                imp: "Impressum",
-                priv: "Datenschutz"
+                newsT: "NEWS-FEED", newsD: "Die neuesten technologischen Innovationen und Trends der digitalen Welt.", newsB: "Mehr Sehen",
+                comT: "COMMUNITY-PORTAL", comD: "Erfahrungsaustausch und Diskussionszentrum mit Fachleuten aus verschiedenen Bereichen.", comB: "Zur Diskussion",
+                resT: "WISSENSARCHIV", resD: "Nützliche Tools, Bücher, Tutorials und wichtige Ressourcen für verschiedene Berufsfelder.",
+                imp: "Impressum", priv: "Datenschutz"
             }
         };
 
@@ -210,7 +202,6 @@
             document.getElementById('txt-com-btn').innerText = t.comB;
             document.getElementById('txt-res-title').innerText = t.resT;
             document.getElementById('txt-res-desc').innerText = t.resD;
-            
             document.getElementById('link-impressum').innerText = t.imp;
             document.getElementById('link-datenschutz').innerText = t.priv;
 
