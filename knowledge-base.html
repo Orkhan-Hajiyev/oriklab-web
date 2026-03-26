@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İcma Paneli | OrikLab</title>
+    <title>Bilik Bazası | OrikLab</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -17,20 +17,20 @@
         }
         .kb-card:hover {
             border-color: #3b82f6;
-            transform: translateY(-10px);
+            transform: scale(1.05);
             background: rgba(30, 41, 59, 0.6);
-            box-shadow: 0 20px 40px -20px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 20px 50px -20px rgba(59, 130, 246, 0.5);
         }
         .lang-flag { cursor: pointer; transition: 0.3s; width: 28px; opacity: 0.5; }
         .lang-active { opacity: 1; filter: drop-shadow(0 0 5px #3b82f6); transform: scale(1.1); }
     </style>
 </head>
-<body class="min-h-screen bg-[radial-gradient(circle_at_top_right,rgba(29,78,216,0.15),transparent)]">
+<body class="min-h-screen bg-[radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.1),transparent)]">
 
     <nav class="border-b border-white/5 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
             <a href="index.html" class="text-blue-500 font-os font-bold flex items-center gap-2">
-                <i class="fa-solid fa-users-viewfinder"></i> <span class="tracking-widest">ORIKLAB</span>
+                <i class="fa-solid fa-brain"></i> <span class="tracking-widest uppercase">OrikLab</span>
             </a>
             <div class="flex items-center gap-4">
                 <div class="flex gap-2 bg-white/5 p-1.5 rounded-lg border border-white/10">
@@ -41,38 +41,46 @@
         </div>
     </nav>
 
-    <header class="py-20 px-6 text-center">
-        <h1 id="txt-header" class="text-4xl md:text-6xl font-os font-bold mb-6 uppercase tracking-tighter italic">
-            İCMA <span class="text-blue-500 text-glow">PANELİ</span>
+    <header class="py-16 px-6 text-center">
+        <h1 id="txt-title" class="text-4xl md:text-5xl font-os font-bold mb-4 uppercase tracking-tighter italic">
+            BİLİK <span class="text-blue-500">BAZASI</span>
         </h1>
-        <p id="txt-subheader" class="text-gray-400 max-w-2xl mx-auto text-lg italic">OrikOS ekosisteminin qəlbi — burada öyrənirik, paylaşırıq və böyüyürük.</p>
+        <p id="txt-subtitle" class="text-gray-400 max-w-2xl mx-auto italic font-light">Mühəndislər üçün vahid texniki resurs və sənədləşmə mərkəzi.</p>
     </header>
 
     <main class="max-w-6xl mx-auto px-6 pb-24">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            <a href="forum.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center border-blue-500/20">
-                <div class="w-20 h-20 bg-blue-500/10 text-blue-500 rounded-3xl flex items-center justify-center text-4xl mb-6 shadow-inner">
-                    <i class="fa-solid fa-comments"></i>
+            <a href="wiki.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-book"></i>
                 </div>
-                <h3 class="font-os text-xl font-bold mb-3 tracking-wider">FORUM</h3>
-                <p id="desc-forum" class="text-sm text-gray-500 leading-relaxed italic text-center">Müzakirələr, sual-cavablar və təcrübə mübadiləsi mərkəzi.</p>
+                <h3 id="t-wiki" class="font-os text-sm font-bold mb-2 uppercase">WIKI</h3>
+                <p id="d-wiki" class="text-[10px] text-gray-500 italic uppercase tracking-wider">Texniki Sənədlər</p>
             </a>
 
-            <a href="events.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center">
-                <div class="w-20 h-20 bg-emerald-500/10 text-emerald-500 rounded-3xl flex items-center justify-center text-4xl mb-6">
-                    <i class="fa-solid fa-calendar-check"></i>
+            <a href="tutorials.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-play"></i>
                 </div>
-                <h3 id="txt-events" class="font-os text-xl font-bold mb-3 tracking-wider uppercase">TƏDBİRLƏR</h3>
-                <p id="desc-events" class="text-sm text-gray-500 leading-relaxed italic">Canlı vebinarlar, mühəndislik görüşləri və hackathonlar.</p>
+                <h3 id="t-video" class="font-os text-sm font-bold mb-2 uppercase">Video Arxiv</h3>
+                <p id="d-video" class="text-[10px] text-gray-500 italic uppercase tracking-wider">Mini Təlimlər</p>
             </a>
 
-            <a href="leaderboard.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center">
-                <div class="w-20 h-20 bg-amber-500/10 text-amber-500 rounded-3xl flex items-center justify-center text-4xl mb-6">
-                    <i class="fa-solid fa-trophy"></i>
+            <a href="cheatsheets.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-emerald-500/10 text-emerald-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-file-invoice"></i>
                 </div>
-                <h3 id="txt-rank" class="font-os text-xl font-bold mb-3 tracking-wider uppercase">REYTİNQ</h3>
-                <p id="desc-rank" class="text-sm text-gray-500 leading-relaxed italic text-center">İcmanın ən aktiv üzvləri və töhfə verənlər.</p>
+                <h3 id="t-cheat" class="font-os text-sm font-bold mb-2 uppercase">Cheat Sheets</h3>
+                <p id="d-cheat" class="text-[10px] text-gray-500 italic uppercase tracking-wider">Yaddaş Vərəqləri</p>
+            </a>
+
+            <a href="roadmaps.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center border-amber-500/10">
+                <div class="w-16 h-16 bg-amber-500/10 text-amber-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <h3 id="t-road" class="font-os text-sm font-bold mb-2 uppercase">Roadmaps</h3>
+                <p id="d-road" class="text-[10px] text-gray-500 italic uppercase tracking-wider">İnkişaf Xəritələri</p>
             </a>
 
         </div>
@@ -81,36 +89,36 @@
     <script>
         const translations = {
             az: {
-                header: 'İCMA <span class="text-blue-500">PANELİ</span>',
-                subheader: 'OrikOS ekosisteminin qəlbi — burada öyrənirik, paylaşırıq və böyüyürük.',
-                forumDesc: 'Müzakirələr, sual-cavablar və təcrübə mübadiləsi mərkəzi.',
-                eventsTitle: 'TƏDBİRLƏR',
-                eventsDesc: 'Canlı vebinarlar, mühəndislik görüşləri və hackathonlar.',
-                rankTitle: 'REYTİNQ',
-                rankDesc: 'İcmanın ən aktiv üzvləri və töhfə verənlər.'
+                title: 'BİLİK <span class="text-blue-500">BAZASI</span>',
+                subtitle: 'Mühəndislər üçün vahid texniki resurs və sənədləşmə mərkəzi.',
+                wiki: "WIKI", dWiki: "Texniki Sənədlər",
+                video: "Video Arxiv", dVideo: "Mini Təlimlər",
+                cheat: "Cheat Sheets", dCheat: "Yaddaş Vərəqləri",
+                road: "Roadmaps", dRoad: "İnkişaf Xəritələri"
             },
             de: {
-                header: 'COMMUNITY <span class="text-blue-500">PANEL</span>',
-                subheader: 'Das Herz des OrikOS-Ökosystems – wo wir lernen, teilen und wachsen.',
-                forumDesc: 'Zentrum für Diskussionen, Fragen und Antworten und Erfahrungsaustausch.',
-                eventsTitle: 'EVENTS',
-                eventsDesc: 'Live-Webinare, Engineering-Meetings und Hackathons.',
-                rankTitle: 'RANKING',
-                rankDesc: 'Die aktivsten Mitglieder und Mitwirkenden der Community.'
+                title: 'WISSENS<span class="text-blue-500">DATENBANK</span>',
+                subtitle: 'Zentrales technisches Ressourcen- und Dokumentationszentrum für Ingenieure.',
+                wiki: "WIKI", dWiki: "Dokumentation",
+                video: "Video-Archiv", dVideo: "Kurzanleitungen",
+                cheat: "Spickzettel", dCheat: "Referenzblätter",
+                road: "Roadmaps", dRoad: "Lernpfade"
             }
         };
 
         function switchLang(lang) {
             localStorage.setItem('selectedLang', lang);
             const t = translations[lang];
-            
-            document.getElementById('txt-header').innerHTML = t.header;
-            document.getElementById('txt-subheader').innerText = t.subheader;
-            document.getElementById('desc-forum').innerText = t.forumDesc;
-            document.getElementById('txt-events').innerText = t.eventsTitle;
-            document.getElementById('desc-events').innerText = t.eventsDesc;
-            document.getElementById('txt-rank').innerText = t.rankTitle;
-            document.getElementById('desc-rank').innerText = t.rankDesc;
+            document.getElementById('txt-title').innerHTML = t.title;
+            document.getElementById('txt-subtitle').innerText = t.subtitle;
+            document.getElementById('t-wiki').innerText = t.wiki;
+            document.getElementById('d-wiki').innerText = t.dWiki;
+            document.getElementById('t-video').innerText = t.video;
+            document.getElementById('d-video').innerText = t.dVideo;
+            document.getElementById('t-cheat').innerText = t.cheat;
+            document.getElementById('d-cheat').innerText = t.dCheat;
+            document.getElementById('t-road').innerText = t.road;
+            document.getElementById('d-road').innerText = t.dRoad;
 
             document.querySelectorAll('.lang-flag').forEach(img => img.classList.remove('lang-active'));
             document.getElementById('flag-' + lang).classList.add('lang-active');
