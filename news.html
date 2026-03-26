@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrikLab | Xəbər Lenti</title>
+    <link id="favicon" rel="icon" href="https://i.postimg.cc/8zXzM9m9/robot-head.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon-blue: #3b82f6; --bg-main: #0a0f1a; --card-bg: rgba(17, 25, 40, 0.75); }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: #f1f5f9; }
+        .font-os { font-family: 'Orbitron', sans-serif; }
+        .hero-mesh { background: radial-gradient(circle at 50% -10%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), var(--bg-main); }
+        
+        .news-card { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.4s;
+        }
+        .news-card:hover { border-color: var(--neon-blue); transform: translateY(-5px); }
+        
+        .tag { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .lang-active { border: 1px solid var(--neon-blue); opacity: 1; filter: drop-shadow(0 0 8px var(--neon-blue)); }
+    </style>
+</head>
+<body class="hero-mesh min-h-screen">
+
+    <nav class="fixed w-full z-50 border-b border-white/5 bg-slate-950/60 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center font-os text-white font-bold">O</div>
+                <span class="text-xl font-os font-bold tracking-widest">ORIK<span class="text-blue-500">LAB</span></span>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 bg-white/5 px-2 py-1 rounded-lg border border-white/10">
+                    <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="w-6 opacity-40 cursor-pointer hover:opacity-100 transition" alt="AZ">
+                    <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="w-6 opacity-40 cursor-pointer hover:opacity-100 transition" alt="DE">
+                </div>
+                <a href="index.html" class="text-sm font-bold uppercase tracking-tighter text-gray-400 hover:text-white transition">
+                    <i class="fa-solid fa-house mr-2"></i> <span id="nav-home">Ana Səhifə</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-40 pb-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-6">
+            <div>
+                <h1 id="page-title" class="text-4xl md:text-5xl font-os font-bold text-white mb-2">XƏBƏR LENTİ</h1>
+                <p id="page-subtitle" class="text-blue-400 font-medium tracking-widest uppercase text-xs">Innovation & Tech Insights</p>
+            </div>
+            <div class="flex gap-2">
+                <span class="tag px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest cursor-pointer hover:bg-blue-600 hover:text-white transition">AI</span>
+                <span class="tag px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest cursor-pointer hover:bg-blue-600 hover:text-white transition">Robotics</span>
+                <span class="tag px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest cursor-pointer hover:bg-blue-600 hover:text-white transition">IT News</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <div id="news-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="news-card rounded-3xl overflow-hidden flex flex-col">
+                <div class="h-56 relative">
+                    <img src="https://i.postimg.cc/8zXzM9m9/robot-head.png" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-blue-600 text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Yeni</div>
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center gap-3 mb-4 text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                        <span><i class="fa-regular fa-calendar mr-1"></i> 26 Mart 2026</span>
+                        <span><i class="fa-regular fa-user mr-1"></i> OrikOS Bot</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-white mb-4 leading-tight hover:text-blue-400 transition cursor-pointer news-title-1">Robotexnika sahəsində inqilab: Pepper 2.0 gəlir</h2>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed news-desc-1">Süni intellekt və robotların inteqrasiyası artıq gündəlik həyatımızın bir hissəsinə çevrilir. Yeni nəsil sistemlər daha emosionaldır.</p>
+                    <button class="mt-auto text-blue-500 text-[10px] font-bold uppercase tracking-widest flex items-center group read-more-btn">
+                        Daha çox <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="news-card rounded-3xl overflow-hidden flex flex-col">
+                <div class="h-56 relative bg-slate-900 flex items-center justify-center">
+                    <i class="fa-solid fa-microchip text-6xl text-blue-500/20"></i>
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center gap-3 mb-4 text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                        <span><i class="fa-regular fa-calendar mr-1"></i> 25 Mart 2026</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-white mb-4 leading-tight news-title-2">Kvant hesablama texnologiyaları və gələcək</h2>
+                    <p class="text-gray-400 text-sm mb-6 news-desc-2">Böyük məlumatların emalında kvant kompüterləri artıq laboratoriya mühitindən çıxaraq real sənayeyə daxil olur.</p>
+                    <button class="text-blue-500 text-[10px] font-bold uppercase tracking-widest flex items-center group read-more-btn">
+                        Daha çox <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="news-card rounded-3xl overflow-hidden flex flex-col">
+                <div class="h-56 relative bg-slate-900 flex items-center justify-center">
+                    <i class="fa-solid fa-code text-6xl text-emerald-500/20"></i>
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center gap-3 mb-4 text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                        <span><i class="fa-regular fa-calendar mr-1"></i> 24 Mart 2026</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-white mb-4 leading-tight news-title-3">n8n ilə avtomatlaşdırma: İş yükünüzü 80% azaldın</h2>
+                    <p class="text-gray-400 text-sm mb-6 news-desc-3">Workflow automation alətləri daxili prosesləri necə sürətləndirir? OrikLab təhlili.</p>
+                    <button class="text-blue-500 text-[10px] font-bold uppercase tracking-widest flex items-center group read-more-btn">
+                        Daha çox <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-16 text-center">
+            <button id="btn-load-more" class="px-10 py-4 border border-white/10 rounded-full text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:border-blue-500 hover:text-white transition">
+                Daha çox yüklə...
+            </button>
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-white/5 text-center">
+        <p class="text-gray-600 text-[10px] uppercase tracking-widest">© 2026 ORIKLAB COMMUNITY. Bütün hüquqlar qorunur.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            az: {
+                navHome: "Ana Səhifə",
+                title: "XƏBƏR LENTİ",
+                subtitle: "İnnovasiya və İT mərkəzi",
+                loadMore: "Daha çox yüklə...",
+                more: "Daha çox",
+                news1T: "Robotexnika sahəsində inqilab: Pepper 2.0 gəlir",
+                news1D: "Süni intellekt və robotların inteqrasiyası artıq gündəlik həyatımızın bir hissəsinə çevrilir.",
+                news2T: "Kvant hesablama texnologiyaları və gələcək",
+                news2D: "Böyük məlumatların emalında kvant kompüterləri artıq real sənayeyə daxil olur.",
+                news3T: "n8n ilə avtomatlaşdırma: İş yükünüzü 80% azaldın",
+                news3D: "Workflow automation alətləri daxili prosesləri necə sürətləndirir? OrikLab təhlili."
+            },
+            de: {
+                navHome: "Startseite",
+                title: "NEWS-FEED",
+                subtitle: "Innovation & IT Zentrum",
+                loadMore: "Mehr laden...",
+                more: "Mehr sehen",
+                news1T: "Revolution in der Robotik: Pepper 2.0 kommt",
+                news1D: "Die Integration von KI und Robotern wird bereits Teil unseres täglichen Lebens.",
+                news2T: "Quantencomputing und die Zukunft",
+                news2D: "Quantencomputer verlassen die Laborumgebung und halten Einzug in die Industrie.",
+                news3T: "Automatisierung mit n8n: 80% weniger Aufwand",
+                news3D: "Wie Workflow-Automatisierungstools interne Prozesse beschleunigen. OrikLab Analyse."
+            }
+        };
+
+        function switchLang(lang) {
+            localStorage.setItem('selectedLang', lang);
+            const t = translations[lang];
+            document.getElementById('nav-home').innerText = t.navHome;
+            document.getElementById('page-title').innerText = t.title;
+            document.getElementById('page-subtitle').innerText = t.subtitle;
+            document.getElementById('btn-load-more').innerText = t.loadMore;
+            
+            document.querySelector('.news-title-1').innerText = t.news1T;
+            document.querySelector('.news-desc-1').innerText = t.news1D;
+            document.querySelector('.news-title-2').innerText = t.news2T;
+            document.querySelector('.news-desc-2').innerText = t.news2D;
+            document.querySelector('.news-title-3').innerText = t.news3T;
+            document.querySelector('.news-desc-3').innerText = t.news3D;
+
+            document.querySelectorAll('.read-more-btn').forEach(btn => btn.innerHTML = `${t.more} <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition"></i>`);
+
+            document.querySelectorAll('img[id^="flag-"]').forEach(img => img.classList.remove('lang-active'));
+            document.getElementById('flag-' + lang).classList.add('lang-active');
+        }
+
+        window.onload = () => { switchLang(localStorage.getItem('selectedLang') || 'az'); };
+    </script>
+</body>
+</html>
