@@ -3,131 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilik Bazası | OrikLab</title>
+    <title>OrikLab | Bilik Bazası</title>
+    <link id="favicon" rel="icon" href="https://i.postimg.cc/8zXzM9m9/robot-head.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f1f5f9; }
+        :root { --neon-blue: #3b82f6; --bg-main: #0a0f1a; --card-bg: rgba(17, 25, 40, 0.75); }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: #f1f5f9; overflow-x: hidden; }
         .font-os { font-family: 'Orbitron', sans-serif; }
-        .kb-card {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .hero-mesh { background: radial-gradient(circle at 50% -10%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), var(--bg-main); }
+        
+        .glass-box { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            transition: all 0.4s ease;
         }
-        .kb-card:hover {
-            border-color: #3b82f6;
-            transform: scale(1.05);
-            background: rgba(30, 41, 59, 0.6);
-            box-shadow: 0 20px 50px -20px rgba(59, 130, 246, 0.5);
+        .glass-box:hover { 
+            border-color: var(--neon-blue); 
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
         }
-        .lang-flag { cursor: pointer; transition: 0.3s; width: 28px; opacity: 0.5; }
-        .lang-active { opacity: 1; filter: drop-shadow(0 0 5px #3b82f6); transform: scale(1.1); }
+        .icon-grad { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+        .lang-active { border: 1px solid var(--neon-blue); opacity: 1; filter: drop-shadow(0 0 8px var(--neon-blue)); }
     </style>
 </head>
-<body class="min-h-screen bg-[radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.1),transparent)]">
+<body class="hero-mesh min-h-screen">
 
-    <nav class="border-b border-white/5 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-            <a href="index.html" class="text-blue-500 font-os font-bold flex items-center gap-2">
-                <i class="fa-solid fa-brain"></i> <span class="tracking-widest uppercase">OrikLab</span>
-            </a>
+    <nav class="fixed w-full z-50 border-b border-white/5 bg-slate-950/60 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center font-os text-white font-bold">O</div>
+                <span class="text-xl font-os font-bold tracking-widest text-white">ORIK<span class="text-blue-500">LAB</span></span>
+            </div>
             <div class="flex items-center gap-4">
-                <div class="flex gap-2 bg-white/5 p-1.5 rounded-lg border border-white/10">
-                    <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="lang-flag">
-                    <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="lang-flag">
+                <div class="flex items-center gap-2 bg-white/5 px-2 py-1 rounded-lg border border-white/10">
+                    <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="w-6 opacity-40 cursor-pointer hover:opacity-100 transition" alt="AZ">
+                    <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="w-6 opacity-40 cursor-pointer hover:opacity-100 transition" alt="DE">
                 </div>
+                <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white transition">
+                    <i class="fa-solid fa-chevron-left mr-2"></i> <span id="nav-back">Geri</span>
+                </a>
             </div>
         </div>
     </nav>
 
-    <header class="py-16 px-6 text-center">
-        <h1 id="txt-title" class="text-4xl md:text-5xl font-os font-bold mb-4 uppercase tracking-tighter italic">
-            BİLİK <span class="text-blue-500">BAZASI</span>
-        </h1>
-        <p id="txt-subtitle" class="text-gray-400 max-w-2xl mx-auto italic font-light">Mühəndislər üçün vahid texniki resurs və sənədləşmə mərkəzi.</p>
-    </header>
+    <main class="pt-48 pb-20 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 id="main-title" class="text-5xl md:text-7xl font-os font-bold text-white mb-6 tracking-tighter uppercase italic">
+                BİLİK <span class="text-blue-600">BAZASI</span>
+            </h1>
+            <p id="main-desc" class="max-w-2xl mx-auto text-gray-400 text-lg font-light leading-relaxed mb-16">
+                Texnoloji inkişafın mərkəzi: Mühəndislikdən proqramlaşdırmaya qədər hər şey burada cəmlənib.
+            </p>
 
-    <main class="max-w-6xl mx-auto px-6 pb-24">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            <a href="wiki.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                    <i class="fa-solid fa-book"></i>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="glass-box p-8 rounded-[2.5rem] flex flex-col items-center group cursor-pointer">
+                    <div class="w-16 h-16 icon-grad rounded-2xl flex items-center justify-center text-2xl text-white mb-6 group-hover:rotate-12 transition">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 id="card1-t" class="text-lg font-os font-bold text-white mb-2 uppercase tracking-tight">DƏRSLİKLƏR</h3>
+                    <p id="card1-d" class="text-gray-500 text-[10px] uppercase font-bold tracking-widest">Master-klass və kurslar</p>
                 </div>
-                <h3 id="t-wiki" class="font-os text-sm font-bold mb-2 uppercase">WIKI</h3>
-                <p id="d-wiki" class="text-[10px] text-gray-500 italic uppercase tracking-wider">Texniki Sənədlər</p>
-            </a>
 
-            <a href="tutorials.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                    <i class="fa-solid fa-play"></i>
+                <div class="glass-box p-8 rounded-[2.5rem] flex flex-col items-center group cursor-pointer">
+                    <div class="w-16 h-16 icon-grad rounded-2xl flex items-center justify-center text-2xl text-white mb-6 group-hover:rotate-12 transition">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                    <h3 id="card2-t" class="text-lg font-os font-bold text-white mb-2 uppercase tracking-tight">VİDEO ARXİV</h3>
+                    <p id="card2-d" class="text-gray-500 text-[10px] uppercase font-bold tracking-widest">Mini təlimlər</p>
                 </div>
-                <h3 id="t-video" class="font-os text-sm font-bold mb-2 uppercase">Video Arxiv</h3>
-                <p id="d-video" class="text-[10px] text-gray-500 italic uppercase tracking-wider">Mini Təlimlər</p>
-            </a>
 
-            <a href="cheatsheets.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-emerald-500/10 text-emerald-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                    <i class="fa-solid fa-file-invoice"></i>
+                <div class="glass-box p-8 rounded-[2.5rem] flex flex-col items-center group cursor-pointer border-blue-500/20 shadow-lg">
+                    <div class="w-16 h-16 icon-grad rounded-2xl flex items-center justify-center text-2xl text-white mb-6 group-hover:rotate-12 transition">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3 id="card3-t" class="text-lg font-os font-bold text-white mb-2 uppercase tracking-tight">ALƏTLƏR</h3>
+                    <p id="card3-d" class="text-gray-500 text-[10px] uppercase font-bold tracking-widest">Faydalı resurslar</p>
                 </div>
-                <h3 id="t-cheat" class="font-os text-sm font-bold mb-2 uppercase">Cheat Sheets</h3>
-                <p id="d-cheat" class="text-[10px] text-gray-500 italic uppercase tracking-wider">Yaddaş Vərəqləri</p>
-            </a>
 
-            <a href="roadmaps.html" class="kb-card p-8 rounded-[2.5rem] flex flex-col items-center text-center border-amber-500/10">
-                <div class="w-16 h-16 bg-amber-500/10 text-amber-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                    <i class="fa-solid fa-map-location-dot"></i>
+                <div class="glass-box p-8 rounded-[2.5rem] flex flex-col items-center group cursor-pointer">
+                    <div class="w-16 h-16 icon-grad rounded-2xl flex items-center justify-center text-2xl text-white mb-6 group-hover:rotate-12 transition">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <h3 id="card4-t" class="text-lg font-os font-bold text-white mb-2 uppercase tracking-tight">LAYİHƏLƏR</h3>
+                    <p id="card4-d" class="text-gray-500 text-[10px] uppercase font-bold tracking-widest">Case studies & Portfolio</p>
                 </div>
-                <h3 id="t-road" class="font-os text-sm font-bold mb-2 uppercase">Roadmaps</h3>
-                <p id="d-road" class="text-[10px] text-gray-500 italic uppercase tracking-wider">İnkişaf Xəritələri</p>
-            </a>
 
+            </div>
         </div>
     </main>
 
     <script>
         const translations = {
             az: {
-                title: 'BİLİK <span class="text-blue-500">BAZASI</span>',
-                subtitle: 'Mühəndislər üçün vahid texniki resurs və sənədləşmə mərkəzi.',
-                wiki: "WIKI", dWiki: "Texniki Sənədlər",
-                video: "Video Arxiv", dVideo: "Mini Təlimlər",
-                cheat: "Cheat Sheets", dCheat: "Yaddaş Vərəqləri",
-                road: "Roadmaps", dRoad: "İnkişaf Xəritələri"
+                back: "Geri",
+                title: "BİLİK BAZASI",
+                desc: "Texnoloji inkişafın mərkəzi: Mühəndislikdən proqramlaşdırmaya qədər hər şey burada cəmlənib.",
+                c1T: "DƏRSLİKLƏR", c1D: "Master-klass və kurslar",
+                c2T: "VİDEO ARXİV", c2D: "Mini təlimlər",
+                c3T: "ALƏTLƏR", c3D: "Faydalı resurslar",
+                c4T: "LAYİHƏLƏR", c4D: "Case studies & Portfolio"
             },
             de: {
-                title: 'WISSENS<span class="text-blue-500">DATENBANK</span>',
-                subtitle: 'Zentrales technisches Ressourcen- und Dokumentationszentrum für Ingenieure.',
-                wiki: "WIKI", dWiki: "Dokumentation",
-                video: "Video-Archiv", dVideo: "Kurzanleitungen",
-                cheat: "Spickzettel", dCheat: "Referenzblätter",
-                road: "Roadmaps", dRoad: "Lernpfade"
+                back: "Zurück",
+                title: "WISSENSBASIS",
+                desc: "Zentrum für technologische Entwicklung: Von Engineering bis Programmierung ist hier alles vereint.",
+                c1T: "TUTORIALS", c1D: "Masterclasses & Kurse",
+                c2T: "VIDEO-ARCHIV", c2D: "Mini-Schulungen",
+                c3T: "TOOLS", c3D: "Nützliche Ressourcen",
+                c4T: "PROJEKTE", c4D: "Case Studies & Portfolio"
             }
         };
 
         function switchLang(lang) {
             localStorage.setItem('selectedLang', lang);
             const t = translations[lang];
-            document.getElementById('txt-title').innerHTML = t.title;
-            document.getElementById('txt-subtitle').innerText = t.subtitle;
-            document.getElementById('t-wiki').innerText = t.wiki;
-            document.getElementById('d-wiki').innerText = t.dWiki;
-            document.getElementById('t-video').innerText = t.video;
-            document.getElementById('d-video').innerText = t.dVideo;
-            document.getElementById('t-cheat').innerText = t.cheat;
-            document.getElementById('d-cheat').innerText = t.dCheat;
-            document.getElementById('t-road').innerText = t.road;
-            document.getElementById('d-road').innerText = t.dRoad;
+            document.getElementById('nav-back').innerText = t.back;
+            document.getElementById('main-title').innerHTML = lang === 'az' ? `BİLİK <span class="text-blue-600">BAZASI</span>` : `WISSENS<span class="text-blue-600">BASIS</span>`;
+            document.getElementById('main-desc').innerText = t.desc;
+            document.getElementById('card1-t').innerText = t.c1T;
+            document.getElementById('card1-d').innerText = t.c1D;
+            document.getElementById('card2-t').innerText = t.c2T;
+            document.getElementById('card2-d').innerText = t.c2D;
+            document.getElementById('card3-t').innerText = t.c3T;
+            document.getElementById('card3-d').innerText = t.c3D;
+            document.getElementById('card4-t').innerText = t.c4T;
+            document.getElementById('card4-d').innerText = t.c4D;
 
-            document.querySelectorAll('.lang-flag').forEach(img => img.classList.remove('lang-active'));
+            document.querySelectorAll('img[id^="flag-"]').forEach(img => img.classList.remove('lang-active'));
             document.getElementById('flag-' + lang).classList.add('lang-active');
         }
 
-        window.onload = () => {
-            const saved = localStorage.getItem('selectedLang') || 'az';
-            switchLang(saved);
-        };
+        window.onload = () => { switchLang(localStorage.getItem('selectedLang') || 'az'); };
     </script>
 </body>
 </html>
