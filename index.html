@@ -8,77 +8,123 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f1f5f9; scroll-behavior: smooth; display: flex; flex-direction: column; min-h-screen; }
+        :root { --neon-blue: #3b82f6; --dark-bg: #020617; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--dark-bg); color: #f1f5f9; overflow-x: hidden; }
         .font-os { font-family: 'Orbitron', sans-serif; }
-        .glass-card { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
-        .glass-card:hover { border-color: #3b82f6; transform: translateY(-5px); box-shadow: 0 20px 40px -20px rgba(59, 130, 246, 0.3); }
-        .hero-mesh { background-image: radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.3) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(30, 58, 138, 0.1) 0, transparent 50%); }
-        .lang-flag { cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; padding: 2px; width: 32px; height: 20px; object-fit: cover; border-radius: 4px; opacity: 0.5; }
-        .lang-active { border-color: #3b82f6 !important; opacity: 1; scale: 1.1; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)); }
+        
+        /* Dinamik Arxa Fon */
+        .hero-mesh { 
+            background: radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 30%);
+        }
+
+        /* Glassmorphism Təkmilləşdirilməsi */
+        .glass-card { 
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.03); 
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .glass-card:hover { 
+            border-color: var(--neon-blue); 
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
+        }
+
+        /* Xəbər Şəkli Efekti */
+        .news-img { transition: transform 0.8s ease; }
+        .glass-card:hover .news-img { transform: scale(1.1) rotate(1deg); }
+
+        /* Mouse Follower Glow (JS ilə işləyəcək) */
+        #cursor-glow {
+            position: fixed; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); z-index: 0;
+        }
+
+        .lang-flag { cursor: pointer; transition: 0.3s; width: 30px; opacity: 0.4; border-radius: 4px; }
+        .lang-active { opacity: 1; scale: 1.2; filter: drop-shadow(0 0 10px var(--neon-blue)); border: 1px solid var(--neon-blue); }
+        
+        /* Animasiya */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade { animation: fadeUp 0.8s ease forwards; }
     </style>
 </head>
-<body class="hero-mesh min-h-screen">
+<body class="hero-mesh">
+    <div id="cursor-glow"></div>
 
     <nav class="fixed w-full z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-bold font-os text-white text-xl shadow-lg shadow-blue-600/20">O</div>
-                <span class="text-2xl font-os font-bold tracking-tighter text-white uppercase">ORIK<span class="text-blue-500 italic text-lg ml-1">LAB</span></span>
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="location.reload()">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-bold font-os text-white text-xl shadow-lg shadow-blue-600/30">O</div>
+                <span class="text-2xl font-os font-bold tracking-tighter text-white uppercase italic">ORIK<span class="text-blue-500 not-italic text-lg ml-1">LAB</span></span>
             </div>
             <div class="flex items-center gap-4 bg-white/5 px-4 py-2 rounded-2xl border border-white/10">
-                <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="lang-flag" alt="AZ">
-                <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="lang-flag" alt="DE">
+                <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="lang-flag">
+                <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="lang-flag">
             </div>
         </div>
     </nav>
 
-    <header class="pt-48 pb-20 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h1 id="txt-hero-title" class="text-6xl md:text-8xl font-os font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 tracking-tighter italic leading-none">
+    <header class="pt-48 pb-20 px-6 text-center relative z-10">
+        <div class="max-w-4xl mx-auto animate-fade">
+            <h1 id="txt-hero-title" class="text-6xl md:text-8xl font-os font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500 tracking-tighter italic leading-[0.9]">
                 LİMİTSİZ <br><span class="text-blue-600 uppercase">POTENSİAL</span>
             </h1>
-            <p id="txt-hero-desc" class="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
-                OrikOS arxitekturasına əsaslanan universal platforma. Peşəkarlar üçün alətlər, öyrənmək istəyənlər üçün resurslar.
+            <p id="txt-hero-desc" class="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed italic">
+                OrikOS ekosistemi: Mühəndislik, IT və texnologiyanın gələcəyini burada kəşf edin.
             </p>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-10 grid lg:grid-cols-3 gap-8 mb-20 flex-grow">
-        <div class="glass-card p-10 rounded-[2.5rem] flex flex-col">
-            <div class="mb-10 text-blue-500 text-4xl"><i class="fa-solid fa-microchip"></i></div>
-            <h2 id="txt-tool-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white uppercase">ALƏTLƏR <br>MƏRKƏZİ</h2>
-            <p id="txt-tool-desc" class="text-gray-400 text-sm mb-8 leading-relaxed">Mühəndislik və İT sahələri üçün xüsusi interaktiv modullar.</p>
-            <div class="space-y-3 mt-auto">
-                <div class="bg-white/5 p-3 rounded-xl flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest"><i class="fa-solid fa-code text-blue-500 w-4"></i> IT Engineering</div>
-                <div class="bg-white/5 p-3 rounded-xl flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest"><i class="fa-solid fa-dna text-red-500 w-4"></i> Bio & Medical</div>
-                <div class="bg-white/5 p-3 rounded-xl flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest"><i class="fa-solid fa-bolt text-yellow-500 w-4"></i> Power Systems</div>
+    <main class="max-w-7xl mx-auto px-6 py-10 grid lg:grid-cols-3 gap-8 mb-20 relative z-10">
+        
+        <div class="glass-card p-1 rounded-[2.5rem] overflow-hidden flex flex-col group">
+            <div class="h-48 overflow-hidden rounded-t-[2.3rem] relative">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="news-img w-full h-full object-cover">
+                <div class="absolute top-4 left-4 bg-blue-600 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter shadow-lg">Trending</div>
+            </div>
+            <div class="p-8 flex flex-col flex-grow">
+                <h2 id="txt-news-title" class="text-3xl font-os font-bold mb-4 italic leading-tight text-white">TREND <br>XƏBƏRLƏR</h2>
+                <p id="txt-news-desc" class="text-gray-400 text-sm mb-6 leading-relaxed italic">Texnologiya dünyasında bu həftə nələr baş verib? Ən son mühəndislik yenilikləri.</p>
+                <div class="mt-auto pt-6 border-t border-white/5">
+                    <a href="news.html" id="txt-news-btn" class="text-blue-400 font-bold text-[10px] uppercase tracking-[0.2em] flex items-center gap-2 group-hover:gap-4 transition-all">
+                        <span id="btn-news-text">Xəbərləri Oxu</span> <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="glass-card p-10 rounded-[2.5rem] flex flex-col border-blue-600/20 bg-blue-600/5 shadow-2xl shadow-blue-900/10">
-            <div class="mb-10 text-blue-400 text-4xl"><i class="fa-solid fa-users-rays"></i></div>
-            <h2 id="txt-com-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white uppercase">GENİŞ <br>İCMA</h2>
-            <p id="txt-com-desc" class="text-gray-300 text-sm mb-8 leading-relaxed">Təcrübə mübadiləsi, layihə ortaqları və ideya bankı bir mərkəzdə.</p>
-            <a href="forum.html" id="txt-com-btn" class="mt-auto bg-blue-600 hover:bg-blue-500 text-white text-center font-bold py-4 rounded-2xl transition uppercase text-xs tracking-widest shadow-lg shadow-blue-600/20">İcmaya Qoşul</a>
+        <div class="glass-card p-10 rounded-[2.5rem] flex flex-col border-blue-600/30 bg-blue-600/5 shadow-2xl shadow-blue-900/10">
+            <div class="mb-10 text-blue-400 text-4xl"><i class="fa-solid fa-users-viewfinder"></i></div>
+            <h2 id="txt-com-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white uppercase">MÜHƏNDİS <br>İCMASI</h2>
+            <p id="txt-com-desc" class="text-gray-300 text-sm mb-8 leading-relaxed">Təcrübə mübadiləsi və sual-cavab üçün peşəkar mühit.</p>
+            <a href="forum.html" id="txt-com-btn" class="mt-auto bg-blue-600 hover:bg-blue-500 text-white text-center font-bold py-4 rounded-2xl transition-all uppercase text-xs tracking-widest shadow-lg shadow-blue-600/20 active:scale-95">İcmaya Qoşul</a>
         </div>
 
-        <div onclick="window.location.href='knowledge-base.html'" class="glass-card p-10 rounded-[2.5rem] flex flex-col cursor-pointer">
-            <div class="mb-10 text-emerald-500 text-4xl"><i class="fa-solid fa-book-bookmark"></i></div>
-            <h2 id="txt-res-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white uppercase">BİLİK <br>BAZASI</h2>
-            <p id="txt-res-desc" class="text-gray-400 text-sm mb-8 leading-relaxed">Özünü inkişaf etdir. Seçilmiş onlayn kurslar və faydalı resurslar.</p>
-            <ul class="mt-auto space-y-4 text-xs font-bold uppercase tracking-widest text-gray-500 border-t border-white/5 pt-6">
-                <li class="flex justify-between items-center hover:text-white cursor-pointer"><span id="li-1">Kurslar & Təlimlər</span> <i class="fa-solid fa-link text-[10px]"></i></li>
-                <li class="flex justify-between items-center hover:text-white cursor-pointer"><span id="li-2">E-Kitabxana</span> <i class="fa-solid fa-link text-[10px]"></i></li>
-                <li class="flex justify-between items-center hover:text-white cursor-pointer"><span id="li-3">Faydalı Linklər</span> <i class="fa-solid fa-link text-[10px]"></i></li>
+        <div onclick="window.location.href='knowledge-base.html'" class="glass-card p-10 rounded-[2.5rem] flex flex-col cursor-pointer border-emerald-500/10 hover:border-emerald-500/40">
+            <div class="mb-10 text-emerald-500 text-4xl"><i class="fa-solid fa-vault"></i></div>
+            <h2 id="txt-res-title" class="text-3xl font-os font-bold mb-6 italic leading-tight text-white uppercase">BİLİK <br>ARXİVİ</h2>
+            <p id="txt-res-desc" class="text-gray-400 text-sm mb-8 leading-relaxed italic">Alətlər, dərsliklər və rəsmi sənəd nümunələri burada cəmlənib.</p>
+            <ul class="mt-auto space-y-4 text-[10px] font-bold uppercase tracking-widest text-gray-500 border-t border-white/5 pt-6">
+                <li class="flex justify-between items-center group-hover:text-emerald-400 transition">
+                    <span id="li-1">Mustervorlagen</span> <i class="fa-solid fa-file-pdf"></i>
+                </li>
+                <li class="flex justify-between items-center group-hover:text-emerald-400 transition">
+                    <span id="li-2">IT & Engineering Tools</span> <i class="fa-solid fa-screwdriver-wrench"></i>
+                </li>
+                <li class="flex justify-between items-center group-hover:text-emerald-400 transition">
+                    <span id="li-3">Terminologiya</span> <i class="fa-solid fa-language"></i>
+                </li>
             </ul>
         </div>
     </main>
 
-    <footer class="py-12 border-t border-white/5 bg-slate-950/50 w-full">
+    <footer class="py-12 border-t border-white/5 bg-slate-950/50 w-full relative z-10">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="text-center md:text-left">
-                <div class="text-xl font-os font-bold text-white mb-2 tracking-tighter">ORIKLAB</div>
-                <p class="text-gray-600 text-[10px] uppercase tracking-widest leading-relaxed">
+                <div class="text-xl font-os font-bold text-white mb-2 tracking-tighter italic">ORIKLAB</div>
+                <p class="text-gray-600 text-[10px] uppercase tracking-widest font-bold">
                     Orkhan Hajiyev — Römerstraße 307, 53117 Bonn, Germany
                 </p>
             </div>
@@ -90,32 +136,41 @@
     </footer>
 
     <script>
+        // Mouse Follower Effect
+        const glow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
         const translations = {
             az: {
                 title: "OrikLab | OrikOS Ekosistemi",
                 heroT: "LİMİTSİZ <br><span class='text-blue-600 uppercase'>POTENSİAL</span>",
-                heroD: "OrikOS arxitekturasına əsaslanan universal platforma. Peşəkarlar üçün alətlər, öyrənmək istəyənlər üçün resurslar.",
-                toolT: "ALƏTLƏR <br>MƏRKƏZİ",
-                toolD: "Mühəndislik və İT sahələri üçün xüsusi interaktiv modullar.",
-                comT: "GENİŞ <br>İCMA",
-                comD: "Təcrübə mübadiləsi, layihə ortaqları və ideya bankı bir mərkəzdə.",
+                heroD: "OrikOS ekosistemi: Mühəndislik, IT və texnologiyanın gələcəyini burada kəşf edin.",
+                newsT: "TREND <br>XƏBƏRLƏR",
+                newsD: "Texnologiya dünyasında bu həftə nələr baş verib? Ən son mühəndislik yenilikləri.",
+                newsB: "Xəbərləri Oxu",
+                comT: "MÜHƏNDİS <br>İCMASI",
+                comD: "Təcrübə mübadiləsi və sual-cavab üçün peşəkar mühit.",
                 comB: "İcmaya Qoşul",
-                resT: "BİLİK <br>BAZASI",
-                resD: "Özünü inkişaf etdir. Seçilmiş onlayn kurslar və faydalı resurslar.",
-                li1: "Kurslar & Təlimlər", li2: "E-Kitabxana", li3: "Faydalı Linklər"
+                resT: "BİLİK <br>ARXİVİ",
+                resD: "Alətlər, dərsliklər və rəsmi sənəd nümunələri burada cəmlənib.",
+                li1: "Sənəd Nümunələri", li2: "Mühəndislik Alətləri", li3: "Texniki Sözlük"
             },
             de: {
                 title: "OrikLab | OrikOS Ökosystem",
                 heroT: "GRENZENLOSES <br><span class='text-blue-600 uppercase'>POTENZIAL</span>",
-                heroD: "Eine universelle Plattform basierend auf der OrikOS-Architektur. Werkzeuge für Profis, Ressourcen für Lernende.",
-                toolT: "TOOLS <br>CENTER",
-                toolD: "Spezialisierte interaktive Module für Ingenieurwesen und IT-Bereiche.",
-                comT: "GLOBALE <br>COMMUNITY",
-                comD: "Erfahrungsaustausch, Projektpartner und Ideenbank an einem Ort.",
+                heroD: "OrikOS-Ökosystem: Entdecken Sie hier die Zukunft von Engineering, IT und Technologie.",
+                newsT: "TREND <br>NEWS",
+                newsD: "Was ist diese Woche in der Welt der Technik passiert? Die neuesten Updates.",
+                newsB: "News Lesen",
+                comT: "ENGINEER <br>COMMUNITY",
+                comD: "Ein professionelles Umfeld für Erfahrungsaustausch und Q&A.",
                 comB: "Forum Beitreten",
-                resT: "WISSENS <br>DATENBANK",
-                resD: "Entwickeln Sie sich weiter. Kuratierte Online-Kurse und nützliche Ressourcen.",
-                li1: "Schulungen", li2: "E-Bibliothek", li3: "Wichtige Links"
+                resT: "WISSENS <br>ARCHIV",
+                resD: "Tools, Tutorials und offizielle Vorlagen sind hier zentralisiert.",
+                li1: "Mustervorlagen", li2: "Engineering Tools", li3: "Fachglossar"
             }
         };
 
@@ -126,8 +181,9 @@
             document.title = t.title;
             document.getElementById('txt-hero-title').innerHTML = t.heroT;
             document.getElementById('txt-hero-desc').innerText = t.heroD;
-            document.getElementById('txt-tool-title').innerHTML = t.toolT;
-            document.getElementById('txt-tool-desc').innerText = t.toolD;
+            document.getElementById('txt-news-title').innerHTML = t.newsT;
+            document.getElementById('txt-news-desc').innerText = t.newsD;
+            document.getElementById('btn-news-text').innerText = t.newsB;
             document.getElementById('txt-com-title').innerHTML = t.comT;
             document.getElementById('txt-com-desc').innerText = t.comD;
             document.getElementById('txt-com-btn').innerText = t.comB;
@@ -142,8 +198,7 @@
         }
 
         window.onload = () => {
-            const savedLang = localStorage.getItem('selectedLang') || 'az';
-            switchLang(savedLang);
+            switchLang(localStorage.getItem('selectedLang') || 'az');
         };
     </script>
 </body>
