@@ -1,137 +1,4 @@
-<!DOCTYPE html>
-<html lang="az">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OrikLab | Powered by OrikOS</title>
-    
-    <link id="favicon" rel="icon" href="https://i.postimg.cc/8zXzM9m9/robot-head.png" type="image/png">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root { --neon-blue: #3b82f6; --bg-main: #0a0f1a; --card-bg: rgba(17, 25, 40, 0.75); }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: #f1f5f9; overflow-x: hidden; }
-        .font-os { font-family: 'Orbitron', sans-serif; }
-        
-        .hero-mesh { 
-            background: 
-                radial-gradient(circle at 50% -10%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 0% 100%, rgba(30, 58, 138, 0.1) 0%, transparent 40%),
-                var(--bg-main);
-        }
-
-        .text-glow { text-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
-        .slogan-box { background: rgba(255, 255, 255, 0.03); border-left: 3px solid var(--neon-blue); }
-
-        .glass-card { 
-            background: var(--card-bg); 
-            backdrop-filter: blur(16px); 
-            border: 1px solid rgba(255, 255, 255, 0.08); 
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-card:hover { 
-            border-color: var(--neon-blue); 
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.1);
-        }
-
-        .btn-animate { position: relative; overflow: hidden; transition: 0.3s; }
-        .btn-animate:after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: 0.5s;
-        }
-        .btn-animate:hover:after { left: 100%; }
-
-        #cursor-glow {
-            position: fixed; width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
-            border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); z-index: 0;
-        }
-
-        .lang-active { border: 1px solid var(--neon-blue); opacity: 1; filter: drop-shadow(0 0 8px var(--neon-blue)); }
-    </style>
-</head>
-<body class="hero-mesh">
-    <div id="cursor-glow"></div>
-
-    <nav class="fixed w-full z-50 border-b border-white/5 bg-slate-950/60 backdrop-blur-lg">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center space-x-3 cursor-pointer group" onclick="location.reload()">
-                <div class="w-11 h-11 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center font-bold font-os text-white text-2xl shadow-lg group-hover:rotate-6 transition">O</div>
-                <div class="flex flex-col">
-                    <span class="text-xl font-os font-bold tracking-[0.2em] text-white leading-none">ORIK<span class="text-blue-500">LAB</span></span>
-                    <span class="text-[8px] text-gray-400 tracking-[0.4em] uppercase">Tech Solutions</span>
-                </div>
-            </div>
-            <div class="flex items-center gap-3 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
-                <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="w-7 opacity-40 cursor-pointer hover:opacity-100 transition" alt="AZ">
-                <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="w-7 opacity-40 cursor-pointer hover:opacity-100 transition" alt="DE">
-            </div>
-        </div>
-    </nav>
-
-    <header class="pt-52 pb-24 px-6 text-center relative z-10">
-        <div class="max-w-4xl mx-auto">
-            <h1 id="txt-hero-title" class="text-6xl md:text-8xl font-os font-bold mb-6 text-white tracking-tighter italic text-glow">
-                ORIK<span class="text-blue-600 uppercase">LAB</span>
-            </h1>
-            <div class="slogan-box py-3 px-6 inline-block mb-10">
-                <p id="txt-hero-desc" class="text-gray-300 text-lg md:text-xl font-light tracking-wide italic">
-                    Texnologiya mərkəzi: İnnovativ həllər və rəqəmsal ekosistem.
-                </p>
-            </div>
-        </div>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-6 py-4 grid lg:grid-cols-3 gap-8 mb-24 relative z-10">
-        <div class="glass-card rounded-[2rem] overflow-hidden flex flex-col group border-white/5">
-            <div class="h-48 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] to-transparent"></div>
-            </div>
-            <div class="p-8 flex flex-col flex-grow">
-                <h2 id="txt-news-title" class="text-xl font-os font-bold mb-4 text-white uppercase">XƏBƏR LENTİ</h2>
-                <p id="txt-news-desc" class="text-gray-400 text-sm mb-6 leading-relaxed">Ən son texnoloji yeniliklər və rəqəmsal dünyanın trendləri.</p>
-                <a href="news.html" class="mt-auto flex items-center gap-2 text-blue-400 font-bold text-[10px] uppercase tracking-[0.2em] hover:text-white transition group">
-                    <span id="btn-news-text">Daha Çox</span> <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="glass-card rounded-[2rem] overflow-hidden flex flex-col border-blue-500/20 shadow-xl relative">
-            <div class="h-48 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover opacity-60">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] via-[#0a0f1a]/40 to-transparent"></div>
-                <div class="absolute bottom-4 left-8 text-blue-500 text-3xl"><i class="fa-solid fa-users"></i></div>
-            </div>
-            <div class="p-8 pt-4 flex flex-col flex-grow">
-                <h2 id="txt-com-title" class="text-xl font-os font-bold mb-4 text-white uppercase">İCMA PORTALI</h2>
-                <p id="txt-com-desc" class="text-gray-400 text-sm mb-8 leading-relaxed">Fərqli sahələrin peşəkarları ilə təcrübə mübadiləsi və geniş müzakirə mərkəzi.</p>
-                <a href="forum.html" id="txt-com-btn" class="btn-animate mt-auto bg-blue-600 hover:bg-blue-500 text-white text-center font-bold py-4 rounded-xl transition uppercase text-[10px] tracking-widest">Müzakirələrə Qoşul</a>
-            </div>
-        </div>
-
-        <div onclick="window.location.href='knowledge-base.html'" class="glass-card rounded-[2rem] overflow-hidden flex flex-col cursor-pointer hover:border-emerald-500/30 group">
-            <div class="h-48 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover opacity-50">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] to-transparent"></div>
-                <div class="absolute bottom-4 left-8 text-emerald-500 text-3xl"><i class="fa-solid fa-book-open"></i></div>
-            </div>
-            <div class="p-8 pt-4 flex flex-col flex-grow">
-                <h2 id="txt-res-title" class="text-xl font-os font-bold mb-4 text-white uppercase">BİLİK ARXİVİ</h2>
-                <p id="txt-res-desc" class="text-gray-400 text-sm mb-8 leading-relaxed">Müxtəlif peşə sahələri üçün faydalı alətlər, kitablar, dərsliklər və önəmli resurslar.</p>
-                <div class="mt-auto flex flex-wrap gap-2 opacity-60 group-hover:opacity-100 transition">
-                    <span class="bg-emerald-500/10 text-emerald-500 px-3 py-1 rounded text-[9px] font-bold border border-emerald-500/20 uppercase tracking-widest">Library</span>
-                    <span class="bg-blue-500/10 text-blue-500 px-3 py-1 rounded text-[9px] font-bold border border-blue-500/20 uppercase tracking-widest">Tools</span>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="py-16 border-t border-white/5 bg-slate-950/40 relative z-10">
+<footer class="py-16 border-t border-white/5 bg-slate-950/40 relative z-10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-10">
                 
@@ -139,14 +6,18 @@
                     <img src="https://i.postimg.cc/8zXzM9m9/robot-head.png" class="w-16 h-16 object-contain filter drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]" alt="OrikOS Brain Logo">
                     
                     <div class="flex flex-col">
-                        <div class="text-2xl font-os font-bold text-white tracking-[0.15em] leading-none uppercase">
-                            Orik<span class="text-blue-500">OS</span>
+                        <div id="footer-project-info" class="text-[9px] text-blue-400 font-bold uppercase tracking-[0.3em] mb-1">
+                            ORIKLAB OrikOS-un bir layihesidir
                         </div>
-                        <div class="mt-2 flex items-center gap-2">
-                            <span class="bg-blue-500/10 text-blue-400 text-[9px] px-2 py-0.5 rounded border border-blue-500/20 font-bold uppercase tracking-widest">OrikLab</span>
-                            <span class="text-gray-500 text-[9px] uppercase font-bold tracking-widest">Bir Ekosistemdir</span>
+
+                        <div class="flex items-baseline gap-4">
+                            <div class="text-3xl font-os font-bold text-white tracking-[0.1em] leading-none uppercase">
+                                Orik<span class="text-blue-500">OS</span>
+                            </div>
+                            <p class="text-gray-400 text-[10px] italic font-light tracking-widest border-l border-white/10 pl-4">
+                                "Set Your Mind. Code Your Future."
+                            </p>
                         </div>
-                        <p class="text-gray-400 text-[10px] mt-2 italic font-light tracking-widest">"Set Your Mind. Code Your Future."</p>
                     </div>
                 </div>
 
@@ -163,41 +34,23 @@
     </footer>
 
     <script>
-        // Cursor glow və dil funksiyaları olduğu kimi qalır
-        const glow = document.getElementById('cursor-glow');
-        document.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
-
-        const favicon = document.getElementById('favicon');
-        const originalIcon = "https://i.postimg.cc/8zXzM9m9/robot-head.png";
-        const blinkIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH6AMKDA8XJiZfQAAAAnpJREFUaN7tmT1oFEEUx39v7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7v8ALmAnZt7j71kAAAAASUVORK5CYII=";
-
-        function blink() {
-            favicon.href = blinkIcon;
-            setTimeout(() => { favicon.href = originalIcon; }, 200);
-        }
-
-        setInterval(() => {
-            const randomTime = Math.random() * 4000 + 2000;
-            setTimeout(blink, randomTime);
-        }, 5000);
-
+        // Alman dili üçün əlavə tərcümə (yalnız yeni hissə üçün)
         const translations = {
             az: {
                 heroD: "Texnologiya mərkəzi: İnnovativ həllər və rəqəmsal ekosistem.",
                 newsT: "XƏBƏR LENTİ", newsD: "Ən son texnoloji yeniliklər və rəqəmsal dünyanın trendləri.", newsB: "Daha Çox",
                 comT: "İCMA PORTALI", comD: "Fərqli sahələrin peşəkarları ilə təcrübə mübadiləsi və geniş müzakirə mərkəzi.", comB: "Müzakirələrə Qoşul",
                 resT: "BİLİK ARXİVİ", resD: "Müxtəlif peşə sahələri üçün faydalı alətlər, kitablar, dərsliklər və önəmli resurslar.",
-                imp: "Hüquqi Bildiriş", priv: "Məxfilik Siyasəti"
+                imp: "Hüquqi Bildiriş", priv: "Məxfilik Siyasəti",
+                projInfo: "ORIKLAB OrikOS-un bir layihesidir"
             },
             de: {
                 heroD: "Technologiezentrum: Innovative Lösungen und digitales Ökosystem.",
                 newsT: "NEWS-FEED", newsD: "Die neuesten technologischen Innovationen und Trends der digitalen Welt.", newsB: "Mehr Sehen",
                 comT: "COMMUNITY-PORTAL", comD: "Erfahrungsaustausch und Diskussionszentrum mit Fachleuten aus verschiedenen Bereichen.", comB: "Zur Diskussion",
                 resT: "WISSENSARCHIV", resD: "Nützliche Tools, Bücher, Tutorials und wichtige Ressourcen für verschiedene Berufsfelder.",
-                imp: "Impressum", priv: "Datenschutz"
+                imp: "Impressum", priv: "Datenschutz",
+                projInfo: "ORIKLAB ist ein Projekt von OrikOS"
             }
         };
 
@@ -216,12 +69,10 @@
             document.getElementById('txt-res-desc').innerText = t.resD;
             document.getElementById('link-impressum').innerText = t.imp;
             document.getElementById('link-datenschutz').innerText = t.priv;
+            document.getElementById('footer-project-info').innerText = t.projInfo;
 
             document.querySelectorAll('img[id^="flag-"]').forEach(img => img.classList.remove('lang-active'));
             document.getElementById('flag-' + lang).classList.add('lang-active');
         }
-
-        window.onload = () => { switchLang(localStorage.getItem('selectedLang') || 'az'); };
+        // Digər script hissələri (cursor glow, favicon) eyni qalır...
     </script>
-</body>
-</html>
