@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OrikLab | İcma Forumu</title>
+    <title>OrikLab | Forum</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -13,7 +13,8 @@
         .glass-panel { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .topic-card { transition: all 0.3s ease; }
         .topic-card:hover { border-color: #3b82f6; background: rgba(30, 58, 138, 0.1); transform: translateX(5px); }
-        /* Scrollbar dizaynı */
+        .lang-flag { cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; padding: 2px; width: 32px; height: 20px; object-fit: cover; border-radius: 4px; opacity: 0.5; }
+        .lang-active { border-color: #3b82f6 !important; opacity: 1; scale: 1.1; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)); }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #020617; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
@@ -30,9 +31,14 @@
                     ORIK<span class="text-blue-500 italic text-sm">FORUM</span>
                 </span>
             </div>
+            
             <div class="flex items-center gap-4">
-                <div class="bg-white/5 hover:bg-white/10 cursor-pointer px-4 py-2 rounded-xl border border-white/10 transition flex items-center gap-2 text-sm font-bold text-gray-300">
-                    <i class="fa-solid fa-user-astronaut text-blue-400"></i> Giriş
+                <div class="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10 hidden sm:flex">
+                    <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="lang-flag" alt="AZ">
+                    <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="lang-flag" alt="DE">
+                </div>
+                <div class="bg-blue-600/20 hover:bg-blue-600/40 cursor-pointer px-4 py-2 rounded-xl border border-blue-500/30 transition flex items-center gap-2 text-sm font-bold text-blue-400">
+                    <i class="fa-solid fa-user-astronaut"></i> <span id="txt-login">Giriş</span>
                 </div>
             </div>
         </div>
@@ -42,17 +48,24 @@
         
         <aside class="hidden lg:block col-span-1 space-y-6">
             <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-blue-600/20 mb-2 flex justify-center items-center uppercase text-xs tracking-widest gap-2">
-                <i class="fa-solid fa-pen-to-square"></i> Yeni Mövzu Aç
+                <i class="fa-solid fa-pen-to-square"></i> <span id="txt-new-topic">Yeni Mövzu Aç</span>
             </button>
             
             <div class="glass-panel rounded-2xl p-5">
-                <h3 class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">ANA KATEQORİYALAR</h3>
+                <h3 id="txt-cat-title" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">ANA KATEQORİYALAR</h3>
                 <ul class="space-y-1">
-                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl bg-blue-600/10 text-blue-400 font-medium text-sm border border-blue-500/20"><i class="fa-solid fa-layer-group w-5 text-center"></i> Bütün Mövzular</a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-microchip w-5 text-center"></i> Texnologiya & İT</a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-briefcase w-5 text-center"></i> İş & Karyera</a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-mug-hot w-5 text-center"></i> Ümumi Söhbət</a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-circle-question w-5 text-center text-emerald-500"></i> Yardım / Sual-Cavab</a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl bg-blue-600/10 text-blue-400 font-medium text-sm border border-blue-500/20"><i class="fa-solid fa-layer-group w-5 text-center"></i> <span id="cat-all">Bütün Mövzular</span></a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-mug-hot w-5 text-center"></i> <span id="cat-gen">Ümumi Söhbət</span></a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-microchip w-5 text-center"></i> <span id="cat-tech">Texnologiya</span></a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-network-wired w-5 text-center"></i> <span id="cat-it">IT Mərkəzi</span></a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-graduation-cap w-5 text-center"></i> <span id="cat-edu">Təhsil</span></a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-briefcase w-5 text-center"></i> <span id="cat-job">İş və Karyera</span></a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-sun w-5 text-center"></i> <span id="cat-life">Gündəlik Həyat</span></a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-heart-pulse w-5 text-center"></i> <span id="cat-health">Sağlamlıq və Yaşam</span></a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-coins w-5 text-center"></i> <span id="cat-fin">Finans / Maliyyə</span></a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-hammer w-5 text-center"></i> <span id="cat-build">İnşaat / Ev / Təmir</span></a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-toolbox w-5 text-center"></i> <span id="cat-tools">Faydalı Saytlar və Alətlər</span></a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition text-sm"><i class="fa-solid fa-circle-question w-5 text-center text-emerald-500"></i> <span id="cat-help">Yardım / Sual-Cavab</span></a></li>
                 </ul>
             </div>
         </aside>
@@ -60,25 +73,24 @@
         <section class="col-span-1 lg:col-span-2 space-y-4">
             
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                <h2 class="text-2xl font-bold font-os italic tracking-tight">AKTİV MÜZAKİRƏLƏR</h2>
+                <h2 id="txt-active-title" class="text-2xl font-bold font-os italic tracking-tight uppercase">AKTİV MÜZAKİRƏLƏR</h2>
                 <div class="bg-white/5 p-1 rounded-lg flex text-xs font-bold border border-white/5">
-                    <button class="px-4 py-1.5 bg-blue-600/20 text-blue-400 rounded-md">Yenilər</button>
-                    <button class="px-4 py-1.5 text-gray-400 hover:text-white transition">Populyar</button>
+                    <button id="btn-new" class="px-4 py-1.5 bg-blue-600/20 text-blue-400 rounded-md">Yenilər</button>
+                    <button id="btn-pop" class="px-4 py-1.5 text-gray-400 hover:text-white transition">Populyar</button>
                 </div>
             </div>
 
             <div class="glass-panel topic-card rounded-2xl p-5 cursor-pointer border border-white/5">
                 <div class="flex flex-wrap gap-2 mb-3">
-                    <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] px-2 py-1 rounded uppercase font-bold tracking-widest">Texnologiya</span>
-                    <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2 py-1 rounded uppercase font-bold tracking-widest flex items-center gap-1"><i class="fa-solid fa-check-circle"></i> Həll Edildi</span>
+                    <span id="badge-tech" class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] px-2 py-1 rounded uppercase font-bold tracking-widest">TEXNOLOGİYA</span>
+                    <span id="badge-solved" class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2 py-1 rounded uppercase font-bold tracking-widest flex items-center gap-1"><i class="fa-solid fa-check-circle"></i> HƏLL EDİLDİ</span>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-2 leading-tight">Mühəndislər üçün Python yoxsa MATLAB? Hansından başlayım?</h3>
-                <p class="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">Salam, mən Power Systems üzrə oxuyuram. Simulyasiyalar üçün universitetdə MATLAB öyrədirlər, amma iş elanlarında hər kəs Python istəyir. Necə edim?</p>
-                
+                <h3 id="post1-title" class="text-lg font-bold text-white mb-2 leading-tight">Mühəndislər üçün Python yoxsa MATLAB? Hansından başlayım?</h3>
+                <p id="post1-desc" class="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">Salam, mən Power Systems üzrə oxuyuram. Simulyasiyalar üçün universitetdə MATLAB öyrədirlər, amma iş elanlarında hər kəs Python istəyir. Necə edim?</p>
                 <div class="flex justify-between items-center border-t border-white/5 pt-4 mt-2">
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-xs font-bold text-white shadow-lg">A</div>
-                        <div class="text-xs text-gray-500 font-medium"><span class="text-gray-300">Anar_Dev</span> • 2 saat əvvəl</div>
+                        <div class="text-xs text-gray-500 font-medium"><span class="text-gray-300">Anar_Dev</span> • <span id="time-2h">2 saat əvvəl</span></div>
                     </div>
                     <div class="flex gap-4 text-gray-500 text-sm font-medium">
                         <span title="Baxış" class="hover:text-white transition"><i class="fa-regular fa-eye mr-1"></i> 142</span>
@@ -86,49 +98,29 @@
                     </div>
                 </div>
             </div>
-
-            <div class="glass-panel topic-card rounded-2xl p-5 cursor-pointer border border-white/5">
-                <div class="flex gap-2 mb-3">
-                    <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] px-2 py-1 rounded uppercase font-bold tracking-widest">İş & Karyera</span>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2 leading-tight">Almaniyada İT sahəsində iş tapmaq: CV-dəki incəliklər</h3>
-                <p class="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">Avropada, xüsusən Almaniyada şirkətlər portfoliodan çox CV strukturuna baxırlar (Lebenslauf). Öz təcrübəmi sizinlə paylaşıram, ümid edirəm faydalı olar.</p>
-                
-                <div class="flex justify-between items-center border-t border-white/5 pt-4 mt-2">
-                    <div class="flex items-center gap-3">
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&backgroundColor=b6e3f4" class="w-8 h-8 rounded-full bg-white/10" alt="avatar">
-                        <div class="text-xs text-gray-500 font-medium"><span class="text-gray-300">Orxan_H</span> • 5 saat əvvəl</div>
-                    </div>
-                    <div class="flex gap-4 text-gray-500 text-sm font-medium">
-                        <span title="Baxış" class="hover:text-white transition"><i class="fa-regular fa-eye mr-1"></i> 320</span>
-                        <span title="Cavablar" class="hover:text-white transition"><i class="fa-regular fa-comments mr-1"></i> 4</span>
-                    </div>
-                </div>
-            </div>
             
-            <button class="w-full py-3 rounded-xl border border-white/10 text-gray-400 text-sm font-bold hover:bg-white/5 hover:text-white transition">Daha Çox Yüklə...</button>
+            <button id="btn-load-more" class="w-full py-3 rounded-xl border border-white/10 text-gray-400 text-sm font-bold hover:bg-white/5 hover:text-white transition">Daha Çox Yüklə...</button>
 
         </section>
 
         <aside class="hidden lg:block col-span-1 space-y-6">
             
             <div class="glass-panel rounded-2xl p-5">
-                <h3 class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4 border-b border-white/5 pb-2">POPULYAR ETİKETLƏR</h3>
+                <h3 id="txt-tags-title" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4 border-b border-white/5 pb-2">POPULYAR ETİKETLƏR</h3>
                 <div class="flex flex-wrap gap-2">
                     <span class="bg-white/5 hover:bg-white/10 text-gray-300 text-xs px-3 py-1.5 rounded-lg cursor-pointer transition border border-white/5">#python</span>
                     <span class="bg-white/5 hover:bg-white/10 text-gray-300 text-xs px-3 py-1.5 rounded-lg cursor-pointer transition border border-white/5">#almaniya</span>
-                    <span class="bg-white/5 hover:bg-white/10 text-gray-300 text-xs px-3 py-1.5 rounded-lg cursor-pointer transition border border-white/5">#iş_axtarışı</span>
-                    <span class="bg-white/5 hover:bg-blue-600 hover:text-white hover:border-blue-500 text-gray-300 text-xs px-3 py-1.5 rounded-lg cursor-pointer transition border border-white/5">#frontend</span>
+                    <span class="bg-white/5 hover:bg-blue-600 hover:text-white hover:border-blue-500 text-gray-300 text-xs px-3 py-1.5 rounded-lg cursor-pointer transition border border-white/5">#iş_axtarışı</span>
                     <span class="bg-white/5 hover:bg-white/10 text-gray-300 text-xs px-3 py-1.5 rounded-lg cursor-pointer transition border border-white/5">#məsləhət</span>
                 </div>
             </div>
 
             <div class="glass-panel rounded-2xl p-5">
-                <h3 class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4 border-b border-white/5 pb-2">İCMA STATİSTİKASI</h3>
+                <h3 id="txt-stats-title" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4 border-b border-white/5 pb-2">İCMA STATİSTİKASI</h3>
                 <ul class="space-y-4 text-sm text-gray-400 font-medium">
-                    <li class="flex justify-between items-center"><div class="flex items-center gap-2"><i class="fa-solid fa-users w-4 text-blue-500"></i> Üzvlər</div> <span class="text-white font-bold font-os">1,204</span></li>
-                    <li class="flex justify-between items-center"><div class="flex items-center gap-2"><i class="fa-solid fa-file-lines w-4 text-emerald-500"></i> Mövzular</div> <span class="text-white font-bold font-os">342</span></li>
-                    <li class="flex justify-between items-center"><div class="flex items-center gap-2"><i class="fa-solid fa-reply-all w-4 text-purple-500"></i> Cavablar</div> <span class="text-white font-bold font-os">2,891</span></li>
+                    <li class="flex justify-between items-center"><div class="flex items-center gap-2"><i class="fa-solid fa-users w-4 text-blue-500"></i> <span id="stat-mem">Üzvlər</span></div> <span class="text-white font-bold font-os">1,204</span></li>
+                    <li class="flex justify-between items-center"><div class="flex items-center gap-2"><i class="fa-solid fa-file-lines w-4 text-emerald-500"></i> <span id="stat-top">Mövzular</span></div> <span class="text-white font-bold font-os">342</span></li>
+                    <li class="flex justify-between items-center"><div class="flex items-center gap-2"><i class="fa-solid fa-reply-all w-4 text-purple-500"></i> <span id="stat-rep">Cavablar</span></div> <span class="text-white font-bold font-os">2,891</span></li>
                 </ul>
             </div>
             
@@ -137,9 +129,120 @@
 
     <footer class="py-6 border-t border-white/5 bg-slate-950/50 mt-auto">
         <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 text-[10px] uppercase tracking-widest font-bold">
-            &copy; 2026 OrikLab Community. Bütün hüquqlar qorunur.
+            &copy; 2026 OrikLab Community. <span id="txt-footer">Bütün hüquqlar qorunur.</span>
         </div>
     </footer>
 
+    <script>
+        const translations = {
+            az: {
+                login: "Giriş",
+                newTopic: "Yeni Mövzu Aç",
+                catTitle: "ANA KATEQORİYALAR",
+                categories: {
+                    all: "Bütün Mövzular", gen: "Ümumi Söhbət", tech: "Texnologiya", 
+                    it: "IT Mərkəzi", edu: "Təhsil", job: "İş və Karyera", 
+                    life: "Gündəlik Həyat", health: "Sağlamlıq və Yaşam", fin: "Finans / Maliyyə", 
+                    build: "İnşaat / Ev / Təmir", tools: "Faydalı Saytlar və Alətlər", help: "Yardım / Sual-Cavab"
+                },
+                feed: {
+                    active: "AKTİV MÜZAKİRƏLƏR", new: "Yenilər", pop: "Populyar", load: "Daha Çox Yüklə..."
+                },
+                post1: {
+                    badgeT: "TEXNOLOGİYA", badgeS: "HƏLL EDİLDİ",
+                    title: "Mühəndislər üçün Python yoxsa MATLAB? Hansından başlayım?",
+                    desc: "Salam, mən Power Systems üzrə oxuyuram. Simulyasiyalar üçün universitetdə MATLAB öyrədirlər, amma iş elanlarında hər kəs Python istəyir. Necə edim?",
+                    time: "2 saat əvvəl"
+                },
+                sidebar: {
+                    tagsTitle: "POPULYAR ETİKETLƏR",
+                    statsTitle: "İCMA STATİSTİKASI", mem: "Üzvlər", top: "Mövzular", rep: "Cavablar"
+                },
+                footer: "Bütün hüquqlar qorunur."
+            },
+            de: {
+                login: "Anmelden",
+                newTopic: "Neues Thema",
+                catTitle: "HAUPTKATEGORIEN",
+                categories: {
+                    all: "Alle Themen", gen: "Allgemeiner Chat", tech: "Technologie", 
+                    it: "IT-Zentrum", edu: "Bildung", job: "Job & Karriere", 
+                    life: "Alltag", health: "Gesundheit & Leben", fin: "Finanzen", 
+                    build: "Bau & Renovierung", tools: "Nützliche Tools", help: "Hilfe / Q&A"
+                },
+                feed: {
+                    active: "AKTIVE DISKUSSIONEN", new: "Neu", pop: "Beliebt", load: "Mehr laden..."
+                },
+                post1: {
+                    badgeT: "TECHNOLOGIE", badgeS: "GELÖST",
+                    title: "Python oder MATLAB für Ingenieure? Womit anfangen?",
+                    desc: "Hallo, ich studiere Power Systems. An der Uni lernen wir MATLAB für Simulationen, aber in Stellenanzeigen wird oft Python verlangt. Was tun?",
+                    time: "vor 2 Stunden"
+                },
+                sidebar: {
+                    tagsTitle: "BELIEBTE TAGS",
+                    statsTitle: "COMMUNITY-STATISTIK", mem: "Mitglieder", top: "Themen", rep: "Antworten"
+                },
+                footer: "Alle Rechte vorbehalten."
+            }
+        };
+
+        function switchLang(lang) {
+            localStorage.setItem('selectedLang', lang);
+            const t = translations[lang];
+
+            // Navbar və Butonlar
+            document.getElementById('txt-login').innerText = t.login;
+            document.getElementById('txt-new-topic').innerText = t.newTopic;
+
+            // Kateqoriyalar
+            document.getElementById('txt-cat-title').innerText = t.catTitle;
+            document.getElementById('cat-all').innerText = t.categories.all;
+            document.getElementById('cat-gen').innerText = t.categories.gen;
+            document.getElementById('cat-tech').innerText = t.categories.tech;
+            document.getElementById('cat-it').innerText = t.categories.it;
+            document.getElementById('cat-edu').innerText = t.categories.edu;
+            document.getElementById('cat-job').innerText = t.categories.job;
+            document.getElementById('cat-life').innerText = t.categories.life;
+            document.getElementById('cat-health').innerText = t.categories.health;
+            document.getElementById('cat-fin').innerText = t.categories.fin;
+            document.getElementById('cat-build').innerText = t.categories.build;
+            document.getElementById('cat-tools').innerText = t.categories.tools;
+            document.getElementById('cat-help').innerText = t.categories.help;
+
+            // Mərkəzi Feed
+            document.getElementById('txt-active-title').innerText = t.feed.active;
+            document.getElementById('btn-new').innerText = t.feed.new;
+            document.getElementById('btn-pop').innerText = t.feed.pop;
+            document.getElementById('btn-load-more').innerText = t.feed.load;
+
+            // Post 1 tərcüməsi
+            document.getElementById('badge-tech').innerText = t.post1.badgeT;
+            document.getElementById('badge-solved').innerHTML = `<i class="fa-solid fa-check-circle"></i> ${t.post1.badgeS}`;
+            document.getElementById('post1-title').innerText = t.post1.title;
+            document.getElementById('post1-desc').innerText = t.post1.desc;
+            document.getElementById('time-2h').innerText = t.post1.time;
+
+            // Sağ Panel
+            document.getElementById('txt-tags-title').innerText = t.sidebar.tagsTitle;
+            document.getElementById('txt-stats-title').innerText = t.sidebar.statsTitle;
+            document.getElementById('stat-mem').innerText = t.sidebar.mem;
+            document.getElementById('stat-top').innerText = t.sidebar.top;
+            document.getElementById('stat-rep').innerText = t.sidebar.rep;
+
+            // Footer
+            document.getElementById('txt-footer').innerText = t.footer;
+
+            // Bayraq Vizualları
+            document.querySelectorAll('.lang-flag').forEach(img => img.classList.remove('lang-active'));
+            document.getElementById('flag-' + lang).classList.add('lang-active');
+        }
+
+        window.onload = () => {
+            // Ana səhifədən yaddaşda (localStorage) qalan dili oxu, yoxdursa "az" seç
+            const savedLang = localStorage.getItem('selectedLang') || 'az';
+            switchLang(savedLang);
+        };
+    </script>
 </body>
 </html>
