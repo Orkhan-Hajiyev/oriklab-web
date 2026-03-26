@@ -51,12 +51,12 @@
     <main class="max-w-6xl mx-auto px-6 pb-24">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <a href="forum.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center border-blue-500/20">
+            <a href="q-a.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center border-blue-500/20">
                 <div class="w-20 h-20 bg-blue-500/10 text-blue-500 rounded-3xl flex items-center justify-center text-4xl mb-6 shadow-inner">
                     <i class="fa-solid fa-comments"></i>
                 </div>
                 <h3 class="font-os text-xl font-bold mb-3 tracking-wider">FORUM</h3>
-                <p id="desc-forum" class="text-sm text-gray-500 leading-relaxed italic text-center">Müzakirələr, sual-cavablar və təcrübə mübadiləsi mərkəzi.</p>
+                <p id="desc-forum" class="text-sm text-gray-400 leading-relaxed italic text-center italic">Müzakirələr, sual-cavablar və təcrübə mübadiləsi mərkəzi.</p>
             </a>
 
             <a href="events.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center">
@@ -113,7 +113,7 @@
             document.getElementById('desc-rank').innerText = t.rankDesc;
 
             document.querySelectorAll('.lang-flag').forEach(img => img.classList.remove('lang-active'));
-            document.getElementById('flag-' + lang).classList.add('lang-active');
+            document.getElementById('flag-' + lang).classList.add('flag-active');
         }
 
         window.onload = () => {
