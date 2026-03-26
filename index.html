@@ -3,133 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OrikLab | OrikOS Ecosystem</title>
+    <title>OrikLab | Powered by OrikOS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --neon-blue: #3b82f6; --deep-dark: #010409; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--deep-dark); color: #f1f5f9; overflow-x: hidden; }
+        :root { --neon-blue: #3b82f6; --bg-main: #0a0f1a; --card-bg: rgba(17, 25, 40, 0.75); }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: #f1f5f9; overflow-x: hidden; }
         .font-os { font-family: 'Orbitron', sans-serif; }
         
-        /* Daha tünd və dərin fon */
+        /* Arxa fon - Bir az daha açıq və dərinlikli */
         .hero-mesh { 
             background: 
-                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(30, 58, 138, 0.1) 0%, transparent 40%),
-                var(--deep-dark);
+                radial-gradient(circle at 50% -10%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(30, 58, 138, 0.1) 0%, transparent 40%),
+                var(--bg-main);
         }
 
-        /* Yazıların oxunması üçün xüsusi kölgə */
-        .text-glow { text-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(0, 0, 0, 0.8); }
-        .desc-shadow { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); }
+        /* Yazı effektləri */
+        .text-glow { text-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
+        .slogan-box { background: rgba(255, 255, 255, 0.03); border-left: 3px solid var(--neon-blue); }
 
-        /* Kartların dizaynı - Daha qatı və sərhədləri bəlli */
+        /* Kartlar - Glassmorphism təkmilləşdirildi */
         .glass-card { 
-            background: rgba(13, 17, 23, 0.85); 
-            backdrop-filter: blur(20px); 
-            border: 1px solid rgba(59, 130, 246, 0.15); 
-            transition: all 0.4s ease;
+            background: var(--card-bg); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glass-card:hover { 
             border-color: var(--neon-blue); 
-            transform: translateY(-8px);
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
-            background: rgba(22, 27, 34, 0.95);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.1);
         }
 
-        .lang-flag { cursor: pointer; transition: 0.3s; width: 30px; opacity: 0.4; border-radius: 4px; border: 1px solid transparent; }
-        .lang-active { opacity: 1; scale: 1.1; border-color: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue); }
+        /* Animasiyalı Düymə */
+        .btn-animate { position: relative; overflow: hidden; transition: 0.3s; }
+        .btn-animate:after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+        .btn-animate:hover:after { left: 100%; }
 
-        /* Mouse glow - daha fokuslanmış */
         #cursor-glow {
-            position: fixed; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+            position: fixed; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
             border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); z-index: 0;
         }
+
+        .lang-active { border: 1px solid var(--neon-blue); opacity: 1; filter: drop-shadow(0 0 8px var(--neon-blue)); }
     </style>
 </head>
 <body class="hero-mesh">
     <div id="cursor-glow"></div>
 
-    <nav class="fixed w-full z-50 border-b border-white/10 bg-black/60 backdrop-blur-xl">
+    <nav class="fixed w-full z-50 border-b border-white/5 bg-slate-950/60 backdrop-blur-lg">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="location.reload()">
-                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center font-bold font-os text-white text-xl shadow-[0_0_15px_rgba(37,99,235,0.4)]">O</div>
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-bold font-os text-white text-xl">O</div>
                 <span class="text-2xl font-os font-bold tracking-tighter text-white uppercase italic">ORIK<span class="text-blue-500 not-italic ml-1">LAB</span></span>
             </div>
-            <div class="flex items-center gap-3 bg-black/40 px-3 py-1.5 rounded-xl border border-white/10">
-                <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="lang-flag">
-                <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="lang-flag">
+            <div class="flex items-center gap-3 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
+                <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="w-7 opacity-40 cursor-pointer hover:opacity-100 transition" alt="AZ">
+                <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="w-7 opacity-40 cursor-pointer hover:opacity-100 transition" alt="DE">
             </div>
         </div>
     </nav>
 
-    <header class="pt-56 pb-24 px-6 text-center relative z-10">
-        <div class="max-w-5xl mx-auto">
-            <h1 id="txt-hero-title" class="text-5xl md:text-8xl font-os font-bold mb-8 text-white tracking-tighter italic leading-tight text-glow">
-                LİMİTSİZ <br><span class="text-blue-600 uppercase">POTENSİAL</span>
+    <header class="pt-52 pb-24 px-6 text-center relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <h1 id="txt-hero-title" class="text-6xl md:text-8xl font-os font-bold mb-6 text-white tracking-tighter italic text-glow">
+                ORIK<span class="text-blue-600 uppercase">LAB</span>
             </h1>
-            <p id="txt-hero-desc" class="text-gray-100 text-lg md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed desc-shadow bg-black/20 py-2 rounded-lg">
-                Gələcəyin mühəndislik ekosistemi: İnnovasiya, İcma və Bilik bir arada.
-            </p>
+            <div class="slogan-box py-3 px-6 inline-block mb-10">
+                <p id="txt-hero-desc" class="text-gray-300 text-lg md:text-xl font-light tracking-wide italic">
+                    İdeyadan tətbiqə: Mühəndislik və İT portalı.
+                </p>
+            </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-3 gap-10 mb-24 relative z-10">
+    <main class="max-w-7xl mx-auto px-6 py-4 grid lg:grid-cols-3 gap-8 mb-24 relative z-10">
         
-        <div class="glass-card rounded-[2.5rem] overflow-hidden flex flex-col group">
-            <div class="h-52 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        <div class="glass-card rounded-[2rem] overflow-hidden flex flex-col group border-white/5">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] to-transparent"></div>
             </div>
             <div class="p-8 flex flex-col flex-grow">
-                <h2 id="txt-news-title" class="text-2xl font-os font-bold mb-4 text-white uppercase">AKTUAL <br>XƏBƏRLƏR</h2>
-                <p id="txt-news-desc" class="text-gray-300 text-sm mb-6 leading-relaxed font-medium">Texnologiya və mühəndislik dünyasından ən son hadisələr.</p>
-                <a href="news.html" id="txt-news-btn" class="mt-auto inline-flex items-center gap-2 text-blue-400 font-bold text-xs uppercase tracking-widest hover:text-white transition">
-                    <span id="btn-news-text">Xəbərləri Oxu</span> <i class="fa-solid fa-chevron-right"></i>
+                <h2 id="txt-news-title" class="text-xl font-os font-bold mb-4 text-white">XƏBƏR LENTİ</h2>
+                <p id="txt-news-desc" class="text-gray-400 text-sm mb-6 leading-relaxed">Dünyada nələr baş verir? Ən yeni texnologiyalar və qlobal mühəndislik trendləri.</p>
+                <a href="news.html" class="mt-auto flex items-center gap-2 text-blue-400 font-bold text-[10px] uppercase tracking-[0.2em] hover:text-white transition group">
+                    <span id="btn-news-text">Daha Çox</span> <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition"></i>
                 </a>
             </div>
         </div>
 
-        <div class="glass-card p-10 rounded-[2.5rem] flex flex-col border-blue-500/40 shadow-[0_0_40px_rgba(30,58,138,0.2)] relative overflow-hidden">
-            <div class="absolute -right-10 -top-10 w-32 h-32 bg-blue-600/10 rounded-full blur-3xl"></div>
-            <div class="mb-8 text-blue-500 text-5xl"><i class="fa-solid fa-users-viewfinder"></i></div>
-            <h2 id="txt-com-title" class="text-2xl font-os font-bold mb-4 text-white uppercase">MÜHƏNDİS <br>İCMASI</h2>
-            <p id="txt-com-desc" class="text-gray-200 text-sm mb-8 leading-relaxed font-medium">Peşəkarlarla birgə böyüyün, suallara cavab tapın.</p>
-            <a href="forum.html" id="txt-com-btn" class="mt-auto bg-blue-600 hover:bg-blue-500 text-white text-center font-bold py-4 rounded-xl transition-all uppercase text-xs tracking-widest shadow-lg active:scale-95">İcmaya Qoşul</a>
+        <div class="glass-card p-10 rounded-[2rem] flex flex-col border-blue-500/20 shadow-xl relative overflow-hidden">
+            <div class="mb-8 text-blue-500 text-4xl opacity-80"><i class="fa-solid fa-comments"></i></div>
+            <h2 id="txt-com-title" class="text-xl font-os font-bold mb-4 text-white">MÜZAKİRƏ FORUMU</h2>
+            <p id="txt-com-desc" class="text-gray-400 text-sm mb-8 leading-relaxed">Sualın var? Və ya təcrübəni bölüşmək istəyirsən? İcmamıza qoşul və birlikdə öyrənək.</p>
+            <a href="forum.html" id="txt-com-btn" class="btn-animate mt-auto bg-blue-600 hover:bg-blue-500 text-white text-center font-bold py-4 rounded-xl transition uppercase text-[10px] tracking-widest">Foruma Daxil Ol</a>
         </div>
 
-        <div onclick="window.location.href='knowledge-base.html'" class="glass-card p-10 rounded-[2.5rem] flex flex-col cursor-pointer hover:bg-emerald-500/5 group">
-            <div class="mb-8 text-emerald-500 text-5xl"><i class="fa-solid fa-layer-group"></i></div>
-            <h2 id="txt-res-title" class="text-2xl font-os font-bold mb-4 text-white uppercase">BİLİK <br>ARXİVİ</h2>
-            <p id="txt-res-desc" class="text-gray-300 text-sm mb-8 leading-relaxed font-medium">Alətlər, standartlar və texniki sənədləşmə mərkəzi.</p>
-            <div class="mt-auto grid grid-cols-2 gap-2">
-                <div class="bg-white/5 p-2 rounded text-[9px] text-gray-400 font-bold border border-white/5 group-hover:border-emerald-500/30">TOOLS</div>
-                <div class="bg-white/5 p-2 rounded text-[9px] text-gray-400 font-bold border border-white/5 group-hover:border-emerald-500/30">WIKI</div>
-                <div class="bg-white/5 p-2 rounded text-[9px] text-gray-400 font-bold border border-white/5 group-hover:border-emerald-500/30">DOCS</div>
-                <div class="bg-white/5 p-2 rounded text-[9px] text-gray-400 font-bold border border-white/5 group-hover:border-emerald-500/30">GLOSSARY</div>
+        <div onclick="window.location.href='knowledge-base.html'" class="glass-card p-10 rounded-[2rem] flex flex-col cursor-pointer hover:border-emerald-500/30 group">
+            <div class="mb-8 text-emerald-500 text-4xl opacity-80"><i class="fa-solid fa-terminal"></i></div>
+            <h2 id="txt-res-title" class="text-xl font-os font-bold mb-4 text-white">BİLİK ARXİVİ</h2>
+            <p id="txt-res-desc" class="text-gray-400 text-sm mb-8 leading-relaxed font-medium italic">
+                Sənədlər, gizli alətlər və mühəndislik sirləri burada gizlənib. Kəşf etməyə hazırsan?
+            </p>
+            <div class="mt-auto flex flex-wrap gap-2 opacity-60 group-hover:opacity-100 transition">
+                <span class="bg-emerald-500/10 text-emerald-500 px-3 py-1 rounded text-[9px] font-bold border border-emerald-500/20">RESOURCES</span>
+                <span class="bg-blue-500/10 text-blue-500 px-3 py-1 rounded text-[9px] font-bold border border-blue-500/20">TOOLS</span>
             </div>
         </div>
     </main>
 
-    <footer class="py-16 border-t border-white/10 bg-black/80 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
-            <div class="text-center md:text-left">
-                <div class="text-2xl font-os font-bold text-white mb-2 tracking-tighter">ORIKLAB</div>
-                <p class="text-gray-500 text-xs font-medium tracking-wide">
-                    Orkhan Hajiyev — Römerstraße 307, 53117 Bonn, Germany
-                </p>
-            </div>
-            <div class="flex gap-8 text-xs font-bold uppercase tracking-widest text-gray-400">
-                <a href="impressum.html" class="hover:text-blue-500 transition">Impressum</a>
-                <a href="datenschutz.html" class="hover:text-blue-500 transition">Datenschutz</a>
+    <footer class="py-16 border-t border-white/5 bg-slate-950/40 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                <div class="text-center md:text-left">
+                    <div class="text-xl font-os font-bold text-white mb-2 tracking-widest italic">ORIKLAB</div>
+                    <p class="text-blue-500/60 text-[10px] uppercase font-bold tracking-[0.3em] mb-4">Powered by OrikOS Ecosystem</p>
+                    <p class="text-gray-600 text-[10px] uppercase tracking-wider">
+                        Orkhan Hajiyev — Römerstraße 307, 53117 Bonn, Germany
+                    </p>
+                </div>
+                <div class="flex gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+                    <a href="impressum.html" class="hover:text-blue-500 transition">Impressum</a>
+                    <a href="datenschutz.html" class="hover:text-blue-500 transition">Datenschutz</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mouse Follower
+        // Mouse Glow Effect
         const glow = document.getElementById('cursor-glow');
         document.addEventListener('mousemove', (e) => {
             glow.style.left = e.clientX + 'px';
@@ -138,46 +148,43 @@
 
         const translations = {
             az: {
-                heroT: "LİMİTSİZ <br><span class='text-blue-600 uppercase'>POTENSİAL</span>",
-                heroD: "Gələcəyin mühəndislik ekosistemi: İnnovasiya, İcma və Bilik bir arada.",
-                newsT: "AKTUAL <br>XƏBƏRLƏR",
-                newsD: "Texnologiya və mühəndislik dünyasından ən son hadisələr.",
-                newsB: "Xəbərləri Oxu",
-                comT: "MÜHƏNDİS <br>İCMASI",
-                comD: "Peşəkarlarla birgə böyüyün, suallara cavab tapın.",
-                comB: "İcmaya Qoşul",
-                resT: "BİLİK <br>ARXİVİ",
-                resD: "Alətlər, standartlar və texniki sənədləşmə mərkəzi."
+                heroD: "İdeyadan tətbiqə: Mühəndislik və İT portalı.",
+                newsT: "XƏBƏR LENTİ",
+                newsD: "Dünyada nələr baş verir? Ən yeni texnologiyalar və qlobal mühəndislik trendləri.",
+                newsB: "Daha Çox",
+                comT: "MÜZAKİRƏ FORUMU",
+                comD: "Sualın var? Və ya təcrübəni bölüşmək istəyirsən? İcmamıza qoşul və birlikdə öyrənək.",
+                comB: "Foruma Daxil Ol",
+                resT: "BİLİK ARXİVİ",
+                resD: "Sənədlər, gizli alətlər və mühəndislik sirləri burada gizlənib. Kəşf etməyə hazırsan?"
             },
             de: {
-                heroT: "GRENZENLOSES <br><span class='text-blue-600 uppercase'>POTENZIAL</span>",
-                heroD: "Das Engineering-Ökosystem der Zukunft: Innovation, Community und Wissen vereint.",
-                newsT: "AKTUELLE <br>NEWS",
-                newsD: "Die neuesten Ereignisse aus der Welt der Technik und des Ingenieurwesens.",
-                newsB: "News Lesen",
-                comT: "ENGINEER <br>COMMUNITY",
-                comD: "Wachsen Sie mit Profis und finden Sie Antworten auf Ihre Fragen.",
-                comB: "Forum Beitreten",
-                resT: "WISSENS <br>ARCHIV",
-                resD: "Zentrum für Tools, Standards und technische Dokumentation."
+                heroD: "Von der Idee zur Umsetzung: Das Portal für Engineering & IT.",
+                newsT: "NEWS-FEED",
+                newsD: "Was passiert in der Welt? Neueste Technologien und globale Engineering-Trends.",
+                newsB: "Mehr Sehen",
+                comT: "DISKUSSIONSFORUM",
+                comD: "Haben Sie Fragen? Oder möchten Sie Erfahrungen teilen? Werden Sie Teil unserer Community.",
+                comB: "Zum Forum",
+                resT: "WISSENSARCHIV",
+                resD: "Dokumente, geheime Tools und Engineering-Geheimnisse sind hier versteckt. Bereit?"
             }
         };
 
         function switchLang(lang) {
             localStorage.setItem('selectedLang', lang);
             const t = translations[lang];
-            document.getElementById('txt-hero-title').innerHTML = t.heroT;
             document.getElementById('txt-hero-desc').innerText = t.heroD;
-            document.getElementById('txt-news-title').innerHTML = t.newsT;
+            document.getElementById('txt-news-title').innerText = t.newsT;
             document.getElementById('txt-news-desc').innerText = t.newsD;
             document.getElementById('btn-news-text').innerText = t.newsB;
-            document.getElementById('txt-com-title').innerHTML = t.comT;
+            document.getElementById('txt-com-title').innerText = t.comT;
             document.getElementById('txt-com-desc').innerText = t.comD;
             document.getElementById('txt-com-btn').innerText = t.comB;
-            document.getElementById('txt-res-title').innerHTML = t.resT;
+            document.getElementById('txt-res-title').innerText = t.resT;
             document.getElementById('txt-res-desc').innerText = t.resD;
 
-            document.querySelectorAll('.lang-flag').forEach(img => img.classList.remove('lang-active'));
+            document.querySelectorAll('img[id^="flag-"]').forEach(img => img.classList.remove('lang-active'));
             document.getElementById('flag-' + lang).classList.add('lang-active');
         }
 
