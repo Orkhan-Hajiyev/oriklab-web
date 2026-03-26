@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OrikLab | Forum</title>
+    <title>OrikLab | Forum (Q&A)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
         .glass-panel { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .topic-card { transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.05); }
         .topic-card:hover { border-color: #3b82f6; background: rgba(30, 58, 138, 0.1); transform: translateX(5px); }
-        .lang-flag { cursor: pointer; transition: 0.3s; width: 30px; opacity: 0.5; border-radius: 4px; }
+        .lang-flag { cursor: pointer; transition: 0.3s; width: 28px; opacity: 0.5; border-radius: 4px; }
         .lang-active { opacity: 1; border: 2px solid #3b82f6; transform: scale(1.1); }
     </style>
 </head>
@@ -22,9 +22,10 @@
     <nav class="w-full z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md sticky top-0">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.href='index.html'">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-bold font-os text-white text-xl shadow-lg">O</div>
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-bold font-os text-white text-xl">O</div>
                 <span class="text-2xl font-os font-bold tracking-tighter text-white uppercase">ORIK<span class="text-blue-500 italic text-sm">FORUM</span></span>
             </div>
+            
             <div class="flex items-center gap-6">
                 <div class="flex gap-3 bg-white/5 p-2 rounded-lg border border-white/10">
                     <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="lang-flag">
@@ -41,68 +42,62 @@
             <div class="glass-panel rounded-3xl p-6">
                 <h3 id="txt-cat-title" class="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500 mb-6 border-b border-blue-500/20 pb-2">Kateqoriyalar</h3>
                 <nav class="flex flex-col gap-1 text-sm font-medium">
-                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20"><i class="fa-solid fa-hashtag"></i> <span id="c-all">Bütün Mövzular</span></a>
-                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-comments"></i> <span id="c-gen">Genel Sohbet</span></a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20"><i class="fa-solid fa-layer-group"></i> <span id="c-all">Bütün Mövzular</span></a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-mug-hot"></i> <span id="c-gen">Genel Sohbet</span></a>
                     <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-microchip"></i> <span id="c-tech">Teknoloji</span></a>
                     <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-code"></i> <span id="c-it">IT</span></a>
-                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-book"></i> <span id="c-edu">Eğitim</span></a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-graduation-cap"></i> <span id="c-edu">Eğitim</span></a>
                     <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-briefcase"></i> <span id="c-job">İş ve Kariyer</span></a>
-                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-house-user"></i> <span id="c-life">Günlük Hayat</span></a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-house-chimney"></i> <span id="c-life">Günlük Hayat</span></a>
                     <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-heart-pulse"></i> <span id="c-health">Sağlık ve Yaşam</span></a>
                     <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-coins"></i> <span id="c-fin">Finans</span></a>
                     <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-hammer"></i> <span id="c-build">İnşaat / Ev / Tamir</span></a>
-                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-screwdriver-wrench"></i> <span id="c-tools">Faydalı Siteler</span></a>
-                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-emerald-500/80 hover:text-emerald-400 transition font-bold"><i class="fa-solid fa-circle-question"></i> <span id="c-help">Yardım & Soru-Cevap</span></a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-gray-400 hover:text-white transition"><i class="fa-solid fa-toolbox"></i> <span id="c-tools">Faydalı Siteler</span></a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 text-emerald-500 transition font-bold"><i class="fa-solid fa-circle-question"></i> <span id="c-help">Yardım & Soru-Cevap</span></a>
                 </nav>
             </div>
         </aside>
 
         <section class="col-span-1 lg:col-span-2 space-y-6">
-            <h2 id="txt-active" class="text-3xl font-os font-bold italic tracking-tighter">AKTİV MÜZAKİRƏLƏR</h2>
+            <h2 id="txt-active" class="text-3xl font-os font-bold italic tracking-tighter uppercase">AKTİV MÜZAKİRƏLƏR</h2>
             
             <div class="glass-panel topic-card rounded-[2rem] p-8">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="text-[10px] font-bold bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20 uppercase">IT</span>
                     <span class="text-[10px] font-bold bg-emerald-600/20 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20 uppercase"><i class="fa-solid fa-check"></i> <span id="txt-solved">Həll Edildi</span></span>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Docker Desktop istifadəsində çıxan "WSL kernel" xətası haqqında</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">Windows 11-də Docker qurarkən qarşılaşdığım problemi necə həll etdiyimi addım-addım bölüşürəm...</p>
+                <h3 id="post-title" class="text-xl font-bold mb-3">OrikLab Forum Sistemine Xoş Gəlmisiniz!</h3>
+                <p id="post-desc" class="text-gray-400 text-sm leading-relaxed mb-6 italic">Mövzu açmaq üçün aidiyyatı kateqoriyanı seçin və sualınızı verin...</p>
                 <div class="flex justify-between items-center text-xs text-gray-500 font-bold border-t border-white/5 pt-6">
                     <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white">O</div>
-                        <span>Orxan_H • 1 saat əvvəl</span>
+                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white italic">O</div>
+                        <span>Admin • <span id="txt-time">İndi</span></span>
                     </div>
                     <div class="flex gap-4">
-                        <span><i class="fa-regular fa-comment text-blue-500"></i> 24</span>
-                        <span><i class="fa-regular fa-eye text-gray-500"></i> 850</span>
+                        <span><i class="fa-regular fa-comment text-blue-500"></i> 14</span>
+                        <span><i class="fa-regular fa-eye text-gray-500"></i> 245</span>
                     </div>
                 </div>
             </div>
-
-            <button id="btn-more" class="w-full py-4 rounded-2xl border border-white/5 text-gray-500 font-bold hover:bg-white/5 transition uppercase text-xs tracking-widest">Daha Çox</button>
         </section>
 
         <aside class="col-span-1 space-y-6">
-            <div class="glass-panel rounded-3xl p-6 border-blue-500/10">
-                <h3 id="txt-stats-title" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-6">İcma Statistikası</h3>
+            <div class="glass-panel rounded-3xl p-6">
+                <h3 id="txt-stats-title" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-6">İCMA STATİSTİKASI</h3>
                 <div class="space-y-6">
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-400 text-sm" id="s-members">Üzvlər</span>
-                        <span class="font-os font-bold text-white">1,204</span>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-400" id="s-members">Üzvlər</span>
+                        <span class="font-os font-bold text-white tracking-widest">1,204</span>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-400 text-sm" id="s-topics">Mövzular</span>
-                        <span class="font-os font-bold text-white">342</span>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-400" id="s-topics">Mövzular</span>
+                        <span class="font-os font-bold text-white tracking-widest">342</span>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-400 text-sm" id="s-replies">Cavablar</span>
-                        <span class="font-os font-bold text-white">2,891</span>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-400" id="s-replies">Cavablar</span>
+                        <span class="font-os font-bold text-white tracking-widest">2,891</span>
                     </div>
                 </div>
-            </div>
-            <div class="glass-panel rounded-3xl p-6 bg-gradient-to-br from-blue-600/10 to-transparent">
-                <h3 id="txt-trend" class="text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-4 italic">Trend Mövzu</h3>
-                <p class="text-xs font-bold leading-tight">Almaniyada İT Maaşları 2026</p>
             </div>
         </aside>
     </main>
@@ -110,15 +105,21 @@
     <script>
         const translations = {
             az: {
-                login: "Giriş", active: "AKTİV MÜZAKİRƏLƏR", solved: "Həll Edildi", more: "Daha Çox",
-                catTitle: "Kateqoriyalar", statsTitle: "İcma Statistikası", trend: "Trend Mövzu",
+                login: "Giriş", active: "AKTİV MÜZAKİRƏLƏR", solved: "Həll Edildi",
+                catTitle: "Kateqoriyalar", statsTitle: "İCMA STATİSTİKASI",
                 s1: "Üzvlər", s2: "Mövzular", s3: "Cavablar",
+                pTitle: "OrikLab Forum Sistemine Xoş Gəlmisiniz!", 
+                pDesc: "Mövzu açmaq üçün aidiyyatı kateqoriyanı seçin və sualınızı verin...",
+                time: "İndi",
                 cats: ["Bütün Mövzular","Genel Sohbet","Teknoloji","IT","Eğitim","İş ve Kariyer","Günlük Hayat","Sağlık ve Yaşam","Finans","İnşaat / Ev / Tamir","Faydalı Siteler","Yardım & Soru-Cevap"]
             },
             de: {
-                login: "Anmelden", active: "AKTIVE DISKUSSIONEN", solved: "Gelöst", more: "Mehr laden",
-                catTitle: "Kategorien", statsTitle: "Statistik", trend: "Trend Thema",
+                login: "Anmelden", active: "AKTIVE DISKUSSIONEN", solved: "Gelöst",
+                catTitle: "Kategorien", statsTitle: "STATISTIK",
                 s1: "Mitglieder", s2: "Themen", s3: "Antworten",
+                pTitle: "Willkommen im OrikLab Forum-System!", 
+                pDesc: "Wählen Sie die entsprechende Kategorie, um ein Thema zu eröffnen...",
+                time: "Gerade eben",
                 cats: ["Alle Themen","Allgemeiner Chat","Technologie","IT","Bildung","Job & Karriere","Alltag","Gesundheit & Leben","Finanzen","Bau & Renovierung","Nützliche Links","Hilfe & Fragen"]
             }
         };
@@ -130,15 +131,15 @@
             document.getElementById('txt-login').innerText = t.login;
             document.getElementById('txt-active').innerText = t.active;
             document.getElementById('txt-solved').innerText = t.solved;
-            document.getElementById('btn-more').innerText = t.more;
             document.getElementById('txt-cat-title').innerText = t.catTitle;
             document.getElementById('txt-stats-title').innerText = t.statsTitle;
-            document.getElementById('txt-trend').innerText = t.trend;
             document.getElementById('s-members').innerText = t.s1;
             document.getElementById('s-topics').innerText = t.s2;
             document.getElementById('s-replies').innerText = t.s3;
+            document.getElementById('post-title').innerText = t.pTitle;
+            document.getElementById('post-desc').innerText = t.pDesc;
+            document.getElementById('txt-time').innerText = t.time;
 
-            // Kateqoriya id-ləri ilə eşləşdirmə
             const ids = ['c-all','c-gen','c-tech','c-it','c-edu','c-job','c-life','c-health','c-fin','c-build','c-tools','c-help'];
             ids.forEach((id, index) => {
                 document.getElementById(id).innerText = t.cats[index];
