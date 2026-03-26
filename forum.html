@@ -3,198 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OrikLab Community | Forum</title>
+    <title>İcma Paneli | OrikLab</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f1f5f9; }
         .font-os { font-family: 'Orbitron', sans-serif; }
-        .forum-card { 
-            background: rgba(15, 23, 42, 0.6); 
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            transition: all 0.3s ease; 
+        .kb-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .forum-card:hover { 
-            border-color: #3b82f6; 
-            transform: translateY(-2px);
-            background: rgba(30, 41, 59, 0.5);
+        .kb-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-10px);
+            background: rgba(30, 41, 59, 0.6);
+            box-shadow: 0 20px 40px -20px rgba(59, 130, 246, 0.4);
         }
-        .hero-mesh { background-image: radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.2) 0, transparent 50%); }
+        .lang-flag { cursor: pointer; transition: 0.3s; width: 28px; opacity: 0.5; }
+        .lang-active { opacity: 1; filter: drop-shadow(0 0 5px #3b82f6); transform: scale(1.1); }
     </style>
 </head>
-<body class="hero-mesh min-h-screen">
+<body class="min-h-screen bg-[radial-gradient(circle_at_top_right,rgba(29,78,216,0.15),transparent)]">
 
     <nav class="border-b border-white/5 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-            <a href="index.html" class="text-blue-500 font-os font-bold flex items-center gap-2 hover:text-blue-400 transition">
-                <i class="fa-solid fa-arrow-left text-sm"></i> <span id="nav-back">ANA SƏHİFƏ</span>
+            <a href="index.html" class="text-blue-500 font-os font-bold flex items-center gap-2">
+                <i class="fa-solid fa-users-viewfinder"></i> <span class="tracking-widest">ORIKLAB</span>
             </a>
-            <div class="font-os text-lg font-bold tracking-tighter text-white">
-                ORIK<span class="text-blue-600">LAB</span> <span class="text-gray-500 text-xs italic ml-2">COMMUNITY</span>
+            <div class="flex items-center gap-4">
+                <div class="flex gap-2 bg-white/5 p-1.5 rounded-lg border border-white/10">
+                    <img src="https://flagcdn.com/w40/az.png" id="flag-az" onclick="switchLang('az')" class="lang-flag">
+                    <img src="https://flagcdn.com/w40/de.png" id="flag-de" onclick="switchLang('de')" class="lang-flag">
+                </div>
             </div>
-            <button id="btn-login" class="bg-blue-600 hover:bg-blue-500 text-[10px] font-bold px-4 py-2 rounded-lg uppercase tracking-widest transition shadow-lg shadow-blue-600/20">
-                Giriş Et
-            </button>
         </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto px-6 py-12">
-        <header class="mb-12">
-            <h1 class="text-4xl font-os font-bold mb-3 italic"><span id="title-part1">İCMA</span> <span id="title-part2" class="text-blue-600">PANELİ</span></h1>
-            <p id="forum-desc" class="text-gray-500 text-sm uppercase tracking-widest font-semibold">Müzakirələr, Layihələr və İdeyalar</p>
-        </header>
+    <header class="py-20 px-6 text-center">
+        <h1 id="txt-header" class="text-4xl md:text-6xl font-os font-bold mb-6 uppercase tracking-tighter italic">
+            İCMA <span class="text-blue-500 text-glow">PANELİ</span>
+        </h1>
+        <p id="txt-subheader" class="text-gray-400 max-w-2xl mx-auto text-lg italic">OrikOS ekosisteminin qəlbi — burada öyrənirik, paylaşırıq və böyüyürük.</p>
+    </header>
 
-        <div class="grid gap-6">
-            <div class="forum-card p-6 rounded-3xl flex items-center justify-between group cursor-pointer">
-                <div class="flex items-center gap-6">
-                    <div class="w-14 h-14 bg-amber-500/10 text-amber-500 rounded-2xl flex items-center justify-center text-2xl border border-amber-500/20 shadow-inner">
-                        <i class="fa-solid fa-lightbulb"></i>
-                    </div>
-                    <div>
-                        <h3 id="cat1-t" class="font-os font-bold text-xl group-hover:text-blue-400 transition">İdeya Bankı</h3>
-                        <p id="cat1-d" class="text-gray-400 text-sm mt-1">Yeni startap və texnoloji ideyaların müzakirəsi.</p>
-                    </div>
+    <main class="max-w-6xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <a href="forum.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center border-blue-500/20">
+                <div class="w-20 h-20 bg-blue-500/10 text-blue-500 rounded-3xl flex items-center justify-center text-4xl mb-6 shadow-inner">
+                    <i class="fa-solid fa-comments"></i>
                 </div>
-                <div class="flex gap-8 text-center pr-4">
-                    <div class="hidden md:block">
-                        <span class="block text-xl font-bold text-white font-os">12</span>
-                        <span id="stat-topic" class="text-[9px] text-gray-500 uppercase font-bold tracking-tighter">Mövzu</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-gray-700 group-hover:text-blue-500 transition self-center"></i>
-                </div>
-            </div>
+                <h3 class="font-os text-xl font-bold mb-3 tracking-wider">FORUM</h3>
+                <p id="desc-forum" class="text-sm text-gray-500 leading-relaxed italic text-center">Müzakirələr, sual-cavablar və təcrübə mübadiləsi mərkəzi.</p>
+            </a>
 
-            <div class="forum-card p-6 rounded-3xl flex items-center justify-between group cursor-pointer">
-                <div class="flex items-center gap-6">
-                    <div class="w-14 h-14 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center text-2xl border border-blue-500/20 shadow-inner">
-                        <i class="fa-solid fa-diagram-project"></i>
-                    </div>
-                    <div>
-                        <h3 id="cat2-t" class="font-os font-bold text-xl group-hover:text-blue-400 transition">Aktiv Layihələr</h3>
-                        <p id="cat2-d" class="text-gray-400 text-sm mt-1">OrikOS üzərində qurulan yeni tətbiqlər və proqramlar.</p>
-                    </div>
+            <a href="events.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center">
+                <div class="w-20 h-20 bg-emerald-500/10 text-emerald-500 rounded-3xl flex items-center justify-center text-4xl mb-6">
+                    <i class="fa-solid fa-calendar-check"></i>
                 </div>
-                <div class="flex gap-8 text-center pr-4">
-                    <div class="hidden md:block">
-                        <span class="block text-xl font-bold text-white font-os">08</span>
-                        <span id="stat-project" class="text-[9px] text-gray-500 uppercase font-bold tracking-tighter">Layihə</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-gray-700 group-hover:text-blue-500 transition self-center"></i>
-                </div>
-            </div>
+                <h3 id="txt-events" class="font-os text-xl font-bold mb-3 tracking-wider uppercase">TƏDBİRLƏR</h3>
+                <p id="desc-events" class="text-sm text-gray-500 leading-relaxed italic">Canlı vebinarlar, mühəndislik görüşləri və hackathonlar.</p>
+            </a>
 
-            <div onclick="window.location.href='q-a.html'" class="forum-card p-6 rounded-3xl flex items-center justify-between group cursor-pointer">
-                <div class="flex items-center gap-6">
-                    <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl border border-emerald-500/20 shadow-inner">
-                        <i class="fa-solid fa-circle-question"></i>
-                    </div>
-                    <div>
-                        <h3 id="cat3-t" class="font-os font-bold text-xl group-hover:text-blue-400 transition">Sual-Cavab</h3>
-                        <p id="cat3-d" class="text-gray-400 text-sm mt-1">Texniki çətinliklər və mühəndislik sualları üçün bölmə.</p>
-                    </div>
+            <a href="leaderboard.html" class="kb-card p-10 rounded-[3rem] flex flex-col items-center text-center">
+                <div class="w-20 h-20 bg-amber-500/10 text-amber-500 rounded-3xl flex items-center justify-center text-4xl mb-6">
+                    <i class="fa-solid fa-trophy"></i>
                 </div>
-                <div class="flex gap-8 text-center pr-4">
-                    <div class="hidden md:block">
-                        <span class="block text-xl font-bold text-white font-os">45</span>
-                        <span id="stat-q" class="text-[9px] text-gray-500 uppercase font-bold tracking-tighter">Sual</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-gray-700 group-hover:text-blue-500 transition self-center"></i>
-                </div>
-            </div>
+                <h3 id="txt-rank" class="font-os text-xl font-bold mb-3 tracking-wider uppercase">REYTİNQ</h3>
+                <p id="desc-rank" class="text-sm text-gray-500 leading-relaxed italic text-center">İcmanın ən aktiv üzvləri və töhfə verənlər.</p>
+            </a>
 
-            <div class="forum-card p-6 rounded-3xl flex items-center justify-between group cursor-pointer">
-                <div class="flex items-center gap-6">
-                    <div class="w-14 h-14 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center text-2xl border border-red-500/20 shadow-inner">
-                        <i class="fa-solid fa-bullhorn"></i>
-                    </div>
-                    <div>
-                        <h3 id="cat4-t" class="font-os font-bold text-xl group-hover:text-blue-400 transition">Elanlar</h3>
-                        <p id="cat4-d" class="text-gray-400 text-sm mt-1">Sistem yenilənmələri və rəsmi xəbərlər.</p>
-                    </div>
-                </div>
-                <div class="flex gap-8 text-center pr-4">
-                    <div class="hidden md:block">
-                        <span class="block text-xl font-bold text-white font-os">03</span>
-                        <span id="stat-msg" class="text-[9px] text-gray-500 uppercase font-bold tracking-tighter">Mesaj</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-gray-700 group-hover:text-blue-500 transition self-center"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-16 grid md:grid-cols-3 gap-6 border-t border-white/5 pt-10 text-center">
-            <div>
-                <div class="text-2xl font-os font-bold text-blue-500">1.2K+</div>
-                <div id="stat-total" class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mt-1">Ümumi Üzv</div>
-            </div>
-            <div>
-                <div class="text-2xl font-os font-bold text-blue-500">24</div>
-                <div id="stat-online" class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mt-1">Onlayn</div>
-            </div>
-            <div>
-                <div class="text-2xl font-os font-bold text-blue-500">650</div>
-                <div id="stat-posts" class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mt-1">Paylaşım</div>
-            </div>
         </div>
     </main>
-
-    <footer class="py-12 text-center text-gray-700 text-[10px] font-bold uppercase tracking-widest">
-        OrikOS Global Forum Architecture &copy; 2026
-    </footer>
 
     <script>
         const translations = {
             az: {
-                back: "ANA SƏHİFƏ", login: "Giriş Et", t1: "İCMA", t2: "PANELİ",
-                desc: "Müzakirələr, Layihələr və İdeyalar",
-                c1t: "İdeya Bankı", c1d: "Yeni startap və texnoloji ideyaların müzakirəsi.",
-                c2t: "Aktiv Layihələr", c2d: "OrikOS üzərində qurulan yeni tətbiqlər və proqramlar.",
-                c3t: "Sual-Cavab", c3d: "Texniki çətinliklər və mühəndislik sualları üçün bölmə.",
-                c4t: "Elanlar", c4d: "Sistem yenilənmələri və rəsmi xəbərlər.",
-                s1: "Mövzu", s2: "Layihə", s3: "Sual", s4: "Mesaj",
-                total: "Ümumi Üzv", online: "Onlayn", posts: "Paylaşım"
+                header: 'İCMA <span class="text-blue-500">PANELİ</span>',
+                subheader: 'OrikOS ekosisteminin qəlbi — burada öyrənirik, paylaşırıq və böyüyürük.',
+                forumDesc: 'Müzakirələr, sual-cavablar və təcrübə mübadiləsi mərkəzi.',
+                eventsTitle: 'TƏDBİRLƏR',
+                eventsDesc: 'Canlı vebinarlar, mühəndislik görüşləri və hackathonlar.',
+                rankTitle: 'REYTİNQ',
+                rankDesc: 'İcmanın ən aktiv üzvləri və töhfə verənlər.'
             },
             de: {
-                back: "STARTSEITE", login: "Anmelden", t1: "COMMUNITY", t2: "PANEL",
-                desc: "Diskussionen, Projekte und Ideen",
-                c1t: "Ideen-Bank", c1d: "Diskussion über neue Startup- und Technikideen.",
-                c2t: "Aktive Projekte", c2d: "Neue Anwendungen und Programme auf OrikOS.",
-                c3t: "Fragen & Antworten", c3d: "Bereich für technische Probleme und Ingenieursfragen.",
-                c4t: "Ankündigungen", c4d: "System-Updates und offizielle Neuigkeiten.",
-                s1: "Thema", s2: "Projekt", s3: "Frage", s4: "Nachricht",
-                total: "Mitglieder", online: "Online", posts: "Beiträge"
+                header: 'COMMUNITY <span class="text-blue-500">PANEL</span>',
+                subheader: 'Das Herz des OrikOS-Ökosystems – wo wir lernen, teilen und wachsen.',
+                forumDesc: 'Zentrum für Diskussionen, Fragen und Antworten und Erfahrungsaustausch.',
+                eventsTitle: 'EVENTS',
+                eventsDesc: 'Live-Webinare, Engineering-Meetings und Hackathons.',
+                rankTitle: 'RANKING',
+                rankDesc: 'Die aktivsten Mitglieder und Mitwirkenden der Community.'
             }
         };
 
-        function applyLanguage() {
-            const lang = localStorage.getItem('selectedLang') || 'az';
+        function switchLang(lang) {
+            localStorage.setItem('selectedLang', lang);
             const t = translations[lang];
+            
+            document.getElementById('txt-header').innerHTML = t.header;
+            document.getElementById('txt-subheader').innerText = t.subheader;
+            document.getElementById('desc-forum').innerText = t.forumDesc;
+            document.getElementById('txt-events').innerText = t.eventsTitle;
+            document.getElementById('desc-events').innerText = t.eventsDesc;
+            document.getElementById('txt-rank').innerText = t.rankTitle;
+            document.getElementById('desc-rank').innerText = t.rankDesc;
 
-            document.getElementById('nav-back').innerText = t.back;
-            document.getElementById('btn-login').innerText = t.login;
-            document.getElementById('title-part1').innerText = t.t1;
-            document.getElementById('title-part2').innerText = t.t2;
-            document.getElementById('forum-desc').innerText = t.desc;
-            document.getElementById('cat1-t').innerText = t.c1t;
-            document.getElementById('cat1-d').innerText = t.c1d;
-            document.getElementById('cat2-t').innerText = t.c2t;
-            document.getElementById('cat2-d').innerText = t.c2d;
-            document.getElementById('cat3-t').innerText = t.c3t;
-            document.getElementById('cat3-d').innerText = t.c3d;
-            document.getElementById('cat4-t').innerText = t.c4t;
-            document.getElementById('cat4-d').innerText = t.c4d;
-            document.getElementById('stat-topic').innerText = t.s1;
-            document.getElementById('stat-project').innerText = t.s2;
-            document.getElementById('stat-q').innerText = t.s3;
-            document.getElementById('stat-msg').innerText = t.s4;
-            document.getElementById('stat-total').innerText = t.total;
-            document.getElementById('stat-online').innerText = t.online;
-            document.getElementById('stat-posts').innerText = t.posts;
+            document.querySelectorAll('.lang-flag').forEach(img => img.classList.remove('lang-active'));
+            document.getElementById('flag-' + lang).classList.add('lang-active');
         }
 
-        window.onload = applyLanguage;
+        window.onload = () => {
+            const saved = localStorage.getItem('selectedLang') || 'az';
+            switchLang(saved);
+        };
     </script>
 </body>
 </html>
