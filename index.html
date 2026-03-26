@@ -80,7 +80,7 @@
             </h1>
             <div class="slogan-box py-3 px-6 inline-block mb-10">
                 <p id="txt-hero-desc" class="text-gray-300 text-lg md:text-xl font-light tracking-wide italic">
-                    Texnologiya və innovasiya: Hər sahədə rəqəmsal gələcək.
+                    Gələcəyi kodlayırıq: İdeyanın tətbiqə çevrildiyi nöqtə.
                 </p>
             </div>
         </div>
@@ -134,15 +134,15 @@
     <footer class="py-16 border-t border-white/5 bg-slate-950/40 relative z-10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-10">
-                <div class="text-center md:text-left">
-                    <div class="text-xl font-os font-bold text-white mb-2 tracking-widest italic leading-none">ORIKLAB</div>
-                    <p class="text-blue-500/60 text-[10px] uppercase font-bold tracking-[0.3em] mb-4">Powered by OrikOS Ecosystem</p>
-                    <p class="text-gray-600 text-[10px] uppercase tracking-wider font-medium">
-                        Orkhan Hajiyev — Römerstraße 307, 53117 Bonn, Germany
-                    </p>
+                <div class="flex items-center gap-4 text-center md:text-left">
+                    <img src="https://i.postimg.cc/mD8z6N7M/OrikOS-Logo.png" class="w-12 h-12 object-contain filter brightness-110" alt="OrikOS Logo">
+                    <div>
+                        <div class="text-xl font-os font-bold text-white tracking-widest italic leading-none">ORIKLAB</div>
+                        <p class="text-blue-500/80 text-[10px] uppercase font-bold tracking-[0.3em] mt-1">Powered by OrikOS Ecosystem</p>
+                    </div>
                 </div>
                 <div class="flex gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                    <a href="impressum.html" id="link-impressum" class="hover:text-blue-500 transition">Impressum</a>
+                    <a href="impressum.html" id="link-impressum" class="hover:text-blue-500 transition">Hüquqi Bildiriş</a>
                     <a href="datenschutz.html" id="link-datenschutz" class="hover:text-blue-500 transition">Məxfilik Siyasəti</a>
                 </div>
             </div>
@@ -156,33 +156,30 @@
             glow.style.top = e.clientY + 'px';
         });
 
-        // FAVICON ANIMASIYASI (GÖZ QIRPMA EFFEKTİ)
         const favicon = document.getElementById('favicon');
         const originalIcon = "https://i.postimg.cc/8zXzM9m9/robot-head.png";
-        const blinkIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH6AMKDA8XJiZfQAAAAnpJREFUaN7tmT1oFEEUx39v7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7v8ALmAnZt7j71kAAAAASUVORK5CYII=";
+        const blinkIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH6AMKDA8XJiZfQAAAAnpJREFUaN7tmT1oFEEUx39v7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7v8ALmAnZt7j71kAAAAASUVORK5CYII=";
 
         function blink() {
-            favicon.href = blinkIcon; // Gözləri "yumur"
-            setTimeout(() => {
-                favicon.href = originalIcon; // Gözləri geri açır
-            }, 200);
+            favicon.href = blinkIcon;
+            setTimeout(() => { favicon.href = originalIcon; }, 200);
         }
 
         setInterval(() => {
-            const randomTime = Math.random() * 4000 + 2000; // 2-6 saniyə arası təsadüfi göz qırpma
+            const randomTime = Math.random() * 4000 + 2000;
             setTimeout(blink, randomTime);
         }, 5000);
 
         const translations = {
             az: {
-                heroD: "Texnologiya və innovasiya: Hər sahədə rəqəmsal gələcək.",
+                heroD: "Gələcəyi kodlayırıq: İdeyanın tətbiqə çevrildiyi nöqtə.",
                 newsT: "XƏBƏR LENTİ", newsD: "Ən son texnoloji yeniliklər və rəqəmsal dünyanın trendləri.", newsB: "Daha Çox",
                 comT: "İCMA PORTALI", comD: "Fərqli sahələrin peşəkarları ilə təcrübə mübadiləsi və geniş müzakirə mərkəzi.", comB: "Müzakirələrə Qoşul",
                 resT: "BİLİK ARXİVİ", resD: "Müxtəlif peşə sahələri üçün faydalı alətlər, kitablar, dərsliklər və önəmli resurslar.",
-                imp: "Impressum", priv: "Məxfilik Siyasəti"
+                imp: "Hüquqi Bildiriş", priv: "Məxfilik Siyasəti"
             },
             de: {
-                heroD: "Technologie und Innovation: Die digitale Zukunft in jedem Bereich.",
+                heroD: "Wir codieren die Zukunft: Wo Ideen zur Realität werden.",
                 newsT: "NEWS-FEED", newsD: "Die neuesten technologischen Innovationen und Trends der digitalen Welt.", newsB: "Mehr Sehen",
                 comT: "COMMUNITY-PORTAL", comD: "Erfahrungsaustausch und Diskussionszentrum mit Fachleuten aus verschiedenen Bereichen.", comB: "Zur Diskussion",
                 resT: "WISSENSARCHIV", resD: "Nützliche Tools, Bücher, Tutorials und wichtige Ressourcen für verschiedene Berufsfelder.",
